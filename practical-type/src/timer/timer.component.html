@@ -1,1 +1,4 @@
+@if(!timerService.timerHasStarted) {
+<button color="accent" mat-flat-button (click)="timerService.start()">Start</button>
+}
 {{timerService.counter}}
