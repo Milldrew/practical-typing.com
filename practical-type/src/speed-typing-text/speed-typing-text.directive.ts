@@ -1,6 +1,7 @@
 import {Directive} from '@angular/core';
 import {ElementRef} from '@angular/core';
 import {NON_LETTERS, NON_LETTER_CHAR_TO_NAME} from './speed-typing.constants';
+import {TimerService} from '../timer/timer.service';
 
 @Directive({
   selector: '[practicalSpeedTypingText]'
@@ -10,7 +11,10 @@ export class SpeedTypingTextDirective {
 
   setupTypingListener = setupTypingListener.bind(this);
 
-  constructor(public el: ElementRef) {
+  constructor(public el: ElementRef,
+    public timer: TimerService
+
+  ) {
   }
   lastIndex = 0;
 
@@ -39,6 +43,9 @@ export class SpeedTypingTextDirective {
 
 function setupTypingListener(this: SpeedTypingTextDirective,) {
   window.addEventListener('keypress', (event: KeyboardEvent) => {
+    if (!this.timer.timerHasStarted) {
+      this.timer.start();
+    }
 
     const char = String.fromCharCode(event.charCode);
     console.log(char);
@@ -89,6 +96,12 @@ function handleCharacterTyped(this: SpeedTypingTextDirective, char: string) {
     //@ts-ignore
     span.style.color = '#fff';
     this.characterList.shift();
+    console.log(this.characterList)
+    if (
+      this.characterList.length === 0
+    ) {
+      this.timer.stop();
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-@if(!timerService.timerHasStarted) {
-<button color="accent" mat-flat-button (click)="timerService.start()">Start</button>
+@if(timerService.timerHasFinished) {
+<span>Finished!</span>
 }
-{{timerService.counter}}
+{{timerService.counter.toFixed(2)}}

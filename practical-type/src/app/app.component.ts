@@ -4,8 +4,8 @@ import {SpeedTypingTextDirective} from '../speed-typing-text/speed-typing-text.d
 import {TimerComponent} from '../timer/timer.component';
 
 
-export const SPEED_TYPING_TEMPLATE = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~${'`'}1!2@3#4$5%6^7&8*9(0){[<>]}-=\
-`
+// export const SPEED_TYPING_TEMPLATE = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~${'`'}1!2@3#4$5%6^7&8*9(0){[<>]}-=\`
+export const SPEED_TYPING_TEMPLATE = 'abc';
 
 
 @Component({
