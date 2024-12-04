@@ -1,13 +1,15 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
+import {SpeedTypingTextDirective} from '../speed-typing-text/speed-typing-text.directive';
 
 
-export const SPEED_TYPING_TEMPLATE = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~${'``'}1!2@3#4$5%6^7&8*9(0)({[<>]})-=\
+export const SPEED_TYPING_TEMPLATE = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~${'`'}1!2@3#4$5%6^7&8*9(0)({[<>]})-=\
 `
+
 
 @Component({
   selector: 'app-root',
-  // imports: [RouterOutlet],
+  imports: [SpeedTypingTextDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
