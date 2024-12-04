@@ -60,9 +60,13 @@ footer {
 }
 
 #speed-typing-text {
+  color: $untyped-char-color;
+}
+
+#speed-typing-text * {
+
   contain: content;
   color: $untyped-char-color;
-
   width: 100%;
   max-width: 80vw;
   overflow-wrap: anywhere;
