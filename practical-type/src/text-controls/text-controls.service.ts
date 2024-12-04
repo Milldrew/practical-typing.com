@@ -1,6 +1,11 @@
 import {Injectable} from '@angular/core';
 
-const SPEED_TYPING_TEMPLATE = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~${'`'}1!2@3#4$5%6^7&8*9(0){[<>]}-=`
+let SPEED_TYPING_TEMPLATE = `~${'`'}1!2@3#4$5%6^7&8*9(0){[<>]}-=`
+
+const LETTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const NUMBERS = '12345678909876543210';
+
+SPEED_TYPING_TEMPLATE = NUMBERS;
 
 @Injectable({
   providedIn: 'root'
