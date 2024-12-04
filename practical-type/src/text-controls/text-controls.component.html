@@ -1,1 +1,4 @@
-<p>text-controls works!</p>
+<mat-slider min="0" [max]="textControls.maxPossibleChars" (change)="textControls.handleTextSubstringChange()">
+  <input [value]="textControls.currentStartIndex" matSliderStartThumb [(ngModel)]="textControls.currentStartIndex">
+  <input [value]="textControls.currentEndIndex" matSliderEndThumb [(ngModel)]="textControls.currentEndIndex">
+</mat-slider>

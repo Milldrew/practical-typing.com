@@ -1,14 +1,19 @@
 <header>
-  <h1>Practical Type</h1>
+  <section>
+    <h1>Practical Typing</h1>
 
-  <practical-timer>
-  </practical-timer>
+    <practical-timer>
+    </practical-timer>
+  </section>
+  <practical-text-controls>
+
+  </practical-text-controls>
 </header>
 
 <main>
   <div id="speed-typing-container">
-    <div id="speed-typing-text" practicalSpeedTypingText>
-      {{speedTypingTemplate}}
+    <div id="speed-typing-text" practicalSpeedTypingText [text]="textControlsService.currentText">
+      >
     </div>
   </div>
 </main>

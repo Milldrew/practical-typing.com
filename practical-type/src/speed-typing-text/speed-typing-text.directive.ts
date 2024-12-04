@@ -1,4 +1,4 @@
-import {Directive} from '@angular/core';
+import {Directive, Input} from '@angular/core';
 import {ElementRef} from '@angular/core';
 import {NON_LETTERS, NON_LETTER_CHAR_TO_NAME} from './speed-typing.constants';
 import {TimerService} from '../timer/timer.service';
@@ -18,25 +18,30 @@ export class SpeedTypingTextDirective {
   }
   lastIndex = 0;
 
-  ngAfterViewInit() {
-    this.setupTypingListener();
+  @Input() text: string = 'abc'
 
-    const text =
-      replaceAmpEscapesWithChars(
-        this.el.nativeElement.innerHTML
-      )
+  ngOnChanges() {
+    console.log('on changes', this.text)
+    this.setUpInnerHTML()
+
+  }
+
+  setUpInnerHTML() {
+    this.characterList = [];
     this.el.nativeElement.innerHTML = '';
-    text.split('').map((char: string, index: number) => {
-      console.log(text)
-
+    this.text.split('').map((char: string, index: number) => {
       if (isWhiteSpace(char)) {
       } else {
         this.lastIndex = index;
         this.characterList.push(char);
         this.el.nativeElement.appendChild(createSpanForCharacter(char, index));
       }
-
     });
+  }
+
+
+  ngAfterViewInit() {
+    this.setupTypingListener();
   }
 
 }
