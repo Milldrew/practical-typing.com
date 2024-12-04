@@ -7,7 +7,7 @@ export const SPEED_TYPING_TEMPLATE = `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOP
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  // imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
