@@ -4,6 +4,7 @@ import {SpeedTypingTextDirective} from '../speed-typing-text/speed-typing-text.d
 import {TimerComponent} from '../timer/timer.component';
 import {TextControlsService} from '../text-controls/text-controls.service';
 import {TextControlsComponent} from '../text-controls/text-controls.component';
+import {TimerService} from '../timer/timer.service';
 
 
 
@@ -15,7 +16,9 @@ import {TextControlsComponent} from '../text-controls/text-controls.component';
 })
 export class AppComponent {
   constructor(
-    public textControlsService: TextControlsService
+    public textControlsService: TextControlsService,
+    public timerService: TimerService
+
   ) {}
 
 }

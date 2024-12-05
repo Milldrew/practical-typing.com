@@ -2,6 +2,15 @@ import {SpeedTypingTextDirective} from './speed-typing-text.directive';
 import {NON_LETTERS, NUMBER_TO_NUMBER_NAME} from './speed-typing.constants';
 
 
+export const NON_TYPED_LETTER_COLOR =
+  'rgb(100, 102, 105)'
+
+export function changeAllSpansToNonTypedColor(this: SpeedTypingTextDirective) {
+  this.el.nativeElement.querySelectorAll('span').forEach((span: HTMLElement) => {
+    span.style.color = NON_TYPED_LETTER_COLOR;
+  })
+}
+
 export function createId(index: number) {
 
 
@@ -79,3 +88,4 @@ export function createSpanForCharacter(char: string, index: number) {
   span.style.fontSize = '36px';
   return span;
 }
+

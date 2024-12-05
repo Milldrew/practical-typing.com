@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {GlobalEventEmitter, RESTART_RUN} from '../eventz/global.event-emitter';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,11 @@ export class TimerService {
   counter: number = 0;
 
   intervalReference: any;
-  constructor() {}
-  start() {
+  constructor() {
 
+    this.handleRestartRun();
+  }
+  start() {
     if (this.timerHasStarted) {
       return;
     }
@@ -32,5 +35,13 @@ export class TimerService {
   }
   ngAfterViewInit() {
     this.start();
+  }
+  handleRestartRun() {
+    GlobalEventEmitter.on(RESTART_RUN, () => {
+      console.log(RESTART_RUN)
+      this.counter = 0;
+      this.timerHasFinished = false;
+      this.timerHasStarted = false;
+    })
   }
 }
