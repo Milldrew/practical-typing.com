@@ -1,1 +1,20 @@
-<p>home works!</p>
+<section id="text-controls">
+
+  <practical-text-controls>
+  </practical-text-controls>
+
+  <practical-timer>
+  </practical-timer>
+</section>
+
+<main>
+  @if(!timerService.timerHasStarted) {
+
+  <h4>Start Typing To Start</h4>
+  }
+  <div id="speed-typing-container">
+    <div id="speed-typing-text" practicalSpeedTypingText [text]="textControlsService.currentText">
+      >
+    </div>
+  </div>
+</main>

@@ -1,0 +1,43 @@
+@use '../variables' as *;
+
+:host {
+  height: 100%;
+  width: 100%;
+}
+
+#text-controls {
+  display: flex;
+  flex-direction: column;
+}
+
+#speed-typing-container {
+
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#speed-typing-text {
+  color: $untyped-char-color;
+}
+
+#speed-typing-text * {
+
+  contain: content;
+  color: $untyped-char-color;
+  width: 100%;
+  max-width: 80vw;
+  overflow-wrap: anywhere;
+  font-size: 32px;
+
+}
+
+header,
+main,
+footer {
+  max-width: 100%;
+
+}
