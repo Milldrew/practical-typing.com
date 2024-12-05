@@ -1,3 +1,13 @@
+:host {
+  display: flex;
+}
+
+@media (max-width: 600px) {
+  :host {
+    flex-direction: column;
+  }
+}
+
 mat-slider {
   min-width: 400px;
 }

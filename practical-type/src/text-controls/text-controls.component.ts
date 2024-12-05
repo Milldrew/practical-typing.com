@@ -8,7 +8,8 @@ import {MatButtonModule} from '@angular/material/button';
 @Component({
   standalone: true,
   selector: 'practical-text-controls',
-  imports: [MatSliderModule, FormsModule, MatButtonModule],
+  imports: [MatSliderModule, FormsModule, MatButtonModule
+  ],
   templateUrl: './text-controls.component.html',
   styleUrl: './text-controls.component.scss'
 })
