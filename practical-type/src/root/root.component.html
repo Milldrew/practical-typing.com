@@ -1,0 +1,32 @@
+<header>
+  <h1>Practical Typing</h1>
+  <button mat-icon-button [matMenuTriggerFor]="menu" id="hamburger-menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <a routerLink="/">
+      <button mat-menu-item>
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+
+      </button>
+    </a>
+    <a routerLink="/scores">
+      <button mat-menu-item>
+        <mat-icon>leaderboard</mat-icon>
+        <span>Scores</span>
+      </button>
+    </a>
+    <a routerLink="/pedagodgy">
+      <button mat-menu-item>
+        <mat-icon>school</mat-icon>
+        <span>Pedagodgy</span>
+      </button>
+    </a>
+  </mat-menu>
+
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>
+<footer></footer>
