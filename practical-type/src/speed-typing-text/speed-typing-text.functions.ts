@@ -56,6 +56,7 @@ export function setupTypingListener(this: SpeedTypingTextDirective,) {
 
     const char = String.fromCharCode(event.charCode);
     console.log(char);
+    console.log(this.characterList[0], char)
     if (char === this.characterList[0]) {
       console.log(this.characterList)
       handleCharacterTyped.call(this, char);

@@ -1,5 +1,6 @@
 :host {
   display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 600px) {
@@ -9,5 +10,6 @@
 }
 
 mat-slider {
-  min-width: 400px;
+  min-width: 200px;
+  max-width: 400px;
 }
