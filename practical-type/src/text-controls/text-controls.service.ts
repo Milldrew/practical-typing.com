@@ -9,10 +9,12 @@ SPEED_TYPING_TEMPLATE = NUMBERS;
 SPEED_TYPING_TEMPLATE = '123'
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class TextControlsService {
+
   originalText = SPEED_TYPING_TEMPLATE;
   currentText = SPEED_TYPING_TEMPLATE;
   maxPossibleChars = 0
