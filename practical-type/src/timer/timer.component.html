@@ -1,4 +1,9 @@
 @if(timerService.timerHasFinished) {
 <span>Finished!</span>
 }
-{{timerService.counter.toFixed(2)}}
+{{timerService.counter.toFixed(2)}} seconds
+@if(timerService.timerHasFinished) {
+<button mat-raised-button>Restart
+  <mat-icon>replay</mat-icon>
+</button>
+}

@@ -1,4 +1,3 @@
 <mat-slider min="0" [max]="textControls.maxPossibleChars" (change)="textControls.handleTextSubstringChange()">
-  <input [value]="textControls.currentStartIndex" matSliderStartThumb [(ngModel)]="textControls.currentStartIndex">
-  <input [value]="textControls.currentEndIndex" matSliderEndThumb [(ngModel)]="textControls.currentEndIndex">
+  <input [value]="textControls.currentEndIndex" matSliderThumb [(ngModel)]="textControls.currentEndIndex" min="1">
 </mat-slider>

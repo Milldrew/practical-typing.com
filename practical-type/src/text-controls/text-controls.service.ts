@@ -16,12 +16,17 @@ export class TextControlsService {
   maxPossibleChars = 0
   currentStartIndex = 0;
   currentEndIndex = 1;
+  minimumTextLength = 3;
   constructor() {
     this.maxPossibleChars = this.originalText.length;
     this.currentEndIndex = this.maxPossibleChars;
   }
   handleTextSubstringChange() {
     console.log('handleTextSubstringChange')
+    if (this.currentEndIndex < this.minimumTextLength) {
+      this.currentStartIndex = 0;
+      this.currentEndIndex = this.minimumTextLength;
+    }
     this.currentText = this.originalText.substring(
       this.currentStartIndex,
       this.currentEndIndex
