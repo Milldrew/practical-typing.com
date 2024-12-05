@@ -6,6 +6,8 @@ const LETTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const NUMBERS = '12345678909876543210';
 
 SPEED_TYPING_TEMPLATE = NUMBERS;
+SPEED_TYPING_TEMPLATE = '123'
+
 
 @Injectable({
   providedIn: 'root'
