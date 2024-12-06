@@ -8,6 +8,7 @@ import {GlobalEventEmitter, RESTART_RUN} from '../eventz/global.event-emitter';
 import {TextControlsService} from '../text-controls/text-controls.service';
 
 @Directive({
+  standalone: true,
   selector: '[practicalSpeedTypingText]'
 })
 export class SpeedTypingTextDirective {

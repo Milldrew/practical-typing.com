@@ -10,6 +10,7 @@ import {TimerService} from '../timer/timer.service';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [SpeedTypingTextDirective, TimerComponent, TextControlsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

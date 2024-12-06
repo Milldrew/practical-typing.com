@@ -7,6 +7,7 @@ import {SpeedTypingTextDirective} from '../speed-typing-text/speed-typing-text.d
 
 
 @Component({
+  standalone: true,
   selector: 'practical-home',
   imports: [TimerComponent, TextControlsComponent, SpeedTypingTextDirective],
   templateUrl: './home.component.html',
