@@ -1,49 +1,22 @@
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
 @use 'variables' as *;
-// }
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-// Plus imports for other components in your app.
+@use '@angular/material' as mat;
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
 @include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$angular-workspace-primary: mat.define-palette(mat.$yellow-palette);
-$angular-workspace-accent: mat.define-palette(mat.$blue-palette, A200, A100, A400);
+$swe-academy-spa-primary: mat.define-palette(mat.$yellow-palette);
+$swe-academy-spa-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
-// The warn palette is optional (defaults to red).
-$angular-workspace-warn: mat.define-palette(mat.$red-palette);
+$swe-academy-spa-warn: mat.define-palette(mat.$red-palette);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$angular-workspace-theme: mat.define-dark-theme((color: (primary: $angular-workspace-primary,
-        accent: $angular-workspace-accent,
-        warn: $angular-workspace-warn,
-      )));
-$dark-theme: mat.define-dark-theme((color: (primary: $angular-workspace-primary,
-        accent: $angular-workspace-accent,
-        warn: $angular-workspace-warn,
-      )));
+$swe-academy-spa-theme: mat.define-dark-theme((color: (primary: $swe-academy-spa-primary,
+        accent: $swe-academy-spa-accent,
+        warn: $swe-academy-spa-warn,
+      ),
+      typography: mat.define-typography-config(),
+      density: 0));
 
-.mat-dark-theme {
-  @include mat.all-component-themes($dark-theme);
-}
+@include mat.all-component-themes($swe-academy-spa-theme);
 
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include mat.all-component-themes($angular-workspace-theme);
-
-
-/* You can add global styles to this file, and also import other style files */
 
 html,
 body {
