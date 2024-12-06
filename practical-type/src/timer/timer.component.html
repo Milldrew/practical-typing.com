@@ -3,14 +3,26 @@
   <span>Finished!</span>
   }
   {{timerService.timeCounter.toFixed(2)}}
-  @if(timerService.timerHasFinished) {
+  @if(timerService.timerHasFinished && !timerService.timerHasStarted) {
   <button mat-raised-button (click)="handleRestartRun()">Restart
     <mat-icon>replay</mat-icon>
   </button>
   }
 </div>
-@if(timerService.timerHasFinished) {
+@if(timerService.timerHasFinished && !timerService.timerHasStarted) {
 <div>
   {{textService.currentRunWordsPerMinute.toFixed(2)}} Words Per Minute
 </div>
 }
+
+
+
+<!-- DEBUG STUFF -->
+<!-- {{ -->
+<!-- { -->
+<!-- hasFinished: timerService.timerHasFinished, -->
+<!-- timeCounter: timerService.timeCounter, -->
+<!-- timerHasStarted: timerService.timerHasStarted, -->
+
+<!-- } | json -->
+<!-- }} -->

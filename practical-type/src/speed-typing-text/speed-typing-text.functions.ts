@@ -70,6 +70,8 @@ export function setupTypingListener(this: SpeedTypingTextDirective,) {
     if (char === this.characterList[0]) {
       console.log(this.characterList)
       handleCharacterTyped.call(this, char);
+    } else {
+      this.timer.stop();
     }
   })
 }

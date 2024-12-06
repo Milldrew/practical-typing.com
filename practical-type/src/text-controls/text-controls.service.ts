@@ -84,7 +84,7 @@ export class TextControlsService {
     }
   }
   handleTextSubstringChange() {
-    GlobalEventEmitter.emit(RESTART_RUN);
+    // GlobalEventEmitter.emit(RESTART_RUN);
     console.log('handleTextSubstringChange')
     if (this.currentEndIndex < this.minimumTextLength) {
       this.currentStartIndex = 0;

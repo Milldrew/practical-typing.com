@@ -28,11 +28,14 @@ export class TimerService {
   }
 
   stop() {
+    this.stopTimer();
+    GlobalEventEmitter.emit(RUN_FINISHED, this.timeCounter);
+    this.timerHasFinished = true;
+  }
+  stopTimer() {
     console.log('STOPPING TIMER');
     console.log('this.intervalReference', this.intervalReference)
     clearInterval(this.intervalReference);
-    GlobalEventEmitter.emit(RUN_FINISHED, this.timeCounter);
-    this.timerHasFinished = true;
     this.timerHasStarted = false;
   }
   ngAfterViewInit() {
@@ -43,7 +46,7 @@ export class TimerService {
       console.log(RESTART_RUN)
       this.timeCounter = 0;
       this.timerHasFinished = false;
-      this.timerHasStarted = false;
+      this.stopTimer();
     })
   }
 }
