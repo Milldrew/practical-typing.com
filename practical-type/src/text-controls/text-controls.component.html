@@ -1,11 +1,33 @@
 <section id="run-types">
+  @if(textControls.currentRunType === 'numbers') {
+
   <button mat-button (click)="textControls.setCurrentRunType('numbers')">Numbers</button>
+  } @else {
+  <button mat-button (click)="textControls.setCurrentRunType('numbers')" color="accent">Numbers</button>
+
+  }
+  @if(textControls.currentRunType === 'letters') {
   <button mat-button (click)="textControls.setCurrentRunType('letters')">Letters</button>
+
+  } @else {
+  <button mat-button (click)="textControls.setCurrentRunType('letters')" color="accent">Letters</button>
+
+  }
+  @if(textControls.currentRunType === 'special-characters') {
   <button mat-button (click)="textControls.setCurrentRunType('special-characters')">Special Characters</button>
+
+  } @else{
+  <button mat-button (click)="textControls.setCurrentRunType('special-characters')" color="accent">Special
+    Characters</button>
+
+  }
 </section>
-<mat-slider min="0" [max]="textControls.maxPossibleChars" (change)="textControls.handleTextSubstringChange()">
-  <input [value]="textControls.currentEndIndex" matSliderThumb [(ngModel)]="textControls.currentEndIndex" min="1">
-</mat-slider>
+<section>
+  <mat-slider min="0" [max]="textControls.maxPossibleChars" (change)="textControls.handleTextSubstringChange()">
+    <input [value]="textControls.currentEndIndex" matSliderThumb [(ngModel)]="textControls.currentEndIndex" min="1">
+  </mat-slider>
+  <div>Character Count: {{textControls.currentEndIndex}} </div>
+</section>
 
 <!-- - number run -->
 <!-- - letter run -->

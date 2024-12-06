@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {PRACTICAL_LETTERS, PRACTICAL_NUMBERS, PRACTICAL_SPECIAL_CHARACTERS} from './text-controls.constants';
+import {GlobalEventEmitter, RUN_FINISHED} from '../eventz/global.event-emitter';
 
 let SPEED_TYPING_TEMPLATE = `~${'`'}1!2@3#4$5%6^7&8*9(0){[<>]}-=`
 
@@ -27,8 +28,8 @@ export class TextControlsService {
   numbers = PRACTICAL_NUMBERS
   specialCharacters = PRACTICAL_SPECIAL_CHARACTERS
 
-  // currentRunType: SpeedTypingRunTypes = LETTERS;
-  currentRunType: SpeedTypingRunTypes = SPECIAL_CHARACTERS;
+  currentRunType: SpeedTypingRunTypes = LETTERS;
+  // currentRunType: SpeedTypingRunTypes = SPECIAL_CHARACTERS;
   originalText = SPEED_TYPING_TEMPLATE;
   currentText = this.getOriginalText(this.currentRunType);
   maxPossibleChars = 0
@@ -38,7 +39,21 @@ export class TextControlsService {
   constructor() {
     this.maxPossibleChars = this.originalText.length;
     this.currentEndIndex = this.maxPossibleChars;
+    this.handleRunFinished();
   }
+  currentRunWordsPerMinute = 0;
+  handleRunFinished() {
+    GlobalEventEmitter.on(RUN_FINISHED, (runTime: number) => {
+      console.log('RUN_FINISHED', runTime)
+      this.currentRunWordsPerMinute = this.calculateWordsPerMinute(runTime);
+    })
+  }
+  calculateWordsPerMinute(runTime: number) {
+    const words = this.currentEndIndex / 5;
+    const minutes = runTime / 60;
+    return words / minutes;
+  }
+
   setCurrentRunType(runType: SpeedTypingRunTypes) {
     console.log('setCurrentRunType')
     this.currentRunType = runType;

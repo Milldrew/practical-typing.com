@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {GlobalEventEmitter, RESTART_RUN} from '../eventz/global.event-emitter';
+import {GlobalEventEmitter, RESTART_RUN, RUN_FINISHED} from '../eventz/global.event-emitter';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,7 @@ import {GlobalEventEmitter, RESTART_RUN} from '../eventz/global.event-emitter';
 export class TimerService {
   timerHasStarted: boolean = false;
   timerHasFinished: boolean = false;
-  counter: number = 0;
+  timeCounter: number = 0;
 
   intervalReference: any;
   constructor() {
@@ -21,7 +21,7 @@ export class TimerService {
 
     this.intervalReference =
       setInterval(() => {
-        this.counter += .01;
+        this.timeCounter += .01;
       }, 10);
     console.log('this.intervalReference', this.intervalReference)
     this.timerHasStarted = true;
@@ -32,6 +32,7 @@ export class TimerService {
     this.timerHasFinished = true;
     console.log('this.intervalReference', this.intervalReference)
     clearInterval(this.intervalReference);
+    GlobalEventEmitter.emit(RUN_FINISHED, this.timeCounter);
   }
   ngAfterViewInit() {
     this.start();
@@ -39,7 +40,7 @@ export class TimerService {
   handleRestartRun() {
     GlobalEventEmitter.on(RESTART_RUN, () => {
       console.log(RESTART_RUN)
-      this.counter = 0;
+      this.timeCounter = 0;
       this.timerHasFinished = false;
       this.timerHasStarted = false;
     })

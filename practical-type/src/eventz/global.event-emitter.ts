@@ -1,8 +1,10 @@
 export const RESTART_RUN = 'restart-run'
 export const RUN_FINISHED = 'run-finished'
+export const SEND_RUN_DATA = 'send-run-data'
 const GLOBAL_EVENTS_LIST = [
   RESTART_RUN,
-  RUN_FINISHED
+  RUN_FINISHED,
+  SEND_RUN_DATA
 ]
 export type GlobalEvents = typeof GLOBAL_EVENTS_LIST[number]
 export class GlobalEventEmitter {
@@ -13,7 +15,7 @@ export class GlobalEventEmitter {
     return acc
   }, {})
 
-  static on(event: GlobalEvents, listener: () => void) {
+  static on(event: GlobalEvents, listener: (...payload: any[]) => void) {
     if (GlobalEventEmitter.listeners[event]) {
       GlobalEventEmitter.listeners[event].push(listener)
     } else {
