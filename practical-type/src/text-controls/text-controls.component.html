@@ -1,4 +1,13 @@
+@if (!timerService.timerHasStarted) {
+<section>
+  <button mat-button color="primary" (click)="textControls.reverseText()">
+    Reverse
+    <mat-icon>swap_horiz</mat-icon>
+  </button>
+
+</section>
 <section id="run-types">
+
   @if(textControls.currentRunType === 'numbers') {
 
   <button mat-stroked-button (click)="textControls.setCurrentRunType('numbers')" color="primary">Numbers</button>
@@ -29,6 +38,7 @@
   </mat-slider>
   <div>Character Count: {{textControls.currentEndIndex}} </div>
 </section>
+}
 
 <!-- - number run -->
 <!-- - letter run -->

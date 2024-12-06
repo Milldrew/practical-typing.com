@@ -57,8 +57,8 @@ export class SpeedTypingTextDirective {
 
   ngAfterViewInit() {
     this.setupTypingListener();
+    this.el.nativeElement.style.overflowWrap = 'anywhere';
   }
-
 }
 
 

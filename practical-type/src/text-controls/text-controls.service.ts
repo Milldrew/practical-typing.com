@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {PRACTICAL_LETTERS, PRACTICAL_NUMBERS, PRACTICAL_SPECIAL_CHARACTERS} from './text-controls.constants';
-import {GlobalEventEmitter, RUN_FINISHED} from '../eventz/global.event-emitter';
+import {GlobalEventEmitter, RESTART_RUN, RUN_FINISHED} from '../eventz/global.event-emitter';
 
 let SPEED_TYPING_TEMPLATE = `~${'`'}1!2@3#4$5%6^7&8*9(0){[<>]}-=`
 
@@ -58,33 +58,61 @@ export class TextControlsService {
     console.log('setCurrentRunType')
     this.currentRunType = runType;
     this.originalText = this.getOriginalText(runType);
-    this.currentText = this.originalText;
+    if (this.isTextReversed) {
+      this.currentText = reverseText(this.originalText);
+    } else {
+      this.currentText = this.originalText;
+    }
     this.maxPossibleChars = this.originalText.length;
     this.currentEndIndex = this.maxPossibleChars;
   }
 
-  getOriginalText(runType: SpeedTypingRunTypes) {
-    switch (runType) {
-      case LETTERS:
-        return this.letters;
-      case NUMBERS:
-        return this.numbers;
-      case SPECIAL_CHARACTERS:
-        return this.specialCharacters;
-      default:
-        return this.letters;
+  getOriginalText(runType: SpeedTypingRunTypes): string {
+    if (!this.isTextReversed) {
+      switch (runType) {
+        case LETTERS:
+          return this.letters;
+        case NUMBERS:
+          return this.numbers;
+        case SPECIAL_CHARACTERS:
+          return this.specialCharacters;
+        default:
+          return this.letters;
+      }
+    } else {
+      return reverseText(this.getOriginalText(runType));
     }
   }
   handleTextSubstringChange() {
+    GlobalEventEmitter.emit(RESTART_RUN);
     console.log('handleTextSubstringChange')
     if (this.currentEndIndex < this.minimumTextLength) {
       this.currentStartIndex = 0;
       this.currentEndIndex = this.minimumTextLength;
     }
-    this.currentText = this.originalText.substring(
-      this.currentStartIndex,
-      this.currentEndIndex
-    );
+    let newText: string;
+    if (this.isTextReversed) {
+      newText = reverseText(this.originalText);
+    } else {
+      newText = this.originalText;
+    }
+    this.currentText =
+      newText.substring(
+        this.currentStartIndex,
+        this.currentEndIndex
+      );
     console.log(this.currentText)
   }
+  isTextReversed = false;
+  reverseText() {
+    GlobalEventEmitter.emit(RESTART_RUN);
+    this.isTextReversed = !this.isTextReversed;
+    this.currentText = reverseText(this.currentText);
+
+  }
+}
+
+
+function reverseText(text: string) {
+  return text.split('').reverse().join('');
 }

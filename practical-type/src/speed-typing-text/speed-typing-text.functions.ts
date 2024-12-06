@@ -48,8 +48,13 @@ export function handleCharacterTyped(this: SpeedTypingTextDirective, char: strin
   }
 }
 
+const ENTER_KEY = 'Enter';
+const IGNORED_KEYS = [ENTER_KEY];
 export function setupTypingListener(this: SpeedTypingTextDirective,) {
   window.addEventListener('keypress', (event: KeyboardEvent) => {
+    if (IGNORED_KEYS.includes(event.key)) {
+      return;
+    }
     if (!this.timer.timerHasStarted) {
       this.timer.start();
     }
