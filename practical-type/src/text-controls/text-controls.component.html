@@ -1,14 +1,12 @@
 <section id="run-types">
-  <button mat-button>Numbers</button>
-  <button mat-button>Letters</button>
-  <button mat-button>Special Characters</button>
+  <button mat-button (click)="textControls.setCurrentRunType('numbers')">Numbers</button>
+  <button mat-button (click)="textControls.setCurrentRunType('letters')">Letters</button>
+  <button mat-button (click)="textControls.setCurrentRunType('special-characters')">Special Characters</button>
 </section>
 <mat-slider min="0" [max]="textControls.maxPossibleChars" (change)="textControls.handleTextSubstringChange()">
   <input [value]="textControls.currentEndIndex" matSliderThumb [(ngModel)]="textControls.currentEndIndex" min="1">
 </mat-slider>
 
-<div> </div>
-<div> </div>
 <!-- - number run -->
 <!-- - letter run -->
 <!-- - special character run -->

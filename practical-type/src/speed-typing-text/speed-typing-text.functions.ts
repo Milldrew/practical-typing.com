@@ -1,5 +1,5 @@
 import {SpeedTypingTextDirective} from './speed-typing-text.directive';
-import {NON_LETTERS, NUMBER_TO_NUMBER_NAME} from './speed-typing.constants';
+import {NON_LETTERS, NON_LETTER_CHAR_TO_NAME, NUMBER_TO_NUMBER_NAME} from './speed-typing.constants';
 
 
 export const NON_TYPED_LETTER_COLOR =

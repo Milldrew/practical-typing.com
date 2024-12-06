@@ -2,6 +2,7 @@
 export const PRACTICAL_LETTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 export const PRACTICAL_NUMBERS = '2468097531';
 export const PRACTICAL_SPECIAL_CHARACTERS = `&*@\\\`^:,$"=!/>#{[(<-%.+?}]);'~_|`;
+// export const PRACTICAL_SPECIAL_CHARACTERS = `!@#$`
 
 
 

@@ -4,6 +4,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import {FormsModule} from '@angular/forms';
 import {TimerService} from '../timer/timer.service';
 import {MatButtonModule} from '@angular/material/button';
+import {GlobalEventEmitter, RESTART_RUN} from '../eventz/global.event-emitter';
 
 @Component({
   standalone: true,
@@ -17,4 +18,12 @@ export class TextControlsComponent {
   constructor(public textControls: TextControlsService,
     public timerService: TimerService
   ) {}
+  ngOnInit() {
+    //enter button listener
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        GlobalEventEmitter.emit(RESTART_RUN);
+      }
+    });
+  }
 }
