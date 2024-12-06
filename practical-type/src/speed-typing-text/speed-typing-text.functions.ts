@@ -49,9 +49,14 @@ export function handleCharacterTyped(this: SpeedTypingTextDirective, char: strin
 }
 
 const ENTER_KEY = 'Enter';
-const IGNORED_KEYS = [ENTER_KEY];
+const SPACE_KEY = 'Space';
+const IGNORED_KEYS = [ENTER_KEY, SPACE_KEY];
 export function setupTypingListener(this: SpeedTypingTextDirective,) {
   window.addEventListener('keypress', (event: KeyboardEvent) => {
+    if (/\s/.test(event.key)) {
+      event.preventDefault();
+      return;
+    }
     if (IGNORED_KEYS.includes(event.key)) {
       return;
     }
