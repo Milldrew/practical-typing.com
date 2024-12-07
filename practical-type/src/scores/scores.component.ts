@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {ScoresService} from './scores.service';
 
 @Component({
   selector: 'practical-scores',
@@ -8,5 +9,7 @@ import {Component} from '@angular/core';
   styleUrl: './scores.component.scss'
 })
 export class ScoresComponent {
-
+  constructor(
+    private socresService: ScoresService
+  ) {}
 }

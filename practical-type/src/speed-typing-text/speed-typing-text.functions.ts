@@ -60,7 +60,7 @@ export function setupTypingListener(this: SpeedTypingTextDirective,) {
     if (IGNORED_KEYS.includes(event.key)) {
       return;
     }
-    if (!this.timer.timerHasStarted) {
+    if (!this.timer.timerHasStarted && !this.timer.timerHasFinished) {
       this.timer.start();
     }
 
@@ -71,7 +71,7 @@ export function setupTypingListener(this: SpeedTypingTextDirective,) {
       console.log(this.characterList)
       handleCharacterTyped.call(this, char);
     }
-    if (this.characterList.length === 0 || (!this.characterList[0] && this.characterList.length !== 0)) {
+    if (!this.timer.timerHasFinished && this.characterList.length === 0 || (!this.characterList[0] && this.characterList.length !== 0)) {
       this.timer.stop();
     }
   })

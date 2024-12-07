@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {PRACTICAL_LETTERS, PRACTICAL_NUMBERS, PRACTICAL_SPECIAL_CHARACTERS} from './text-controls.constants';
-import {GlobalEventEmitter, RESTART_RUN, RUN_FINISHED} from '../eventz/global.event-emitter';
+import {GlobalEventEmitter, RESTART_RUN, RUN_FINISHED, SEND_RUN_DATA} from '../eventz/global.event-emitter';
 
 let SPEED_TYPING_TEMPLATE = `~${'`'}1!2@3#4$5%6^7&8*9(0){[<>]}-=`
 
@@ -46,6 +46,8 @@ export class TextControlsService {
     GlobalEventEmitter.on(RUN_FINISHED, (runTime: number) => {
       console.log('RUN_FINISHED', runTime)
       this.currentRunWordsPerMinute = this.calculateWordsPerMinute(runTime);
+
+      GlobalEventEmitter.emit(SEND_RUN_DATA, this.currentRunType, this.currentRunWordsPerMinute);
     })
   }
   calculateWordsPerMinute(runTime: number) {
