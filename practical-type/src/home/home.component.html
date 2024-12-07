@@ -9,7 +9,7 @@
 
 <main>
   {{
-  scoreService.scores | json
+  this.getCurrentChartData() | json
   }}
   @if(!timerService.timerHasStarted) {
 

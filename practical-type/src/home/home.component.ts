@@ -22,4 +22,9 @@ export class HomeComponent {
     public scoreService: ScoresService
   ) {}
 
+  getCurrentChartData() {
+    return this.scoreService.scores[
+      this.textControlsService.currentRunType
+    ]
+  }
 }
