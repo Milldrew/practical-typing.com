@@ -8,9 +8,7 @@
 </section>
 
 <main>
-  {{
-  this.getCurrentChartData() | json
-  }}
+  <practical-wpm-line-chart></practical-wpm-line-chart>
   @if(!timerService.timerHasStarted) {
 
   <h4>Start Typing To Start</h4>

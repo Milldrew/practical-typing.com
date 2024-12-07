@@ -6,12 +6,13 @@ import {TimerService} from '../timer/timer.service';
 import {SpeedTypingTextDirective} from '../speed-typing-text/speed-typing-text.directive';
 import {ScoresService} from '../scores/scores.service';
 import {JsonPipe} from '@angular/common';
+import {WpmLineChartComponent} from '../wpm-line-chart/wpm-line-chart.component';
 
 
 @Component({
   standalone: true,
   selector: 'practical-home',
-  imports: [TimerComponent, TextControlsComponent, SpeedTypingTextDirective, JsonPipe],
+  imports: [TimerComponent, TextControlsComponent, SpeedTypingTextDirective, JsonPipe, WpmLineChartComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
