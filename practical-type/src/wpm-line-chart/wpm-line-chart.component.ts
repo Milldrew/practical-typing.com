@@ -2,14 +2,23 @@
   * Angular Material Yellow
   */
 export const YELLOW = 'rgb(255, 235, 59)'
+export const CHART_POINT_LIMIT = 7;
 export const AXIS_WIDTH = 1
 export const WIDTH = 500
 export const HEIGHT = 500
-export const PADDING = 50
+export const PADDING = 70
 import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {WordsPerMinute} from '../scores/scores.service';
 import {JsonPipe} from '@angular/common';
 import * as d3 from 'd3';
+import {GlobalEventEmitter, SEND_RUN_DATA} from '../eventz/global.event-emitter'
+
+// const MOCK_DATA = [
+//   80, 30, 20, 40, 53, 36, 73, 38, 39, 11, 110, 19, 33, 84, 115
+// ]
+const MOCK_DATA = [
+  200, 400
+]
 
 @Component({
   selector: 'practical-wpm-line-chart',
@@ -22,19 +31,40 @@ export class WpmLineChartComponent {
 
   @ViewChild('chartContainer') chartContainer: ElementRef;
 
-  constructor() {}
-  @Input() title: string = 'Words Per Minute'
-  @Input() data: WordsPerMinute[] = [
-    80, 30, 20, 40, 53, 36, 73, 38, 39, 11, 110, 19, 33, 84, 115
-  ]
+  constructor() {
 
-  ngAfterViewInit() {
-    this.createChart();
+    GlobalEventEmitter.on(SEND_RUN_DATA, (data) => {
+      setTimeout(() => {
+        this.createChart()
+      }, 1000)
+    })
+
+  }
+  @Input() title: string = 'Words Per Minute'
+  @Input() data: WordsPerMinute[] = MOCK_DATA
+  removeChart() {
+    this.chartContainer.nativeElement.innerHTML = ''
+  }
+
+  ngAfterViewChecked() {
+    this.createChart()
   }
   createChart() {
+    this.removeChart()
+    // this.data = MOCK_DATA
+
     console.log('-----------------------')
-    console.log('creating chart')
+    console.log('creating chart' + this.data)
     console.log('-----------------------')
+    if (!this.data || !this.chartContainer) return;
+
+    if (this.data.length > CHART_POINT_LIMIT) {
+      const end = this.data.length
+      const start = end - CHART_POINT_LIMIT
+      this.data = this.data.slice(start, end)
+    }
+    this.data = this.data.filter((d) => typeof d === 'number')
+
     const svgContainer =
       d3.select(this.chartContainer.nativeElement)
 
@@ -111,24 +141,38 @@ export class WpmLineChartComponent {
 
 
     // add points
-    //mainGroup.selectAll("dot")
-    //  .data(this.data)
-    //  .enter()
-    //  .append("circle")
-    //  .attr("cx", function (d, i) {return xAxis(i) + PADDING})
-    //  //@ts-ignore
-    //  .attr("cy", function (d) {return yAxis(d)})
-    //  .attr("r", 1.2)
-    //  .attr('fill', YELLOW)
-    //  .attr('stroke', YELLOW)
-    //  .attr('stroke-width', 1.5)
+    mainGroup.selectAll("dot")
+      .data(this.data)
+      .enter()
+      //add text saying the wpm value
+      .append('text')
+      .text((d: number) => {
+        return d.toFixed(0)
+      })
+      //@ts-ignore
+      .attr('x', (d, i) => xAxis(i) + PADDING)
+      //@ts-ignore
+      .attr('y', (d) => yAxis(d) - 10)
+      .attr('fill', YELLOW)
+      .attr('font-size', '14px')
+      .attr('text-anchor', 'middle')
+      .attr('letter-spacing', '1px')
+      .attr('font-weight', 'light')
+      .attr('stroke', YELLOW)
+    // .attr("cx", function (d, i) {return xAxis(i) + PADDING})
+    //@ts-ignore
+    // .attr("cy", function (d) {return yAxis(d)})
+    // .attr("r", 1.2)
+    // .attr('fill', YELLOW)
+    // .attr('stroke', YELLOW)
+    // .attr('stroke-width', 1.5)
 
     //add title
     //
     const title =
       mainGroup.append('text')
         .attr('x', WIDTH / 2)
-        .attr('y', PADDING / 2)
+        .attr('y', PADDING / 3)
         .attr('text-anchor', 'middle')
         .attr('font-size', '20px')
         .attr('fill', YELLOW)

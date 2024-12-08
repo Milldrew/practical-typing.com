@@ -1,1 +1,46 @@
-<p>scores works!</p>
+@if(currentRunType === 'numbers') {
+<button mat-stroked-button (click)="getScores('numbers')" color="primary">Numbers</button>
+} @else {
+<button mat-button (click)="getScores('numbers')" color="primary">Numbers</button>
+
+}
+@if(currentRunType === 'letters') {
+<button mat-stroked-button (click)="getScores('letters')" color="primary">Letters</button>
+
+} @else {
+<button mat-button (click)="getScores('letters')" color="primary">Letters</button>
+
+}
+@if(currentRunType === 'special-characters') {
+<button mat-stroked-button (click)="getScores('special-characters')" color="primary">Special
+  Characters</button>
+
+} @else{
+<button mat-button (click)="getScores('special-characters')" color="primary">Special
+  Characters</button>
+
+}
+<button mat-stroked-button color="warn" (click)="scoresService.removeScores()">Clear Scores</button>
+
+
+@if(!dataForChart || dataForChart.length === 0) {
+<div class="no-scores">
+  <h5>No scores to display Yet</h5>
+</div>
+} @else {
+<footer>
+  High Score: {{getHighScore()}}
+</footer>
+<article>
+  <practical-wpm-line-chart [data]="dataForChart" [title]="titleForChart">
+  </practical-wpm-line-chart>
+  <section>
+    <h5> All Data Points</h5>
+    @for( wpm of dataForChart.slice().reverse(); track $index) {
+    <ul>
+      <li>{{wpm.toFixed(2)}}</li>
+    </ul>
+    }
+  </section>
+</article>
+}

@@ -57,7 +57,6 @@ export class TextControlsService {
   }
 
   setCurrentRunType(runType: SpeedTypingRunTypes) {
-    console.log('setCurrentRunType')
     this.currentRunType = runType;
     this.originalText = this.getOriginalText(runType);
     if (this.isTextReversed) {
@@ -66,24 +65,28 @@ export class TextControlsService {
       this.currentText = this.originalText;
     }
     this.maxPossibleChars = this.originalText.length;
-    this.currentEndIndex = this.maxPossibleChars;
+    if (this.currentEndIndex > this.maxPossibleChars) {
+      this.currentEndIndex = this.maxPossibleChars;
+    }
+    this.handleTextSubstringChange();
   }
 
   getOriginalText(runType: SpeedTypingRunTypes): string {
-    if (!this.isTextReversed) {
-      switch (runType) {
-        case LETTERS:
-          return this.letters;
-        case NUMBERS:
-          return this.numbers;
-        case SPECIAL_CHARACTERS:
-          return this.specialCharacters;
-        default:
-          return this.letters;
-      }
-    } else {
-      return reverseText(this.getOriginalText(runType));
+    let letters: string;
+    switch (runType) {
+      case LETTERS:
+        letters = this.letters;
+        break;
+      case NUMBERS:
+        letters = this.numbers;
+        break
+      case SPECIAL_CHARACTERS:
+        letters = this.specialCharacters;
+        break
+      default:
+        letters = this.letters;
     }
+    return letters;
   }
   handleTextSubstringChange() {
     // GlobalEventEmitter.emit(RESTART_RUN);
@@ -112,9 +115,11 @@ export class TextControlsService {
     this.currentText = reverseText(this.currentText);
 
   }
+
 }
 
 
 function reverseText(text: string) {
   return text.split('').reverse().join('');
 }
+

@@ -8,7 +8,9 @@
 </section>
 
 <main>
-  <practical-wpm-line-chart></practical-wpm-line-chart>
+  @if(currentHighestWpm()) {
+  <span>Current High Score {{currentHighestWpm()}} WPM</span>
+  }
   @if(!timerService.timerHasStarted) {
 
   <h4>Start Typing To Start</h4>
@@ -18,4 +20,8 @@
       >
     </div>
   </div>
+
+
+  <practical-wpm-line-chart [data]="chartData" [title]="createTitleOfChart()">
+  </practical-wpm-line-chart>
 </main>

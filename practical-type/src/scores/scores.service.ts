@@ -37,7 +37,37 @@ export class ScoresService {
         }
         this.scores[runType].push(wordsPerMinute)
       }
+      this.saveScores()
     })
   }
 
+
+
+  saveScores() {
+    saveToLocalStorage('scores', this.scores)
+  }
+  getScoresFromLocalStorage() {
+    this.scores = getFromLocalStorage('scores') || this.scores
+  }
+  removeScores() {
+    removeItemFromLocalStorage('scores')
+    this.scores = {}
+  }
+
 }
+function saveToLocalStorage(key: string, value: any) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+function getFromLocalStorage(key: string) {
+
+  const payload = localStorage.getItem(key)
+  if (payload) {
+    return JSON.parse(payload)
+  }
+  console.error('No data found in local storage for key:', key)
+}
+function removeItemFromLocalStorage(key: string) {
+  localStorage.removeItem(key)
+}
+
+

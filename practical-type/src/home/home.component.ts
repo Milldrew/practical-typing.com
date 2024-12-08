@@ -7,6 +7,7 @@ import {SpeedTypingTextDirective} from '../speed-typing-text/speed-typing-text.d
 import {ScoresService} from '../scores/scores.service';
 import {JsonPipe} from '@angular/common';
 import {WpmLineChartComponent} from '../wpm-line-chart/wpm-line-chart.component';
+import {GlobalEventEmitter, SEND_RUN_DATA} from '../eventz/global.event-emitter';
 
 
 @Component({
@@ -21,11 +22,32 @@ export class HomeComponent {
     public textControlsService: TextControlsService,
     public timerService: TimerService,
     public scoreService: ScoresService
-  ) {}
+  ) {
 
-  getCurrentChartData() {
-    return this.scoreService.scores[
-      this.textControlsService.currentRunType
-    ]
+    GlobalEventEmitter.on(SEND_RUN_DATA, (data) => {
+      setTimeout(() => {
+        this.getChartData()
+      }, 10)
+    })
+  }
+  chartData: WpmLineChartComponent['data']
+
+  getChartData() {
+    const chartType = this.textControlsService.currentRunType
+    const wpmList = this.scoreService.scores[chartType]
+    this.chartData = [...wpmList]
+  }
+
+  createTitleOfChart() {
+    const chartType = this.textControlsService.currentRunType
+    let chartName = chartType[0].toUpperCase() + chartType.slice(1)
+    return `Words Per Minute For ${chartName}`
+  }
+
+  currentHighestWpm() {
+    const chartType = this.textControlsService.currentRunType
+    const wpmList = this.scoreService.scores[chartType] || []
+    if (wpmList.length === 0) return 0
+    return Math.max(...wpmList).toFixed(0)
   }
 }
