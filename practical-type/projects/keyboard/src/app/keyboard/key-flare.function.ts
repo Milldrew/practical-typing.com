@@ -8,8 +8,6 @@ export function keyFlareFunction(keyName: string, timeToPresses: TimeToPressesAv
   return String((wpmAdjustment - 1) * -1);
 }
 
-
-
 function getMaxTimeToPress(timeToPress: TimeToPressesAverage) {
   return Math.max(...Object.values(timeToPress))
 }

@@ -55,10 +55,10 @@ export class ScoresService {
   }
 
 }
-function saveToLocalStorage(key: string, value: any) {
+export function saveToLocalStorage(key: string, value: any) {
   localStorage.setItem(key, JSON.stringify(value));
 }
-function getFromLocalStorage(key: string) {
+export function getFromLocalStorage(key: string) {
 
   const payload = localStorage.getItem(key)
   if (payload) {
@@ -66,7 +66,7 @@ function getFromLocalStorage(key: string) {
   }
   console.error('No data found in local storage for key:', key)
 }
-function removeItemFromLocalStorage(key: string) {
+export function removeItemFromLocalStorage(key: string) {
   localStorage.removeItem(key)
 }
 

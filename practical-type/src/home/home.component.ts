@@ -9,12 +9,15 @@ import {JsonPipe} from '@angular/common';
 import {WpmLineChartComponent} from '../wpm-line-chart/wpm-line-chart.component';
 import {GlobalEventEmitter, SEND_RUN_DATA} from '../eventz/global.event-emitter';
 import {KeyboardDataService} from '../keyboard-page/keyboard-data.service';
+import {KeyboardComponent} from '../../projects/keyboard/src/app/keyboard/keyboard.component';
 
 
 @Component({
   standalone: true,
   selector: 'practical-home',
-  imports: [TimerComponent, TextControlsComponent, SpeedTypingTextDirective, JsonPipe, WpmLineChartComponent],
+  imports: [TimerComponent, TextControlsComponent, SpeedTypingTextDirective, JsonPipe, WpmLineChartComponent,
+    KeyboardComponent
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
