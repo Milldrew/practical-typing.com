@@ -51,7 +51,7 @@ export function displayTimeToPress(this: KeyboardComponent, keyName: string) {
     .attr('width', width)
     .attr('height', (height + 20) * this.resizeFactor)
     // .attr('fill', 'black')
-    .attr('fill', '#000000')
+    .attr('fill', 'none')
     .attr('x', 0)
     .attr('y', 0)
     .attr('transform', `translate(0, ${-20 * this.resizeFactor})`)
