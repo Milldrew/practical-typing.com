@@ -4,6 +4,7 @@ import {COLOR, FONT_FAMILY} from "./keyboard.constants";
 
 export function handleKeyHover(this: KeyboardComponent, keyName: string, keyGroup: d3.Selection<SVGGElement, unknown, null, any>) {
   let text: d3.Selection<SVGTextElement, unknown, null, undefined> | null = null;
+
   keyGroup.on('mouseover', () => {
     text =
       displayTimeToPress.call(this, keyName)
@@ -17,22 +18,34 @@ export function handleKeyHover(this: KeyboardComponent, keyName: string, keyGrou
 
 }
 
+
 export function displayTimeToPress(this: KeyboardComponent, keyName: string) {
-  const text = this.baseGroup
+  const hoverGroup = this.baseGroup.append('g')
+    .attr('transform', `translate(0, 20)`)
+
+  const background =
+    hoverGroup.append('rect')
+  // .attr('width', 100)
+  // .attr('height', 30)
+  // .attr('fill', 'white')
+
+  const text = hoverGroup
     .append('text')
-    .attr('x', 0)
-    .attr('y', 0)
     .attr('fill', COLOR)
-    .attr('font-size', '10px')
+    .attr('font-size', '20px')
     .attr('font-family', FONT_FAMILY)
-    .style('white-space', 'pre')
     .text(createDisplayText(getTimeToPress.call(this, keyName)))
+
+  const {width, height} = text.node()?.getBBox() || {width: 0, height: 0}
+  background
+    .attr('width', width + 10)
+    .attr('height', height + 10)
+    .attr('fill', 'white')
   return text
 }
 export function createDisplayText(timeToPressValue: number | null) {
   if (isNull(timeToPressValue)) {
-    const myText = `This key has no time to press data.
-Must use key
+    const myText = `NO DATA. Must use key as second key in sequence to have valid data.
 `
     return myText;
   }
