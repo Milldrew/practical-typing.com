@@ -8,6 +8,7 @@ import {ScoresService} from '../scores/scores.service';
 import {JsonPipe} from '@angular/common';
 import {WpmLineChartComponent} from '../wpm-line-chart/wpm-line-chart.component';
 import {GlobalEventEmitter, SEND_RUN_DATA} from '../eventz/global.event-emitter';
+import {KeyboardDataService} from '../keyboard-page/keyboard-data.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class HomeComponent {
   constructor(
     public textControlsService: TextControlsService,
     public timerService: TimerService,
-    public scoreService: ScoresService
+    public scoreService: ScoresService,
+    public keyboardDataService: KeyboardDataService
   ) {
 
     GlobalEventEmitter.on(SEND_RUN_DATA, (data) => {

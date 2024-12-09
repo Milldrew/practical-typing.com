@@ -1,5 +1,5 @@
-import {TimeToPresses} from './keyboard.constants';
-export function keyFlareFunction(keyName: string, timeToPresses: TimeToPresses) {
+import {TimeToPressesAverage} from './keyboard.constants';
+export function keyFlareFunction(keyName: string, timeToPresses: TimeToPressesAverage) {
   const max = getMaxTimeToPress(timeToPresses)
   const wpm = timeToPresses[keyName]
 
@@ -10,7 +10,7 @@ export function keyFlareFunction(keyName: string, timeToPresses: TimeToPresses) 
 
 
 
-function getMaxTimeToPress(timeToPress: TimeToPresses) {
+function getMaxTimeToPress(timeToPress: TimeToPressesAverage) {
   return Math.max(...Object.values(timeToPress))
 }
 

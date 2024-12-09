@@ -13,14 +13,14 @@ export function handleKeyHover(this: KeyboardComponent, keyName: string, keyGrou
   })
 
   keyGroup.on('mouseout', () => {
-    // text?.remove()
+    text?.remove()
   })
 
 }
 
 
 export function displayTimeToPress(this: KeyboardComponent, keyName: string) {
-  const hoverGroup = this.baseGroup.append('g')
+  const hoverGroup = this.svg.append('g')
     .attr('transform', `translate(0, 20)`)
 
   const background =
@@ -32,15 +32,23 @@ export function displayTimeToPress(this: KeyboardComponent, keyName: string) {
   const text = hoverGroup
     .append('text')
     .attr('fill', COLOR)
+    .attr('x', 0)
+    .attr('y', 0)
     .attr('font-size', '20px')
     .attr('font-family', FONT_FAMILY)
     .text(createDisplayText(getTimeToPress.call(this, keyName)))
 
   const {width, height} = text.node()?.getBBox() || {width: 0, height: 0}
   background
-    .attr('width', width + 10)
+    .attr('width', width)
     .attr('height', height + 10)
-    .attr('fill', 'white')
+    // .attr('fill', 'black')
+    .attr('fill', 'black')
+    .attr('x', 0)
+    .attr('y', 0)
+    .attr('transform', `translate(0, -20)`)
+  background.raise;
+
   return text
 }
 export function createDisplayText(timeToPressValue: number | null) {
@@ -49,7 +57,7 @@ export function createDisplayText(timeToPressValue: number | null) {
 `
     return myText;
   }
-  return `Time to press: ${timeToPressValue}`;
+  return `Time to press: ${timeToPressValue} seconds`
 
 }
 

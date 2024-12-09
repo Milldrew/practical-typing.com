@@ -6,6 +6,7 @@ import {TimerService} from '../timer/timer.service';
 import {changeAllSpansToNonTypedColor, createId, createSpanForCharacter, isWhiteSpace, setupTypingListener} from './speed-typing-text.functions';
 import {GlobalEventEmitter, RESTART_RUN} from '../eventz/global.event-emitter';
 import {TextControlsService} from '../text-controls/text-controls.service';
+import {KeyboardDataService} from '../keyboard-page/keyboard-data.service';
 
 @Directive({
   standalone: true,
@@ -19,7 +20,8 @@ export class SpeedTypingTextDirective {
 
   constructor(public el: ElementRef,
     public timer: TimerService,
-    public textService: TextControlsService
+    public textService: TextControlsService,
+    public keyboardDataService: KeyboardDataService
 
   ) {
   }

@@ -1,7 +1,7 @@
 import {Component, ElementRef, Input} from '@angular/core';
 import * as d3 from 'd3';
 import {addTitle, createAKey, createAKeyboard, createTheBaseGroups, keyboardSVG} from './keyboard.functions';
-import {KEYBOARD_SHIFT_DOWN, KEYBOARD_SHIFT_UP, TIME_TO_PRESS, TimeToPress, TimeToPresses} from './keyboard.constants';
+import {KEYBOARD_SHIFT_DOWN, KEYBOARD_SHIFT_UP, TIME_TO_PRESS, TimeToPress, TimeToPressesAverage} from './keyboard.constants';
 
 @Component({
   selector: 'practical-keyboard',
@@ -21,7 +21,7 @@ export class KeyboardComponent {
   }
 
   @Input()
-  timeToPresses: TimeToPresses = TIME_TO_PRESS
+  timeToPresses: TimeToPressesAverage = TIME_TO_PRESS
 
   svg: d3.Selection<SVGSVGElement, unknown, null, undefined>;
   /**
@@ -42,12 +42,13 @@ export class KeyboardComponent {
 
   ngAfterViewInit() {
     this.createKeyboard();
-    addTitle.call(this);
   }
 
   createKeyboard() {
     this.svg = keyboardSVG.call(this, this.element.nativeElement);
+
     createTheBaseGroups.call(this);
+    addTitle.call(this);
     createAKeyboard.call(this, KEYBOARD_SHIFT_UP, this.topKeyboardGroup)
     createAKeyboard.call(this, KEYBOARD_SHIFT_DOWN, this.bottomKeyboardGroup)
 

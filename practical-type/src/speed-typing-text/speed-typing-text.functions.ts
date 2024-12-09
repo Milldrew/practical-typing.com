@@ -38,12 +38,14 @@ export function handleCharacterTyped(this: SpeedTypingTextDirective, char: strin
     //@ts-ignore
     span.style.color = '#fff';
     this.characterList.shift();
+    this.keyboardDataService.stopAndResetSendKeyData(char);
     this.currentIndex += 1;
     console.log(this.characterList)
     if (
       this.characterList.length === 0
     ) {
       this.timer.stop();
+      this.keyboardDataService.endAndClearTimer();
     }
   }
 }
@@ -62,6 +64,7 @@ export function setupTypingListener(this: SpeedTypingTextDirective,) {
     }
     if (!this.timer.timerHasStarted && !this.timer.timerHasFinished) {
       this.timer.start();
+      this.keyboardDataService.startTimer()
     }
 
     const char = String.fromCharCode(event.charCode);

@@ -48,16 +48,19 @@ export function createAKey(this: KeyboardComponent, x: number, y: number, width:
     )
 
 
-  keyG.append('rect')
-    .attr('width', KEY_WIDTH)
-    .attr('height', KEY_WIDTH)
-    .style('fill', COLOR)
-    .style('fill-opacity', keyFlareValue)
-    .style('stroke', COLOR)
-    .style('cursor', 'pointer')
-    .style('stroke-opacity', 1)
-    .style('stroke-width', STROKE_WIDTH)
-    .attr('id', createKeyId(keyName))
+  const keyRect =
+    keyG.append('rect')
+      .attr('width', KEY_WIDTH)
+      .attr('height', KEY_WIDTH)
+      .style('fill', COLOR)
+      .style('fill-opacity', keyFlareValue)
+      .style('stroke', COLOR)
+      .style('cursor', 'pointer')
+      .style('stroke-opacity', 1)
+      .style('stroke-width', STROKE_WIDTH)
+      .attr('id', createKeyId(keyName))
+      //round corners
+      .attr('rx', 5)
 
   const textColor = Number(keyFlareValue) <= .5 ? COLOR : 'black';
   //add text to key

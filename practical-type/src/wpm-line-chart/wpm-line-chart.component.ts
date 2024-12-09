@@ -53,9 +53,6 @@ export class WpmLineChartComponent {
     this.removeChart()
     // this.data = MOCK_DATA
 
-    console.log('-----------------------')
-    console.log('creating chart' + this.data)
-    console.log('-----------------------')
     if (!this.data || !this.chartContainer) return;
 
     if (this.data.length > CHART_POINT_LIMIT) {
@@ -108,13 +105,10 @@ export class WpmLineChartComponent {
 
 
       yAxisGroup.selectAll('.tick').remove()
-      console.log(yAxisGroup)
       // debugger;
       let yAxisPath =
         yAxisGroup.select('path')
-      console.log(yAxisPath)
       let d = yAxisPath.attr('d')
-      console.log(d)
       d = d.replace(/6/g, '0')
       yAxisPath.attr('d', d)
       yAxisPath.attr('stroke', YELLOW)
@@ -191,9 +185,6 @@ export class WpmLineChartComponent {
 
 
 
-    console.log('-----------------------')
-    console.log('finished creating chart')
-    console.log('-----------------------')
   }
 
 }

@@ -34,11 +34,14 @@ export type KeyboardKeys = typeof KEYBOARD_SHIFT_UP | typeof KEYBOARD_SHIFT_DOWN
   * The amount of time it takes to press a key
   */
 export type TimeToPress = number;
-export type TimeToPresses = {
+export type TimeToPressesAverage = {
   [key: string]: TimeToPress
 }
+export type TimeToPressesRaw = {
+  [key: string]: TimeToPress[]
+}
 
-export const TIME_TO_PRESS: TimeToPresses = {
+export const TIME_TO_PRESS: TimeToPressesAverage = {
   'a': .1,
   'b': .2,
   'c': .3,
