@@ -20,7 +20,6 @@
   Characters</button>
 
 }
-<button mat-stroked-button color="warn" (click)="scoresService.removeScores()">Clear Scores</button>
 
 
 @if(!dataForChart || dataForChart.length === 0) {
@@ -28,12 +27,15 @@
   <h5>No scores to display Yet</h5>
 </div>
 } @else {
-<footer>
-  High Score: {{getHighScore()}}
-</footer>
 <article>
-  <practical-wpm-line-chart [data]="dataForChart" [title]="titleForChart">
-  </practical-wpm-line-chart>
+  <section class="chart">
+
+    <practical-wpm-line-chart [data]="dataForChart" [title]="titleForChart">
+    </practical-wpm-line-chart>
+
+    High Score: {{getHighScore()}}
+    <button mat-stroked-button color="warn" (click)="scoresService.removeScores()">Clear Scores</button>
+  </section>
   <section>
     <h5> All Data Points</h5>
     @for( wpm of dataForChart.slice().reverse(); track $index) {

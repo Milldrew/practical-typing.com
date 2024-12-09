@@ -41,7 +41,7 @@ export class HomeComponent {
   createTitleOfChart() {
     const chartType = this.textControlsService.currentRunType
     let chartName = chartType[0].toUpperCase() + chartType.slice(1)
-    return `Words Per Minute For ${chartName}`
+    return `WPM For ${chartName}`
   }
 
   currentHighestWpm() {
