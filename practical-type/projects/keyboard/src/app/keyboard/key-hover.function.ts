@@ -33,24 +33,28 @@ export function displayTimeToPress(this: KeyboardComponent, keyName: string) {
   // .attr('height', 30)
   // .attr('fill', 'white')
 
+  let fontSize = 20 * this.resizeFactor
+  if (fontSize < 12) {
+    fontSize = 12
+  }
   const text = hoverGroup
     .append('text')
     .attr('fill', COLOR)
     .attr('x', 0)
     .attr('y', 0)
-    .attr('font-size', 20 * this.resizeFactor)
+    .attr('font-size', fontSize)
     .attr('font-family', FONT_FAMILY)
-    .text(createDisplayText(getTimeToPress.call(this, keyName)))
+    .text(createDisplayText(getTimeToPress.call(this, keyName), keyName))
 
   const {width, height} = text.node()?.getBBox() || {width: 0, height: 0}
   background
     .attr('width', width)
-    .attr('height', height + 10)
+    .attr('height', (height + 20) * this.resizeFactor)
     // .attr('fill', 'black')
-    .attr('fill', '#00000011')
+    .attr('fill', '#000000')
     .attr('x', 0)
     .attr('y', 0)
-    .attr('transform', `translate(0, -20)`)
+    .attr('transform', `translate(0, ${-20 * this.resizeFactor})`)
   background.raise;
 
   return {
@@ -58,13 +62,13 @@ export function displayTimeToPress(this: KeyboardComponent, keyName: string) {
     background
   }
 }
-export function createDisplayText(timeToPressValue: number | null) {
+export function createDisplayText(timeToPressValue: number | null, keyName?: string) {
   if (isNull(timeToPressValue)) {
-    const myText = `NO DATA. Must use key as second key in sequence to have valid data.
+    const myText = `NO DATA. Must use ${keyName} as second key in sequence to have valid data.
 `
     return myText;
   }
-  return `Time to press: ${timeToPressValue.toFixed(2)} seconds`
+  return `Time to press ${keyName}: ${timeToPressValue.toFixed(2)} seconds`
 
 }
 

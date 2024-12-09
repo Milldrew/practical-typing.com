@@ -61,7 +61,7 @@ export class KeyboardComponent {
     this.svg = keyboardSVG.call(this, this.element.nativeElement, width, height);
 
     createTheBaseGroups.call(this);
-    addTitle.call(this);
+    // addTitle.call(this);
     createAKeyboard.call(this, KEYBOARD_SHIFT_UP, this.topKeyboardGroup)
     createAKeyboard.call(this, KEYBOARD_SHIFT_DOWN, this.bottomKeyboardGroup)
 
