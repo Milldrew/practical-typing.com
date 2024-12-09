@@ -1,7 +1,7 @@
 import {Component, ElementRef, Input} from '@angular/core';
 import * as d3 from 'd3';
 import {addTitle, createAKey, createAKeyboard, createTheBaseGroups, keyboardSVG} from './keyboard.functions';
-import {KEYBOARD_SHIFT_DOWN, KEYBOARD_SHIFT_UP, TIME_TO_PRESS, TimeToPress, TimeToPressesAverage} from './keyboard.constants';
+import {KEYBOARD_SHIFT_DOWN, KEYBOARD_SHIFT_UP, SVG_HEIGHT, SVG_WIDTH, TIME_TO_PRESS, TimeToPress, TimeToPressesAverage} from './keyboard.constants';
 
 @Component({
   selector: 'practical-keyboard',
@@ -11,13 +11,17 @@ import {KEYBOARD_SHIFT_DOWN, KEYBOARD_SHIFT_UP, TIME_TO_PRESS, TimeToPress, Time
   styleUrl: './keyboard.component.scss'
 })
 export class KeyboardComponent {
+  resizeFactor: number;
 
   constructor(
     private element: ElementRef
   ) {}
 
   ngOnInit() {
-    console.log(this.element.nativeElement)
+    window.addEventListener('resize', () => {
+
+    })
+
   }
 
   @Input()
@@ -41,16 +45,35 @@ export class KeyboardComponent {
   bottomKeyboardGroup: d3.Selection<SVGGElement, unknown, null, any>;
 
   ngAfterViewInit() {
-    this.createKeyboard();
+    const payload = this.element.nativeElement.getBoundingClientRect();
+
+    this.createKeyboard(payload.width, payload.height);
+    window.addEventListener('resize', () => {
+      this.element.nativeElement.innerHTML = '';
+      const payload = this.element.nativeElement.getBoundingClientRect();
+      console.log('payload', payload)
+
+      this.createKeyboard(payload.width, payload.height);
+    })
   }
 
-  createKeyboard() {
-    this.svg = keyboardSVG.call(this, this.element.nativeElement);
+  createKeyboard(width = SVG_WIDTH, height = SVG_HEIGHT) {
+    this.svg = keyboardSVG.call(this, this.element.nativeElement, width, height);
 
     createTheBaseGroups.call(this);
     addTitle.call(this);
     createAKeyboard.call(this, KEYBOARD_SHIFT_UP, this.topKeyboardGroup)
     createAKeyboard.call(this, KEYBOARD_SHIFT_DOWN, this.bottomKeyboardGroup)
+
+    this.cropKeyboardHeight();
+  }
+
+  cropKeyboardHeight() {
+    //@ts-ignore
+    // const payload = this.baseGroup.node().getClientBoundingRect();
+    const payload = this.baseGroup.node().getBoundingClientRect();
+    const newSvgHeight = payload.height / .75
+    this.svg.style('height', newSvgHeight)
 
   }
 

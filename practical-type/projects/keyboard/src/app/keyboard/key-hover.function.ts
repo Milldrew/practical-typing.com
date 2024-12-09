@@ -4,16 +4,20 @@ import {COLOR, FONT_FAMILY} from "./keyboard.constants";
 
 export function handleKeyHover(this: KeyboardComponent, keyName: string, keyGroup: d3.Selection<SVGGElement, unknown, null, any>) {
   let text: d3.Selection<SVGTextElement, unknown, null, undefined> | null = null;
+  let background: d3.Selection<SVGRectElement, unknown, null, undefined> | null = null;
 
   keyGroup.on('mouseover', () => {
-    text =
+    let payload =
       displayTimeToPress.call(this, keyName)
+    text = payload.text
+    background = payload.background
     console.log('keyName', keyName);
     console.log('mouseover');
   })
 
   keyGroup.on('mouseout', () => {
     text?.remove()
+    background?.remove()
   })
 
 }
@@ -34,7 +38,7 @@ export function displayTimeToPress(this: KeyboardComponent, keyName: string) {
     .attr('fill', COLOR)
     .attr('x', 0)
     .attr('y', 0)
-    .attr('font-size', '20px')
+    .attr('font-size', 20 * this.resizeFactor)
     .attr('font-family', FONT_FAMILY)
     .text(createDisplayText(getTimeToPress.call(this, keyName)))
 
@@ -43,13 +47,16 @@ export function displayTimeToPress(this: KeyboardComponent, keyName: string) {
     .attr('width', width)
     .attr('height', height + 10)
     // .attr('fill', 'black')
-    .attr('fill', 'black')
+    .attr('fill', '#00000011')
     .attr('x', 0)
     .attr('y', 0)
     .attr('transform', `translate(0, -20)`)
   background.raise;
 
-  return text
+  return {
+    text,
+    background
+  }
 }
 export function createDisplayText(timeToPressValue: number | null) {
   if (isNull(timeToPressValue)) {
@@ -57,7 +64,7 @@ export function createDisplayText(timeToPressValue: number | null) {
 `
     return myText;
   }
-  return `Time to press: ${timeToPressValue} seconds`
+  return `Time to press: ${timeToPressValue.toFixed(2)} seconds`
 
 }
 

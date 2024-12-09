@@ -1,14 +1,14 @@
 export const MARGIN = {top: 20, right: 20, bottom: 20, left: 20};
 export const SVG_WIDTH = 800;
 export const SVG_HEIGHT = 800;
-export const BACKGROUND_COLOR = 'black';
+export const BACKGROUND_COLOR = 'none';
 export const YELLOW = 'rgb(255, 235, 59)'
 export const COLOR = YELLOW;
 export const KEY_WIDTH = 50;
 export const SPACE_BETWEEN_KEYS = 5;
 export const STROKE_WIDTH = .3;
 export const TRANSLATE_KEYBOARD_X = 10;
-export const FONT_SIZE = '24px';
+export const FONT_SIZE = 24
 export const FONT_FAMILY = 'Sans-serif';
 export const FONT_WEIGHT = '300';
 export const GRADIENT_COLOR = 'rgb(255, 235, 59)';

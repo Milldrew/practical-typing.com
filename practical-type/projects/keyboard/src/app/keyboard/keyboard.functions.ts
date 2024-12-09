@@ -4,23 +4,29 @@ import {BACKGROUND_COLOR, COLOR, FONT_FAMILY, FONT_SIZE, KEY_WIDTH, KeyboardKeys
 import {NON_LETTER_CHAR_TO_NAME, NUMBER_TO_NUMBER_NAME} from '../../../../../src/speed-typing-text/speed-typing.constants';
 import {keyFlareFunction} from './key-flare.function';
 import {handleKeyHover} from './key-hover.function';
-export function keyboardSVG(this: KeyboardComponent, container: HTMLElement) {
+export function keyboardSVG(this: KeyboardComponent, container: HTMLElement, svgStyleWidth = SVG_WIDTH, svgStyleHeight = SVG_HEIGHT) {
   const svg = d3.select(container).append('svg')
     .attr('width', SVG_WIDTH)
     .attr('height', SVG_HEIGHT)
     .style('background-color', BACKGROUND_COLOR);
+
+  this.resizeFactor = svgStyleWidth / SVG_WIDTH;
+
+  svg.style('width', svgStyleWidth)
+    .style('height', svgStyleHeight)
+
   return svg;
 }
 
 export function createTheBaseGroups(this: KeyboardComponent) {
   this.baseGroup = this.svg.append('g')
-    .attr('transform', `translate(${MARGIN.left}, ${MARGIN.top})`);
+    .attr('transform', `translate(${MARGIN.left * this.resizeFactor}, ${MARGIN.top * this.resizeFactor})`);
 
   this.topKeyboardGroup = this.baseGroup.append('g')
-    .attr('transform', `translate(${TRANSLATE_KEYBOARD_X}, 100)`);
+    .attr('transform', `translate(${TRANSLATE_KEYBOARD_X * this.resizeFactor}, ${100 * this.resizeFactor})`);
 
   this.bottomKeyboardGroup = this.baseGroup.append('g')
-    .attr('transform', `translate(${TRANSLATE_KEYBOARD_X}, 400)`);
+    .attr('transform', `translate(${TRANSLATE_KEYBOARD_X * this.resizeFactor}, ${400 * this.resizeFactor})`);
 }
 
 function createKeyId(keyName: string) {
@@ -36,8 +42,6 @@ function createKeyId(keyName: string) {
 }
 
 export function createAKey(this: KeyboardComponent, x: number, y: number, width: number, height: number, color: string, keyboardSVGG: d3.Selection<SVGGElement, unknown, null, any>, keyName: string) {
-  console.log('keyName', keyName)
-  console.log('typeof keyName', typeof keyName)
   const keyG = keyboardSVGG.append('g')
     .attr('transform', `translate(${x}, ${y})`)
 
@@ -50,8 +54,8 @@ export function createAKey(this: KeyboardComponent, x: number, y: number, width:
 
   const keyRect =
     keyG.append('rect')
-      .attr('width', KEY_WIDTH)
-      .attr('height', KEY_WIDTH)
+      .attr('width', KEY_WIDTH * this.resizeFactor)
+      .attr('height', KEY_WIDTH * this.resizeFactor)
       .style('fill', COLOR)
       .style('fill-opacity', keyFlareValue)
       .style('stroke', COLOR)
@@ -65,12 +69,12 @@ export function createAKey(this: KeyboardComponent, x: number, y: number, width:
   const textColor = Number(keyFlareValue) <= .5 ? COLOR : 'black';
   //add text to key
   keyG.append('text')
-    .attr('x', KEY_WIDTH / 2)
-    .attr('y', KEY_WIDTH / 2)
+    .attr('x', (KEY_WIDTH * this.resizeFactor) / 2)
+    .attr('y', (KEY_WIDTH * this.resizeFactor) / 2)
     .attr('text-anchor', 'middle')
     .attr('alignment-baseline', 'middle')
     .style('fill', textColor)
-    .style('font-size', FONT_SIZE)
+    .style('font-size', FONT_SIZE * this.resizeFactor)
     .style('font-family', FONT_FAMILY)
     .style('font-weight', '100')
     .text(keyName)
@@ -83,7 +87,12 @@ export function createAKeyboard(this: KeyboardComponent, keys: KeyboardKeys, key
 
   keys.forEach((row, rowIndex) => {
     row.forEach((key, keyIndex) => {
-      createAKey.call(this, rowIndex * 16 + keyIndex * KEY_WIDTH + (SPACE_BETWEEN_KEYS * keyIndex + 1), rowIndex * KEY_WIDTH + ((rowIndex + 1) * SPACE_BETWEEN_KEYS), KEY_WIDTH, KEY_WIDTH, 'rgb(255, 235, 59)',
+      createAKey.call(this,
+        rowIndex * (16 * this.resizeFactor) + keyIndex * KEY_WIDTH * this.resizeFactor + ((SPACE_BETWEEN_KEYS * this.resizeFactor) * keyIndex + 1),
+        rowIndex * KEY_WIDTH * this.resizeFactor + ((rowIndex + 1) * (SPACE_BETWEEN_KEYS * this.resizeFactor)),
+        KEY_WIDTH,
+        KEY_WIDTH,
+        'rgb(255, 235, 59)',
         keyboardSVGG, key);
     });
   });
@@ -91,12 +100,12 @@ export function createAKeyboard(this: KeyboardComponent, keys: KeyboardKeys, key
 
 export function addTitle(this: KeyboardComponent) {
   this.svg.append('text')
-    .attr('x', SVG_WIDTH / 2)
-    .attr('y', 50)
+    .attr('x', (SVG_WIDTH / 2) * this.resizeFactor)
+    .attr('y', 50 * this.resizeFactor)
     .attr('text-anchor', 'middle')
     .attr('alignment-baseline', 'middle')
     .style('fill', COLOR)
-    .style('font-size', '30px')
+    .style('font-size', 30 * this.resizeFactor)
     .style('font-family', FONT_FAMILY)
     .style('font-weight', '100')
     .text('Time To Press')
