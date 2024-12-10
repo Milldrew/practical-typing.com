@@ -58,6 +58,8 @@ export class TextControlsService {
       this.currentRunWordsPerMinute = this.calculateWordsPerMinute(runTime);
 
       GlobalEventEmitter.emit(SEND_RUN_DATA, this.currentRunType, this.currentRunWordsPerMinute);
+      this.keyboardDataService.stopTimer()
+      this.keyboardDataService.resetTimer()
     })
   }
   calculateWordsPerMinute(runTime: number) {
@@ -97,7 +99,7 @@ export class TextControlsService {
         letters = this.specialCharacters;
         break
       case TARGETED_PRACTICE:
-        letters = this.targetedPractice;
+        letters = this.keyboardDataService.getTheSlowestSixKeys()
         break
       default:
         letters = this.letters;

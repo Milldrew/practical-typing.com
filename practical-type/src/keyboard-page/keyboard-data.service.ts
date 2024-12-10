@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {TimeToPressesAverage, TimeToPressesRaw} from '../../projects/keyboard/src/app/keyboard/keyboard.constants';
 import {GlobalEventEmitter, SENDING_TIME_TO_PRESS_KEY_DATA} from '../eventz/global.event-emitter';
 import {getFromLocalStorage, saveToLocalStorage} from '../scores/scores.service';
-import {NON_LETTER_CHAR_TO_NAME, NUMBER_TO_NUMBER_NAME} from '../speed-typing-text/speed-typing.constants';
+import {NON_LETTER_CHAR_TO_NAME, NUMBER_TO_NUMBER_NAME, handleValue} from '../speed-typing-text/speed-typing.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -29,17 +29,21 @@ export class KeyboardDataService {
     }
   }
   getTheSlowestSixKeys() {
+    if (!this.hasAtleastTwelveEntries()) return ''
     const keys = Object.keys(this.timeToPressesAverage)
     let sortedKeys = keys.sort((a, b) => {
       return this.timeToPressesAverage[b] - this.timeToPressesAverage[a]
     })
+
     sortedKeys = sortedKeys.map(key => {
-      Object.keys(NON_LETTER_CHAR_TO_NAME).includes(key) ? key = NON_LETTER_CHAR_TO_NAME[key] : key = key
-      Object.keys(NUMBER_TO_NUMBER_NAME).includes(key) ? key = NUMBER_TO_NUMBER_NAME[Number(key)] : key = key
+      console.log(key, 'map start')
+      key =
+        handleValue(key)
       return key
     })
     return sortedKeys.slice(0, 6).join('')
   }
+
   refreshChart() {
     this.toggleKeyboard = true
     setTimeout(() => {
@@ -56,10 +60,11 @@ export class KeyboardDataService {
     this.timeToPresses = getFromLocalStorage('timeToPresses') || this.timeToPresses
     this.convertRawTimeToPressesToAverage()
     GlobalEventEmitter.on(SENDING_TIME_TO_PRESS_KEY_DATA, (timeToPress: number, key: string) => {
+      console.log('timeToPress', timeToPress)
       // timeToPress = Number(timeToPress.toFixed(2))
 
-      Object.keys(NON_LETTER_CHAR_TO_NAME).includes(key) ? key = NON_LETTER_CHAR_TO_NAME[key] : key = key
-      Object.keys(NUMBER_TO_NUMBER_NAME).includes(key) ? key = NUMBER_TO_NUMBER_NAME[Number(key)] : key = key
+      Object.keys(NON_LETTER_CHAR_TO_NAME).includes(key) ? key = NON_LETTER_CHAR_TO_NAME[key] : key = key;
+      Object.keys(NUMBER_TO_NUMBER_NAME).includes(key) ? key = NUMBER_TO_NUMBER_NAME[Number(key)] : key = key;
 
 
       this.handleAddTimeToPresses(timeToPress, key)
@@ -92,8 +97,8 @@ export class KeyboardDataService {
     // @ts-ignore
     this.timerInterval =
       setInterval(() => {
-        this.timerTime += .001
-      }, 1)
+        this.timerTime += .01
+      }, 10)
   }
 
   getAverageTimeToPresses() {
@@ -104,8 +109,9 @@ export class KeyboardDataService {
   stopAndResetSendKeyData(key: string) {
     if (this.hasSkippedFirstCharacter) {
       GlobalEventEmitter.emit(SENDING_TIME_TO_PRESS_KEY_DATA, this.timerTime, key)
+    } else {
+      this.hasSkippedFirstCharacter = true
     }
-    this.hasSkippedFirstCharacter = true
     this.stopTimer()
     this.resetTimer()
     this.startTimer()

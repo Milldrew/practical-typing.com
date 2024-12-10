@@ -95,7 +95,54 @@ export const NON_LETTER_CHAR_TO_NAME: {
   '>': 'greater-than',
   '/': 'slash',
   '?': 'question',
+}
 
+function handleKeyValue(key: string) {
+  if (isNumberKey(key)) {
+    return NUMBER_TO_NUMBER_NAME[parseInt(key)]
+  }
+  if (isNonLetterKey(key)) {
+    return NON_LETTER_CHAR_TO_NAME[key]
+  }
+
+  return key
+
+}
+
+export function handleValue(value: string): string {
+  if (isNumberValue(value)) {
+    return flipValuesAndKeys(NUMBER_TO_NUMBER_NAME)[value]
+  }
+  if (isNonLetterValue(value)) {
+    return flipValuesAndKeys(NON_LETTER_CHAR_TO_NAME)[value]
+  }
+
+  return value
+}
+export function flipValuesAndKeys(obj: {
+  [key: string]: string;
+}): {
+  [key: string]: string;
+} {
+  const flipped: {
+    [key: string]: string;
+  } = {}
+  for (const key in obj) {
+    flipped[obj[key]] = key
+  }
+  return flipped
+}
+export function isNonLetterValue(value: string): boolean {
+  return Object.values(NON_LETTER_CHAR_TO_NAME).includes(value);
+}
+export function isNumberValue(value: string): boolean {
+  return Object.values(NUMBER_TO_NUMBER_NAME).includes(value);
+}
+export function isNumberKey(key: string): boolean {
+  return Object.keys(NUMBER_TO_NUMBER_NAME).includes(key);
+}
+export function isNonLetterKey(key: string): boolean {
+  return Object.keys(NON_LETTER_CHAR_TO_NAME).includes(key);
 }
 
 export const NON_LETTERS = Object.keys(NON_LETTER_CHAR_TO_NAME);

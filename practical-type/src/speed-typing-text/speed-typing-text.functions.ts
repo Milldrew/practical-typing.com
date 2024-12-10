@@ -28,12 +28,10 @@ export function replaceAmpEscapesWithChars(text: string) {
 export function handleCharacterTyped(this: SpeedTypingTextDirective, char: string) {
   let id: string;
   const idSelector = `#${createId(this.currentIndex)}`;
-  console.log(idSelector, this.currentIndex)
   const span =
     this.el.nativeElement
       .querySelector(idSelector);
 
-  console.log(span)
 
   if (span) {
     //@ts-ignore
@@ -41,7 +39,6 @@ export function handleCharacterTyped(this: SpeedTypingTextDirective, char: strin
     this.characterList.shift();
     this.keyboardDataService.stopAndResetSendKeyData(char);
     this.currentIndex += 1;
-    console.log(this.characterList)
     if (
       this.characterList.length === 0
     ) {
@@ -51,34 +48,41 @@ export function handleCharacterTyped(this: SpeedTypingTextDirective, char: strin
   }
 }
 
+let keyPressEventListenerReference: any;
 const ENTER_KEY = 'Enter';
 const SPACE_KEY = 'Space';
 const IGNORED_KEYS = [ENTER_KEY, SPACE_KEY];
-export function setupTypingListener(this: SpeedTypingTextDirective,) {
-  window.addEventListener('keypress', (event: KeyboardEvent) => {
-    if (/\s/.test(event.key)) {
-      event.preventDefault();
-      return;
-    }
-    if (IGNORED_KEYS.includes(event.key)) {
-      return;
-    }
-    if (!this.timer.timerHasStarted && !this.timer.timerHasFinished) {
-      this.timer.start();
-      this.keyboardDataService.startTimer()
-    }
+export function setupTypingListener(this: SpeedTypingTextDirective) {
 
-    const char = String.fromCharCode(event.charCode);
-    console.log(char);
-    console.log(this.characterList[0], char)
-    if (char === this.characterList[0]) {
-      console.log(this.characterList)
-      _.debounce(handleCharacterTyped, 1).call(this, char);
-    }
-    if (!this.timer.timerHasFinished && this.characterList.length === 0 || (!this.characterList[0] && this.characterList.length !== 0)) {
-      this.timer.stop();
-    }
-  })
+  if (keyPressEventListenerReference) {
+    window.removeEventListener('keypress', keyPressEventListenerReference);
+  }
+  keyPressEventListenerReference = keypressEventListener.bind(this)
+  window.addEventListener('keypress', keyPressEventListenerReference);
+}
+
+
+function keypressEventListener(this: SpeedTypingTextDirective, event: KeyboardEvent) {
+  if (/\s/.test(event.key)) {
+    event.preventDefault();
+    return;
+  }
+  if (IGNORED_KEYS.includes(event.key)) {
+    return;
+  }
+  if (!this.timer.timerHasStarted && !this.timer.timerHasFinished) {
+    this.timer.start();
+    this.keyboardDataService.startTimer()
+  }
+
+  const char = String.fromCharCode(event.charCode);
+  if (char === this.characterList[0]) {
+
+    handleCharacterTyped.call(this, char);
+  }
+  if (!this.timer.timerHasFinished && this.characterList.length === 0 || (!this.characterList[0] && this.characterList.length !== 0)) {
+    this.timer.stop();
+  }
 }
 
 export function isWhiteSpace(char: string) {
@@ -102,8 +106,8 @@ export function createSpanForCharacter(char: string, index: number) {
   }
   const spanId = createId(index);
   span.id = spanId;
-  console.log(`actual span id: ${spanId}`)
   span.style.fontSize = '36px';
   return span;
 }
+
 

@@ -2,9 +2,9 @@
 <!-- this.scoreService.scores | json -->
 <!-- }} -->
 <!-- }} -->
-<!-- {{ -->
-<!-- keyboardDataService.timeToPressesAverage | json -->
-<!-- }} -->
+{{
+keyboardDataService.timeToPresses | json
+}}
 @if(!timerService.timerHasStarted) {
 <practical-keyboard [timeToPresses]="keyboardDataService.timeToPressesAverage"></practical-keyboard>
 }
@@ -28,7 +28,6 @@
   <div id="speed-typing-container">
     <div id="speed-typing-text" [currentHighSchore]="currentHighestWpm()" practicalSpeedTypingText
       [text]="textControlsService.currentText">
-      >
     </div>
   </div>
 

@@ -20,6 +20,13 @@
   Characters</button>
 
 }
+@if(currentRunType === 'special-characters') {
+<button mat-stroked-button (click)="getScores('targeted-practice')" color="primary">Targeted Practice</button>
+
+} @else{
+<button mat-button (click)="getScores('special-characters')" color="primary">Targeted Practice</button>
+
+}
 
 
 @if(!dataForChart || dataForChart.length === 0) {
@@ -34,7 +41,8 @@
     </practical-wpm-line-chart>
 
     High Score: {{getHighScore()}}
-    <button mat-stroked-button color="warn" (click)="scoresService.removeScores()">Clear Scores</button>
+    <button mat-stroked-button color="warn" (click)="scoresService.removeScores(); dataForChart = []">Clear
+      Scores</button>
   </section>
   <section>
     <h5> All Data Points</h5>

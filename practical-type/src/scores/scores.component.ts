@@ -25,7 +25,7 @@ export class ScoresComponent {
     this.currentRunType = runType;
     this.dataForChart = this.scoresService.scores[runType];
     console.log(this.dataForChart, '-----')
-    this.titleForChart = titleCase(runType) + 'WPM';;
+    this.titleForChart = 'WPM for ' + titleCase(runType)
   }
   ngAfterViewInit() {
     setTimeout(() => {
