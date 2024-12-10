@@ -11,6 +11,7 @@ export const routes: Routes = [
   {path: 'scores', component: ScoresComponent},
   {path: 'keyboard', component: KeyboardPageComponent, },
   {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];
 
 
