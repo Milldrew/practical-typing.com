@@ -67,13 +67,13 @@ export class KeyboardComponent {
     // const payload = this.baseGroup.node().getClientBoundingRect();
     const payload = this.baseGroup.node().getBoundingClientRect();
     const newSvgHeight = payload.height / .75
-    const newSvgWidth = payload.width / .90
+    const newSvgWidth = payload.width / .60
     this.svg.style('height', newSvgHeight)
-    this.svg.style('width', newSvgWidth)
+    // this.svg.style('width', newSvgWidth)
+    this.svg.style('width', '100%')
     const hostHeight =
       this.element.nativeElement.style.height > newSvgHeight ? newSvgHeight : this.element.nativeElement.style.height
     this.element.nativeElement.style.height = `${hostHeight}px`
 
   }
-
 }

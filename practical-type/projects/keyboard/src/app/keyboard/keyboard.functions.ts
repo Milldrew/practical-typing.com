@@ -81,7 +81,7 @@ export function createAKey(this: KeyboardComponent, x: number, y: number, width:
     .attr('text-anchor', 'middle')
     .attr('alignment-baseline', 'middle')
     .style('fill', textColor)
-    .style('font-size', FONT_SIZE * this.resizeFactor)
+    .style('font-size', `${FONT_SIZE * this.resizeFactor}px`)
     .style('font-family', FONT_FAMILY)
     .style('font-weight', '100')
     .text(keyName)
