@@ -8,8 +8,22 @@ import {NON_LETTER_CHAR_TO_NAME, NUMBER_TO_NUMBER_NAME} from '../speed-typing-te
   providedIn: 'root'
 })
 export class KeyboardDataService {
+  toggleKeyboard = false
   timeToPressesAverage: TimeToPressesAverage = {}
   timeToPresses: TimeToPressesRaw = {}
+  resetTimeToPresses() {
+    this.toggleKeyboard = true
+    this.removeFromLocalStorage()
+    this.timeToPresses = {}
+    this.timeToPressesAverage = {}
+    this.convertRawTimeToPressesToAverage()
+    setTimeout(() => {
+      this.toggleKeyboard = false
+    }, 1000)
+  }
+  removeFromLocalStorage() {
+    localStorage.removeItem('timeToPresses')
+  }
 
   constructor() {
     this.timeToPresses = getFromLocalStorage('timeToPresses') || this.timeToPresses

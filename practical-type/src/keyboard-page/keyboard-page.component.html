@@ -1,1 +1,8 @@
-<p>keyboard-page works!</p>
+<button (click)="keyboardService.resetTimeToPresses()" mat-stroked-button color="primary">
+  <mat-icon>delete_forever</mat-icon>
+  Clear Data
+</button>
+@if(!keyboardService.toggleKeyboard) {
+<practical-keyboard [timeToPresses]="keyboardService.timeToPressesAverage"></practical-keyboard>
+
+}
