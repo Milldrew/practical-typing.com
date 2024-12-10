@@ -1,6 +1,9 @@
 import {Injectable} from '@angular/core';
 import {PRACTICAL_LETTERS, PRACTICAL_NUMBERS, PRACTICAL_SPECIAL_CHARACTERS} from './text-controls.constants';
 import {GlobalEventEmitter, RESTART_RUN, RUN_FINISHED, SEND_RUN_DATA} from '../eventz/global.event-emitter';
+import {ScoresService} from '../scores/scores.service';
+import {HomeComponent} from '../home/home.component';
+import {KeyboardDataService} from '../keyboard-page/keyboard-data.service';
 
 let SPEED_TYPING_TEMPLATE = `~${'`'}1!2@3#4$5%6^7&8*9(0){[<>]}-=`
 
@@ -11,11 +14,14 @@ SPEED_TYPING_TEMPLATE = PRACTICAL_SPECIAL_CHARACTERS
 const LETTERS = 'letters';
 const NUMBERS = 'numbers';
 const SPECIAL_CHARACTERS = 'special-characters';
+const TARGETED_PRACTICE = 'targeted-practice';
 
 export type SpeedTypingRunTypes =
   typeof LETTERS |
   typeof NUMBERS |
-  typeof SPECIAL_CHARACTERS;
+  typeof SPECIAL_CHARACTERS |
+  typeof TARGETED_PRACTICE;
+
 
 
 
@@ -24,9 +30,11 @@ SPEED_TYPING_TEMPLATE = PRACTICAL_LETTERS
   providedIn: 'root'
 })
 export class TextControlsService {
+  getChartDataHome: HomeComponent['getChartData']
   letters = PRACTICAL_LETTERS
   numbers = PRACTICAL_NUMBERS
   specialCharacters = PRACTICAL_SPECIAL_CHARACTERS
+  targetedPractice = TARGETED_PRACTICE
 
   currentRunType: SpeedTypingRunTypes = LETTERS;
   // currentRunType: SpeedTypingRunTypes = SPECIAL_CHARACTERS;
@@ -36,7 +44,9 @@ export class TextControlsService {
   currentStartIndex = 0;
   currentEndIndex = 1;
   minimumTextLength = 3;
-  constructor() {
+  constructor(
+    private keyboardDataService: KeyboardDataService) {
+
     this.maxPossibleChars = this.originalText.length;
     this.currentEndIndex = this.maxPossibleChars;
     this.handleRunFinished();
@@ -57,6 +67,8 @@ export class TextControlsService {
   }
 
   setCurrentRunType(runType: SpeedTypingRunTypes) {
+    this.targetedPractice =
+      this.keyboardDataService.getTheSlowestSixKeys()
     this.currentRunType = runType;
     this.originalText = this.getOriginalText(runType);
     if (this.isTextReversed) {
@@ -69,6 +81,7 @@ export class TextControlsService {
       this.currentEndIndex = this.maxPossibleChars;
     }
     this.handleTextSubstringChange();
+    this.getChartDataHome();
   }
 
   getOriginalText(runType: SpeedTypingRunTypes): string {
@@ -82,6 +95,9 @@ export class TextControlsService {
         break
       case SPECIAL_CHARACTERS:
         letters = this.specialCharacters;
+        break
+      case TARGETED_PRACTICE:
+        letters = this.targetedPractice;
         break
       default:
         letters = this.letters;
@@ -118,7 +134,6 @@ export class TextControlsService {
     this.currentText = reverseText(this.currentText);
 
   }
-
 }
 
 

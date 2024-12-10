@@ -31,19 +31,31 @@ export class WpmLineChartComponent {
 
   @ViewChild('chartContainer') chartContainer: ElementRef;
 
+  sendRunEventRegistered = false;
   constructor() {
 
-    GlobalEventEmitter.on(SEND_RUN_DATA, (data) => {
-      setTimeout(() => {
-        this.createChart()
-      }, 1000)
-    })
+    if (!this.sendRunEventRegistered) {
+      GlobalEventEmitter.on(SEND_RUN_DATA, (data) => {
+        setTimeout(() => {
+          this.createChart()
+        }, 1000)
+      })
+      this.sendRunEventRegistered = true
+
+    }
 
   }
   @Input() title: string = 'Words Per Minute'
   @Input() data: WordsPerMinute[] = MOCK_DATA
+  ngOnChanges() {
+    this.removeChart()
+    this.createChart()
+  }
   removeChart() {
-    this.chartContainer.nativeElement.innerHTML = ''
+    if (this.chartContainer && this.chartContainer.nativeElement) {
+      this.chartContainer.nativeElement.innerHTML = ''
+
+    }
   }
 
   ngAfterViewChecked() {
@@ -175,16 +187,6 @@ export class WpmLineChartComponent {
 
     // add character spacing
     title.attr('letter-spacing', '2px')
-
-
-
-
-
-
-
-
-
-
   }
 
 }

@@ -20,6 +20,7 @@ export class ScoresService {
   constructor() {
 
     this.recieveScore()
+    this.getScoresFromLocalStorage()
 
   }
   scores: {

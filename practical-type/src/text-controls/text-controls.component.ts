@@ -6,6 +6,7 @@ import {TimerService} from '../timer/timer.service';
 import {MatButtonModule} from '@angular/material/button';
 import {GlobalEventEmitter, RESTART_RUN} from '../eventz/global.event-emitter';
 import {MatIconModule} from '@angular/material/icon';
+import {KeyboardDataService} from '../keyboard-page/keyboard-data.service';
 
 @Component({
   standalone: true,
@@ -18,8 +19,11 @@ import {MatIconModule} from '@angular/material/icon';
 })
 export class TextControlsComponent {
   constructor(public textControls: TextControlsService,
-    public timerService: TimerService
-  ) {}
+    public timerService: TimerService,
+    public keyboardService: KeyboardDataService
+  ) {
+
+  }
   ngOnInit() {
     //enter button listener
     document.addEventListener('keydown', (event) => {

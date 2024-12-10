@@ -35,6 +35,10 @@ export class HomeComponent {
       }, 10)
     })
   }
+  ngOnInit() {
+    this.textControlsService.getChartDataHome = this.getChartData.bind(this)
+
+  }
   chartData: WpmLineChartComponent['data']
 
   getChartData() {
@@ -53,6 +57,6 @@ export class HomeComponent {
     const chartType = this.textControlsService.currentRunType
     const wpmList = this.scoreService.scores[chartType] || []
     if (wpmList.length === 0) return 0
-    return Math.max(...wpmList).toFixed(0)
+    return Number(Math.max(...wpmList).toFixed(0))
   }
 }

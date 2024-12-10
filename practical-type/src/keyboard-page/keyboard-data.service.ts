@@ -8,6 +8,7 @@ import {NON_LETTER_CHAR_TO_NAME, NUMBER_TO_NUMBER_NAME} from '../speed-typing-te
   providedIn: 'root'
 })
 export class KeyboardDataService {
+
   toggleKeyboard = false
   timeToPressesAverage: TimeToPressesAverage = {}
   timeToPresses: TimeToPressesRaw = {}
@@ -18,6 +19,26 @@ export class KeyboardDataService {
     this.timeToPresses = {}
     this.timeToPressesAverage = {}
     this.convertRawTimeToPressesToAverage()
+  }
+  hasAtleastTwelveEntries() {
+    const keys = Object.keys(this.timeToPresses)
+    if (keys.length < 12) {
+      return false
+    } else {
+      return true
+    }
+  }
+  getTheSlowestSixKeys() {
+    const keys = Object.keys(this.timeToPressesAverage)
+    let sortedKeys = keys.sort((a, b) => {
+      return this.timeToPressesAverage[b] - this.timeToPressesAverage[a]
+    })
+    sortedKeys = sortedKeys.map(key => {
+      Object.keys(NON_LETTER_CHAR_TO_NAME).includes(key) ? key = NON_LETTER_CHAR_TO_NAME[key] : key = key
+      Object.keys(NUMBER_TO_NUMBER_NAME).includes(key) ? key = NUMBER_TO_NUMBER_NAME[Number(key)] : key = key
+      return key
+    })
+    return sortedKeys.slice(0, 6).join('')
   }
   refreshChart() {
     this.toggleKeyboard = true

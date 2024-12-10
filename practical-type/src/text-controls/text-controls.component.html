@@ -31,6 +31,20 @@
     Characters</button>
 
   }
+
+  @if(keyboardService.hasAtleastTwelveEntries()){
+  @if(textControls.currentRunType === 'targeted-practice') {
+  <button mat-stroked-button (click)="textControls.setCurrentRunType('targeted-practice')" color="primary">Targeted
+    Practice</button>
+
+  } @else{
+  <button mat-button (click)="textControls.setCurrentRunType('targeted-practice')" color="primary">Targeted
+    Practice</button>
+
+  }
+
+  }
+
 </section>
 <section>
   <mat-slider min="0" [max]="textControls.maxPossibleChars" (change)="textControls.handleTextSubstringChange()">

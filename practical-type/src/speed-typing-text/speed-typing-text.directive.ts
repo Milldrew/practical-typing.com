@@ -7,6 +7,7 @@ import {changeAllSpansToNonTypedColor, createId, createSpanForCharacter, isWhite
 import {GlobalEventEmitter, RESTART_RUN} from '../eventz/global.event-emitter';
 import {TextControlsService} from '../text-controls/text-controls.service';
 import {KeyboardDataService} from '../keyboard-page/keyboard-data.service';
+import {SpeedTypingTextService} from './speed-typing-text.service';
 
 @Directive({
   standalone: true,
@@ -15,13 +16,15 @@ import {KeyboardDataService} from '../keyboard-page/keyboard-data.service';
 export class SpeedTypingTextDirective {
   currentIndex: number = 0;
   characterList: string[] = [];
+  @Input() currentHighSchore: number = 0;
 
   setupTypingListener = setupTypingListener.bind(this);
 
   constructor(public el: ElementRef,
     public timer: TimerService,
     public textService: TextControlsService,
-    public keyboardDataService: KeyboardDataService
+    public keyboardDataService: KeyboardDataService,
+    private speedTypingService: SpeedTypingTextService
 
   ) {
   }

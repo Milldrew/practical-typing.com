@@ -1,4 +1,8 @@
 <!-- {{ -->
+<!-- this.scoreService.scores | json -->
+<!-- }} -->
+<!-- }} -->
+<!-- {{ -->
 <!-- keyboardDataService.timeToPressesAverage | json -->
 <!-- }} -->
 @if(!timerService.timerHasStarted) {
@@ -22,7 +26,8 @@
   <h4>Start Typing To Start</h4>
   }
   <div id="speed-typing-container">
-    <div id="speed-typing-text" practicalSpeedTypingText [text]="textControlsService.currentText">
+    <div id="speed-typing-text" [currentHighSchore]="currentHighestWpm()" practicalSpeedTypingText
+      [text]="textControlsService.currentText">
       >
     </div>
   </div>
