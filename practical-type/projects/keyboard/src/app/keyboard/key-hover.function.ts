@@ -44,7 +44,7 @@ export function displayTimeToPress(this: KeyboardComponent, keyName: string) {
     .attr('y', 0)
     .attr('font-size', fontSize)
     .attr('font-family', FONT_FAMILY)
-    .text(createDisplayText(getTimeToPress.call(this, keyName), keyName))
+    .text(createDisplayText.call(this, getTimeToPress.call(this, keyName), keyName))
 
   const {width, height} = text.node()?.getBBox() || {width: 0, height: 0}
   background
@@ -62,13 +62,13 @@ export function displayTimeToPress(this: KeyboardComponent, keyName: string) {
     background
   }
 }
-export function createDisplayText(timeToPressValue: number | null, keyName?: string) {
+export function createDisplayText(this: KeyboardComponent, timeToPressValue: number | null, keyName?: string) {
   if (isNull(timeToPressValue)) {
-    const myText = `NO DATA. Must use ${keyName} as second key in sequence to have valid data.
-`
-    return myText;
+    const firstLine = `Key data not available, (first key press not recorded))`
+    return firstLine;
   }
-  return `Time to press ${keyName}: ${timeToPressValue.toFixed(2)} seconds`
+  return `Time to press ${keyName}: ${timeToPressValue.toFixed(2)
+    } seconds`
 
 }
 

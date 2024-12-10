@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {TimeToPressesAverage, TimeToPressesRaw} from '../../projects/keyboard/src/app/keyboard/keyboard.constants';
 import {GlobalEventEmitter, SENDING_TIME_TO_PRESS_KEY_DATA} from '../eventz/global.event-emitter';
 import {getFromLocalStorage, saveToLocalStorage} from '../scores/scores.service';
+import {NON_LETTER_CHAR_TO_NAME, NUMBER_TO_NUMBER_NAME} from '../speed-typing-text/speed-typing.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,9 @@ export class KeyboardDataService {
     this.convertRawTimeToPressesToAverage()
     GlobalEventEmitter.on(SENDING_TIME_TO_PRESS_KEY_DATA, (timeToPress: number, key: string) => {
       // timeToPress = Number(timeToPress.toFixed(2))
+
+      Object.keys(NON_LETTER_CHAR_TO_NAME).includes(key) ? key = NON_LETTER_CHAR_TO_NAME[key] : key = key
+      Object.keys(NUMBER_TO_NUMBER_NAME).includes(key) ? key = NUMBER_TO_NUMBER_NAME[Number(key)] : key = key
 
 
       this.handleAddTimeToPresses(timeToPress, key)
@@ -37,6 +41,7 @@ export class KeyboardDataService {
       let sum = rawList.reduce((a, b) => a + b, 0)
       this.timeToPressesAverage[key] = sum / rawList.length
     }
+    this.timeToPressesAverage = {...this.timeToPressesAverage}
   }
 
   timerTime = 0
