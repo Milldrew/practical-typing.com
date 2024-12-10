@@ -12,14 +12,20 @@ export class KeyboardDataService {
   timeToPressesAverage: TimeToPressesAverage = {}
   timeToPresses: TimeToPressesRaw = {}
   resetTimeToPresses() {
+    this.refreshChart()
     this.toggleKeyboard = true
     this.removeFromLocalStorage()
     this.timeToPresses = {}
     this.timeToPressesAverage = {}
     this.convertRawTimeToPressesToAverage()
+  }
+  refreshChart() {
+    this.toggleKeyboard = true
     setTimeout(() => {
       this.toggleKeyboard = false
-    }, 1000)
+    }, 1)
+
+
   }
   removeFromLocalStorage() {
     localStorage.removeItem('timeToPresses')
@@ -65,8 +71,8 @@ export class KeyboardDataService {
     // @ts-ignore
     this.timerInterval =
       setInterval(() => {
-        this.timerTime += .01
-      }, 10)
+        this.timerTime += .001
+      }, 1)
   }
 
   getAverageTimeToPresses() {

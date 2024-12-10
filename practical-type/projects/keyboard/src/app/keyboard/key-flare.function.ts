@@ -5,7 +5,8 @@ export function keyFlareFunction(keyName: string, timeToPresses: TimeToPressesAv
   const wpm = timeToPresses[keyName]
   const min = getMinTimeToPress(timeToPresses)
   if (!wpm) return String(0)
-  const wpmAdjustment = timeToPresses[keyName] / median
+  const wpmAdjustment = timeToPresses[keyName] / ((median + max) / 2)
+  // const wpmAdjustment = timeToPresses[keyName] / median
   return String((wpmAdjustment - 1) * -1);
 }
 

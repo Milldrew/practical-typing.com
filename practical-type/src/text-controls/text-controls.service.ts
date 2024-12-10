@@ -89,7 +89,10 @@ export class TextControlsService {
     return letters;
   }
   handleTextSubstringChange() {
-    // GlobalEventEmitter.emit(RESTART_RUN);
+    setTimeout(() => {
+
+      GlobalEventEmitter.emit(RESTART_RUN);
+    }, 20)
     console.log('handleTextSubstringChange')
     if (this.currentEndIndex < this.minimumTextLength) {
       this.currentStartIndex = 0;

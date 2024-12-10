@@ -19,5 +19,8 @@ export class KeyboardPageComponent {
   ) {
 
   }
+  ngAfterViewInit() {
+    this.keyboardService.refreshChart()
+  }
 
 }

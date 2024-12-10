@@ -10,7 +10,14 @@ export function keyboardSVG(this: KeyboardComponent, container: HTMLElement, svg
     .attr('height', SVG_HEIGHT)
     .style('background-color', BACKGROUND_COLOR);
 
-  this.resizeFactor = svgStyleWidth / SVG_WIDTH;
+  const widthResizeFactor = svgStyleWidth / SVG_WIDTH;
+  const heightResizeFactor = svgStyleHeight / SVG_HEIGHT;
+  if (widthResizeFactor < heightResizeFactor) {
+    this.resizeFactor = widthResizeFactor;
+  } else {
+    this.resizeFactor = heightResizeFactor;
+  }
+
 
   svg.style('width', svgStyleWidth)
     .style('height', svgStyleHeight)

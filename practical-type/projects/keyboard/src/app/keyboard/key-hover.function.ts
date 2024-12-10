@@ -41,7 +41,7 @@ export function displayTimeToPress(this: KeyboardComponent, keyName: string) {
     .append('text')
     .attr('fill', COLOR)
     .attr('x', 0)
-    .attr('y', 0)
+    .attr('y', 50 * this.resizeFactor)
     .attr('font-size', fontSize)
     .attr('font-family', FONT_FAMILY)
     .text(createDisplayText.call(this, getTimeToPress.call(this, keyName), keyName))
@@ -54,7 +54,7 @@ export function displayTimeToPress(this: KeyboardComponent, keyName: string) {
     .attr('fill', 'none')
     .attr('x', 0)
     .attr('y', 0)
-    .attr('transform', `translate(0, ${-20 * this.resizeFactor})`)
+    .attr('transform', `translate(0, ${-24 * this.resizeFactor})`)
   background.raise;
 
   return {

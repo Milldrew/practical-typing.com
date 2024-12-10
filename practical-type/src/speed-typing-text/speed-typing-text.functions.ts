@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {SpeedTypingTextDirective} from './speed-typing-text.directive';
 import {NON_LETTERS, NON_LETTER_CHAR_TO_NAME, NUMBER_TO_NUMBER_NAME} from './speed-typing.constants';
 
@@ -72,7 +73,7 @@ export function setupTypingListener(this: SpeedTypingTextDirective,) {
     console.log(this.characterList[0], char)
     if (char === this.characterList[0]) {
       console.log(this.characterList)
-      handleCharacterTyped.call(this, char);
+      _.debounce(handleCharacterTyped, 1).call(this, char);
     }
     if (!this.timer.timerHasFinished && this.characterList.length === 0 || (!this.characterList[0] && this.characterList.length !== 0)) {
       this.timer.stop();
