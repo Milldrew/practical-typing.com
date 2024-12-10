@@ -24,7 +24,11 @@ export class TextControlsComponent {
   ) {
 
   }
+  ngOnDestory() {
+    this.textControls.saveTextSettingsToLocalStorage()
+  }
   ngOnInit() {
+    this.textControls.retrieveTextSettingsFromLocalStorage()
     //enter button listener
     document.addEventListener('keydown', (event) => {
       if (this.timerService.timerHasStarted) {

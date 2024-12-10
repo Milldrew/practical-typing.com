@@ -51,6 +51,28 @@ export class TextControlsService {
     this.currentEndIndex = this.maxPossibleChars;
     this.handleRunFinished();
   }
+
+  saveTextSettingsToLocalStorage() {
+    localStorage.setItem('currentStartIndex', this.currentStartIndex.toString());
+    localStorage.setItem('currentEndIndex', this.currentEndIndex.toString());
+    localStorage.setItem('isTextReversed', this.isTextReversed.toString());
+    localStorage.setItem('currentRunType', this.currentRunType);
+  }
+  retrieveTextSettingsFromLocalStorage() {
+    this.currentRunType = localStorage.getItem('currentRunType') as SpeedTypingRunTypes || LETTERS;
+    const currentStartIndex = localStorage.getItem('currentStartIndex');
+    const currentEndIndex = localStorage.getItem('currentEndIndex');
+    const isTextReversed = localStorage.getItem('isTextReversed');
+    if (currentStartIndex) {
+      this.currentStartIndex = parseInt(currentStartIndex);
+    }
+    if (currentEndIndex) {
+      this.currentEndIndex = parseInt(currentEndIndex);
+    }
+    if (isTextReversed) {
+      this.isTextReversed = isTextReversed === 'true';
+    }
+  }
   currentRunWordsPerMinute = 0;
   handleRunFinished() {
     GlobalEventEmitter.on(RUN_FINISHED, (runTime: number) => {
@@ -69,6 +91,7 @@ export class TextControlsService {
   }
 
   setCurrentRunType(runType: SpeedTypingRunTypes) {
+    this.saveTextSettingsToLocalStorage();
     this.targetedPractice =
       this.keyboardDataService.getTheSlowestSixKeys()
     this.currentRunType = runType;
@@ -107,6 +130,7 @@ export class TextControlsService {
     return letters;
   }
   handleTextSubstringChange() {
+    this.saveTextSettingsToLocalStorage();
     setTimeout(() => {
 
       GlobalEventEmitter.emit(RESTART_RUN);
