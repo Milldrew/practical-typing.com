@@ -1,5 +1,5 @@
 node ./build-gh-pages.js
-npx ng build --base-href '/practical-typing.com'
+npx ng build --base-href '/practical-typing.com/'
 # npx ng build --base-href '/';
 # npx ng build --base-href
 cp -r  ../docs/browser/* ../docs/ ;
