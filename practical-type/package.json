@@ -1,10 +1,10 @@
 {
   "name": "practical-type",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "./build-gh-pages.sh",
+    "build": "git pull --no-rebase && ./build-gh-pages.sh",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
