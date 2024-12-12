@@ -1,3 +1,4 @@
+node ./build-gh-pages.js
 npx ng build --base-href '/';
 # npx ng build --base-href '/practical-typing.com/'
 cp -r  ../docs/browser/* ../docs/ ;
