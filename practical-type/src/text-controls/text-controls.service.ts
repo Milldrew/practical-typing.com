@@ -93,7 +93,11 @@ export class TextControlsService {
         this.currentEndIndex = currentEndIndex;
       }
     } else {
-      this.currentEndIndex = this.currentText.length ? this.currentText.length : 3;
+      if (this.currentText) {
+        this.currentEndIndex = this.currentText.length ? this.currentText.length : 3;
+      } else {
+        this.currentEndIndex = 3;
+      }
       debugger;
     }
     debugger;
