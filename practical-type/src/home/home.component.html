@@ -21,9 +21,11 @@
   @if(currentHighestWpm()) {
   <span>Current High Score {{currentHighestWpm()}} WPM</span>
   }
-  @if(!timerService.timerHasStarted) {
+  @if(!timerService.timerHasStarted && !timerService.timerHasFinished) {
 
   <h4>Start Typing To Start</h4>
+  } @else {
+  <h4>Press Enter To Restart Timer</h4>
   }
   <div id="speed-typing-container">
     <div id="speed-typing-text" [currentHighSchore]="currentHighestWpm()" practicalSpeedTypingText
