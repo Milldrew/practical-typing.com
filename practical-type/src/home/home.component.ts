@@ -38,6 +38,7 @@ export class HomeComponent {
   ngOnInit() {
     this.textControlsService.getChartDataHome = this.getChartData.bind(this)
 
+    this.getChartData()
   }
   chartData: WpmLineChartComponent['data']
 

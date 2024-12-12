@@ -36,20 +36,34 @@ export class TextControlsService {
   specialCharacters = PRACTICAL_SPECIAL_CHARACTERS
   targetedPractice = TARGETED_PRACTICE
 
-  currentRunType: SpeedTypingRunTypes = LETTERS;
+  currentRunType: SpeedTypingRunTypes = this.getCurrentRunType();
+  getCurrentRunType() {
+    const currentRunType = localStorage.getItem('currentRunType') as SpeedTypingRunTypes;
+    console.log('--------------------------')
+    console.log('currentRunType', currentRunType)
+    console.log('--------------------------')
+    return currentRunType || LETTERS;
+  }
   // currentRunType: SpeedTypingRunTypes = SPECIAL_CHARACTERS;
-  originalText = SPEED_TYPING_TEMPLATE;
-  currentText = this.getOriginalText(this.currentRunType);
-  maxPossibleChars = 0
+  originalText: string;
+  currentText: string;
+  maxPossibleChars = 3
   currentStartIndex = 0;
-  currentEndIndex = 1;
+  currentEndIndex = 3;
   minimumTextLength = 3;
+  getCurrentText() {
+    this.currentText = this.originalText.substring(this.currentStartIndex, this.currentEndIndex);
+
+  }
   constructor(
     private keyboardDataService: KeyboardDataService) {
-
+    this.getOriginalText(this.currentRunType);
+    this.retrieveTextSettingsFromLocalStorage();
     this.maxPossibleChars = this.originalText.length;
-    this.currentEndIndex = this.maxPossibleChars;
+
     this.handleRunFinished();
+    // this.handleTextSubstringChange()
+    this.getCurrentText()
   }
 
   saveTextSettingsToLocalStorage() {
@@ -61,14 +75,28 @@ export class TextControlsService {
   retrieveTextSettingsFromLocalStorage() {
     this.currentRunType = localStorage.getItem('currentRunType') as SpeedTypingRunTypes || LETTERS;
     const currentStartIndex = localStorage.getItem('currentStartIndex');
-    const currentEndIndex = localStorage.getItem('currentEndIndex');
+    let currentEndIndex: number | string | null = localStorage.getItem('currentEndIndex');
+
     const isTextReversed = localStorage.getItem('isTextReversed');
     if (currentStartIndex) {
       this.currentStartIndex = parseInt(currentStartIndex);
+    } else {
+      this.currentStartIndex = 0;
     }
+    debugger;
     if (currentEndIndex) {
-      this.currentEndIndex = parseInt(currentEndIndex);
+      currentEndIndex = Number(currentEndIndex);
+      if (currentEndIndex < this.minimumTextLength) {
+        this.currentEndIndex = this.minimumTextLength;
+      } else {
+
+        this.currentEndIndex = currentEndIndex;
+      }
+    } else {
+      this.currentEndIndex = this.currentText.length ? this.currentText.length : 3;
+      debugger;
     }
+    debugger;
     if (isTextReversed) {
       this.isTextReversed = isTextReversed === 'true';
     }
@@ -95,7 +123,7 @@ export class TextControlsService {
     this.targetedPractice =
       this.keyboardDataService.getTheSlowestSixKeys()
     this.currentRunType = runType;
-    this.originalText = this.getOriginalText(runType);
+    this.getOriginalText(runType);
     if (this.isTextReversed) {
       this.currentText = reverseText(this.originalText);
     } else {
@@ -109,7 +137,7 @@ export class TextControlsService {
     this.getChartDataHome();
   }
 
-  getOriginalText(runType: SpeedTypingRunTypes): string {
+  getOriginalText(runType: SpeedTypingRunTypes) {
     let letters: string;
     switch (runType) {
       case LETTERS:
@@ -122,12 +150,13 @@ export class TextControlsService {
         letters = this.specialCharacters;
         break
       case TARGETED_PRACTICE:
+        console.trace()
         letters = this.keyboardDataService.getTheSlowestSixKeys()
         break
       default:
         letters = this.letters;
     }
-    return letters;
+    this.originalText = letters;
   }
   handleTextSubstringChange() {
     this.saveTextSettingsToLocalStorage();
