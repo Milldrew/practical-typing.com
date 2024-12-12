@@ -1,4 +1,5 @@
-npx ng build --base-href ;
+# npx ng build --base-href ;
+npx ng build --base-href '/practical-typing.com/'
 cp -r  ../docs/browser/* ../docs/ ;
 rm -r ../docs/browser ;
 cp ../docs/index.html ../docs/404.html ;
