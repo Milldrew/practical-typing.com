@@ -4,10 +4,12 @@ import {WpmLineChartComponent} from '../wpm-line-chart/wpm-line-chart.component'
 import {SpeedTypingRunTypes} from '../text-controls/text-controls.service';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
 @Component({
   selector: 'practical-scores',
   standalone: true,
   imports: [WpmLineChartComponent, MatButtonModule,
+    MatIconModule
   ],
   templateUrl: './scores.component.html',
   styleUrl: './scores.component.scss'

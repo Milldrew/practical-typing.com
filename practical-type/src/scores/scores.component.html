@@ -41,8 +41,11 @@
     </practical-wpm-line-chart>
 
     High Score: {{getHighScore()}}
-    <button mat-stroked-button color="warn" (click)="scoresService.removeScores(); dataForChart = []">Clear
-      Scores</button>
+    <button mat-stroked-button color="primary" (click)="scoresService.removeScores(); dataForChart = []">
+      <mat-icon>delete_forever</mat-icon>
+      Clear
+      Scores
+    </button>
   </section>
   <section>
     <h5> All Data Points</h5>
