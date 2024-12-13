@@ -17,4 +17,8 @@ export class RootComponent {
     public timerService: TimerService
   ) {}
 
+
+  getYear() {
+    return new Date().getFullYear();
+  }
 }
