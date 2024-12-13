@@ -36,6 +36,7 @@ export class ScoresService {
         if (!this.scores[runType]) {
           this.scores[runType] = []
         }
+
         this.scores[runType].push(wordsPerMinute)
       }
       this.saveScores()

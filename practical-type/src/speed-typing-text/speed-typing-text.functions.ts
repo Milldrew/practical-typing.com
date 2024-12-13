@@ -63,6 +63,9 @@ export function setupTypingListener(this: SpeedTypingTextDirective) {
 
 
 function keypressEventListener(this: SpeedTypingTextDirective, event: KeyboardEvent) {
+  if (this.timer.timerHasStarted && !this.timer.timerHasFinished) {
+    event.preventDefault()
+  }
   if (/\s/.test(event.key)) {
     event.preventDefault();
     return;
