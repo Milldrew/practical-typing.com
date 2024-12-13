@@ -1,9 +1,8 @@
+@if(!timerService.timerHasStarted || timerService.timerHasFinished) {
 <header>
-  @if(!timerService.timerHasStarted || timerService.timerHasFinished) {
   <h1>
     <img src="keyboard-cartoon.png">Practical Typing
   </h1>
-  }
   <button mat-icon-button [matMenuTriggerFor]="menu" id="hamburger-menu">
     <mat-icon>menu</mat-icon>
   </button>
@@ -36,7 +35,17 @@
   </mat-menu>
 
 </header>
+}
 <main>
   <router-outlet></router-outlet>
+  <footer>
+    <div>
+
+
+      <div>
+        <p>Empowering learners with practical software engineering skills.</p>
+        <p>&copy; 2023 Practical SWE Academy LLC. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
 </main>
-<!-- <footer></footer> -->
