@@ -10,3 +10,8 @@ article {
 section.chart {
   margin-top: 23px;
 }
+
+section.all-data-points {
+  overflow: scroll;
+  height: 80vh;
+}
