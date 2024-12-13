@@ -1,5 +1,9 @@
 <header>
-  <h1>Practical Typing</h1>
+  @if(!timerService.timerHasStarted || timerService.timerHasFinished) {
+  <h1>
+    <img src="keyboard-cartoon.png">Practical Typing
+  </h1>
+  }
   <button mat-icon-button [matMenuTriggerFor]="menu" id="hamburger-menu">
     <mat-icon>menu</mat-icon>
   </button>

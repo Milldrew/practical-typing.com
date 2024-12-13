@@ -3,6 +3,7 @@ import {RouterLink, RouterModule} from '@angular/router';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {TimerService} from '../timer/timer.service';
 
 @Component({
   standalone: true,
@@ -12,5 +13,8 @@ import {MatIconModule} from '@angular/material/icon';
   styleUrl: './root.component.scss'
 })
 export class RootComponent {
+  constructor(
+    public timerService: TimerService
+  ) {}
 
 }
