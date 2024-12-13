@@ -54,3 +54,13 @@ practical-keyboard {
   right: 0;
   top: 50vh;
 }
+
+main.playing {
+  position: fixed;
+  display: flex;
+  height: 80vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+
+}

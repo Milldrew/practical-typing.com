@@ -38,6 +38,7 @@
 }
 <main>
   <router-outlet></router-outlet>
+  @if(!timerService.timerHasStarted) {
   <footer>
     <div>
 
@@ -48,4 +49,5 @@
       </div>
     </div>
   </footer>
+  }
 </main>

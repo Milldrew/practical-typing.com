@@ -17,7 +17,7 @@
   </practical-timer>
 </section>
 
-<main>
+<main [class.playing]="timerService.timerHasStarted">
   @if(!timerService.timerHasStarted && !timerService.timerHasFinished) {
 
   <h4>Start Typing To Start</h4>
