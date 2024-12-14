@@ -20,11 +20,11 @@
   Characters</button>
 
 }
-@if(currentRunType === 'special-characters') {
+@if(currentRunType === 'targeted-practice') {
 <button mat-stroked-button (click)="getScores('targeted-practice')" color="primary">Targeted Practice</button>
 
 } @else{
-<button mat-button (click)="getScores('special-characters')" color="primary">Targeted Practice</button>
+<button mat-button (click)="getScores('targeted-practice')" color="primary">Targeted Practice</button>
 
 }
 
