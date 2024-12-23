@@ -60,4 +60,5 @@ export class HomeComponent {
     if (wpmList.length === 0) return 0
     return Number(Math.max(...wpmList).toFixed(0))
   }
+
 }

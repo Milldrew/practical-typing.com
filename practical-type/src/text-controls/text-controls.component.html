@@ -31,6 +31,15 @@
     Characters</button>
 
   }
+  @if(textControls.currentRunType === 'basic-words') {
+  <button mat-stroked-button (click)="textControls.setCurrentRunType('basic-words')" color="primary">Basic
+    Words</button>
+
+  } @else{
+  <button mat-button (click)="textControls.setCurrentRunType('basic-words')" color="primary">Basic
+    Words</button>
+
+  }
 
   @if(keyboardService.hasAtleastTwelveEntries()){
   @if(textControls.currentRunType === 'targeted-practice') {
@@ -53,7 +62,3 @@
   <div>Character Count: {{textControls.currentEndIndex}} </div>
 </section>
 }
-
-<!-- - number run -->
-<!-- - letter run -->
-<!-- - special character run -->

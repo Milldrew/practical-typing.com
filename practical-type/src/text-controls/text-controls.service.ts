@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {PRACTICAL_LETTERS, PRACTICAL_NUMBERS, PRACTICAL_SPECIAL_CHARACTERS} from './text-controls.constants';
+import {PRACTICAL_BASIC_WORDS, PRACTICAL_BASIC_WORD_LIST, PRACTICAL_LETTERS, PRACTICAL_NUMBERS, PRACTICAL_SPECIAL_CHARACTERS} from './text-controls.constants';
 import {GlobalEventEmitter, RESTART_RUN, RUN_FINISHED, SEND_RUN_DATA} from '../eventz/global.event-emitter';
 import {ScoresService} from '../scores/scores.service';
 import {HomeComponent} from '../home/home.component';
@@ -15,12 +15,14 @@ const LETTERS = 'letters';
 const NUMBERS = 'numbers';
 const SPECIAL_CHARACTERS = 'special-characters';
 const TARGETED_PRACTICE = 'targeted-practice';
+const BASIC_WORDS = 'basic-words';
 
 export type SpeedTypingRunTypes =
   typeof LETTERS |
   typeof NUMBERS |
   typeof SPECIAL_CHARACTERS |
-  typeof TARGETED_PRACTICE;
+  typeof TARGETED_PRACTICE |
+  typeof BASIC_WORDS;
 
 
 
@@ -35,16 +37,18 @@ export class TextControlsService {
   numbers = PRACTICAL_NUMBERS
   specialCharacters = PRACTICAL_SPECIAL_CHARACTERS
   targetedPractice = TARGETED_PRACTICE
+  basicWordsIndex = 0
+  basicWords = PRACTICAL_BASIC_WORDS
+  basicWordsList = PRACTICAL_BASIC_WORD_LIST
 
-  currentRunType: SpeedTypingRunTypes = this.getCurrentRunType();
-  getCurrentRunType() {
+  currentRunType: SpeedTypingRunTypes = this.initializeCurrentRunType();
+  initializeCurrentRunType() {
     const currentRunType = localStorage.getItem('currentRunType') as SpeedTypingRunTypes;
     console.log('--------------------------')
     console.log('currentRunType', currentRunType)
     console.log('--------------------------')
     return currentRunType || LETTERS;
   }
-  // currentRunType: SpeedTypingRunTypes = SPECIAL_CHARACTERS;
   originalText: string;
   currentText: string;
   maxPossibleChars = 3
@@ -62,7 +66,6 @@ export class TextControlsService {
     this.maxPossibleChars = this.originalText.length;
 
     this.handleRunFinished();
-    // this.handleTextSubstringChange()
     this.getCurrentText()
   }
 
@@ -110,6 +113,12 @@ export class TextControlsService {
     GlobalEventEmitter.on(RUN_FINISHED, (runTime: number) => {
       console.log('RUN_FINISHED', runTime)
       this.currentRunWordsPerMinute = this.calculateWordsPerMinute(runTime);
+      if (this.currentRunType === BASIC_WORDS) {
+        console.log('BASIC WORDS');
+        this.basicWordsIndex += 1;
+        this.getOriginalText(this.currentRunType);
+        this.handleTextSubstringChange();
+      }
 
       GlobalEventEmitter.emit(SEND_RUN_DATA, this.currentRunType, this.currentRunWordsPerMinute);
       this.keyboardDataService.stopTimer()
@@ -141,6 +150,7 @@ export class TextControlsService {
     this.getChartDataHome();
   }
 
+
   getOriginalText(runType: SpeedTypingRunTypes) {
     let letters: string;
     switch (runType) {
@@ -156,6 +166,9 @@ export class TextControlsService {
       case TARGETED_PRACTICE:
         console.trace()
         letters = this.keyboardDataService.getTheSlowestSixKeys()
+        break
+      case BASIC_WORDS:
+        letters = this.basicWordsList[this.basicWordsIndex % this.basicWordsList.length];
         break
       default:
         letters = this.letters;
@@ -179,11 +192,18 @@ export class TextControlsService {
     } else {
       newText = this.originalText;
     }
-    this.currentText =
-      newText.substring(
-        this.currentStartIndex,
-        this.currentEndIndex
-      );
+    if (this.currentRunType !== BASIC_WORDS) {
+      this.currentText =
+        newText.substring(
+          this.currentStartIndex,
+          this.currentEndIndex
+        );
+    } else {
+      this.currentText = newText;
+      this.currentStartIndex = 0;
+      this.currentEndIndex = newText.length;
+      this.maxPossibleChars = newText.length;
+    }
     console.log(this.currentText)
   }
   isTextReversed = false;

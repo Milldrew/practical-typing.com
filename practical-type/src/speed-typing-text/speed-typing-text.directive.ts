@@ -43,6 +43,9 @@ export class SpeedTypingTextDirective {
     this.el.nativeElement.innerHTML = '';
     this.text.split('').map((char: string, index: number) => {
       if (isWhiteSpace(char)) {
+        this.lastIndex = index;
+        this.characterList.push(char);
+        this.el.nativeElement.appendChild(createSpanForCharacter(' ', index));
       } else {
         this.lastIndex = index;
         this.characterList.push(char);

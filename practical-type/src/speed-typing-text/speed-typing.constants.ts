@@ -62,6 +62,7 @@ export const NUMBER_TO_NUMBER_NAME: {
 export const NON_LETTER_CHAR_TO_NAME: {
   [key: string]: string;
 } = {
+  ' ': 'space',
   '~': 'tilde',
   '`': 'backtick',
   '!': 'exclamation',
