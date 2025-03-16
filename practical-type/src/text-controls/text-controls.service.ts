@@ -5,6 +5,7 @@ import {ScoresService} from '../scores/scores.service';
 import {HomeComponent} from '../home/home.component';
 import {KeyboardDataService} from '../keyboard-page/keyboard-data.service';
 import {Router} from '@angular/router';
+import {CompeteModeService} from '../compete-mode/compete-mode.service';
 
 let SPEED_TYPING_TEMPLATE = `~${'`'}1!2@3#4$5%6^7&8*9(0){[<>]}-=`
 
@@ -57,6 +58,7 @@ export class TextControlsService {
 
   }
   constructor(
+    private competeModeService: CompeteModeService,
     private router: Router,
     private keyboardDataService: KeyboardDataService) {
     this.getOriginalText(this.currentRunType);
@@ -128,7 +130,14 @@ export class TextControlsService {
 
   }
   calculateWordsPerMinute(runTime: number) {
-    const words = this.currentEndIndex / 5;
+
+    let words;
+    if (this.isCompeteMode()) {
+
+      words = this.competeModeService.competitionLetters.length / 5;
+    } else {
+      words = this.currentEndIndex / 5;
+    }
     const minutes = runTime / 60;
     return words / minutes;
   }

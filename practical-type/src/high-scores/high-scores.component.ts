@@ -16,5 +16,15 @@ export class HighScoresComponent {
   ngOnInit() {
     this.highScoresService.sortScores();
   }
+  highestScoreString: string;
+  getHighestScoreString() {
+    const highestScore = this.highScoresService.highScores[0];
+    if (highestScore) {
+      return `Highest Score: ${highestScore.name} scored ${highestScore.score.toFixed(2)} words per minute!`;
+    } else {
+      this.highestScoreString = 'No scores yet!';
+    }
+    return ''
+  }
 
 }

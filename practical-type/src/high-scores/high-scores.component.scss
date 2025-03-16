@@ -1,3 +1,7 @@
+* {
+  text-align: center;
+}
+
 mat-list {
   height: 100%;
   width: 100%;
@@ -14,12 +18,24 @@ li {
 }
 
 #high-scores-list {
-  position: absolute;
-  top: 19%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  max-height: 50vh;
+  overflow: scroll;
+  bottom: 30%;
 }
 
 span.dash-spacer {
   text-align: center;
+}
+
+h2 {
+  top: 0;
+}
+
+#highest-score {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #aaffaa;
 }
