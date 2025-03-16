@@ -1,0 +1,12 @@
+<h2>High Scores!</h2>
+<ol id="high-scores-list">
+  <li><span>Rank</span><span>Username</span> <span class="dash-spacer"></span> <span>Words Per Minute</span></li>
+  <hr>
+
+  @for( score of highScoresService.highScores; track $index ){
+  <li>
+    <span>{{$index + 1}}.</span>
+    <span>{{score.name}}</span> <span class="dash-spacer"></span> <span>{{score.score.toFixed(2)}}</span>
+  </li>
+  }
+</ol>

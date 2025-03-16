@@ -1,10 +1,15 @@
 @if(!timerService.timerHasStarted || timerService.timerHasFinished) {
 <header>
-  <h1>
-    <img src="keyboard-cartoon.png">Practical Typing
-  </h1>
+  <a routerLink="/">
+    <h1>
+      <img src="keyboard-cartoon.png">Practical Typing
+    </h1>
+  </a>
+  <button mat-icon-button id="reset-data" (click)="resetData()">
+    <mat-icon color="primary">restart_alt</mat-icon>
+  </button>
   <button mat-icon-button [matMenuTriggerFor]="menu" id="hamburger-menu">
-    <mat-icon>menu</mat-icon>
+    <mat-icon color="primary">menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
     <a routerLink="/">
@@ -30,6 +35,18 @@
       <button mat-menu-item>
         <mat-icon>school</mat-icon>
         <span>Pedagodgy</span>
+      </button>
+    </a>
+    <a routerLink="/compete-mode/">
+      <button mat-menu-item>
+        <mat-icon>emoji_events</mat-icon>
+        <span>Compete</span>
+      </button>
+    </a>
+    <a routerLink="/highscores/">
+      <button mat-menu-item>
+        <mat-icon>leaderboard</mat-icon>
+        <span>High Scores</span>
       </button>
     </a>
   </mat-menu>

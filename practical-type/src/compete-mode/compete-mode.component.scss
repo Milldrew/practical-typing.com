@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+#speed-typing-container {
+  position: absolute;
+  width: 98%;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+#compete-mode-username-container {
+  position: absolute;
+  top: 14%;
+}
+
+#lets-go {
+  position: absolute;
+  top: 0;
+  left: 10px;
+
+}
+
+button {
+  cursor: pointer;
+}

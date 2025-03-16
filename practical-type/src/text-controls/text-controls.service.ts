@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {PRACTICAL_LETTERS, PRACTICAL_NUMBERS, PRACTICAL_SPECIAL_CHARACTERS} from './text-controls.constants';
-import {GlobalEventEmitter, RESTART_RUN, RUN_FINISHED, SEND_RUN_DATA} from '../eventz/global.event-emitter';
+import {GlobalEventEmitter, RESTART_RUN, RUN_FINISHED, SEND_COMPETE_MODE_RUN_DATA, SEND_RUN_DATA} from '../eventz/global.event-emitter';
 import {ScoresService} from '../scores/scores.service';
 import {HomeComponent} from '../home/home.component';
 import {KeyboardDataService} from '../keyboard-page/keyboard-data.service';
+import {Router} from '@angular/router';
 
 let SPEED_TYPING_TEMPLATE = `~${'`'}1!2@3#4$5%6^7&8*9(0){[<>]}-=`
 
@@ -56,6 +57,7 @@ export class TextControlsService {
 
   }
   constructor(
+    private router: Router,
     private keyboardDataService: KeyboardDataService) {
     this.getOriginalText(this.currentRunType);
     this.retrieveTextSettingsFromLocalStorage();
@@ -110,11 +112,20 @@ export class TextControlsService {
     GlobalEventEmitter.on(RUN_FINISHED, (runTime: number) => {
       console.log('RUN_FINISHED', runTime)
       this.currentRunWordsPerMinute = this.calculateWordsPerMinute(runTime);
+      if (this.isCompeteMode()) {
+        GlobalEventEmitter.emit(SEND_COMPETE_MODE_RUN_DATA, this.currentRunWordsPerMinute);
 
-      GlobalEventEmitter.emit(SEND_RUN_DATA, this.currentRunType, this.currentRunWordsPerMinute);
+      } else {
+        GlobalEventEmitter.emit(SEND_RUN_DATA, this.currentRunType, this.currentRunWordsPerMinute);
+      }
       this.keyboardDataService.stopTimer()
       this.keyboardDataService.resetTimer()
     })
+  }
+  isCompeteMode() {
+    const path = this.router.url;
+    return path.includes('compete-mode');
+
   }
   calculateWordsPerMinute(runTime: number) {
     const words = this.currentEndIndex / 5;

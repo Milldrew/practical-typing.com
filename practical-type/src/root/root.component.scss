@@ -11,18 +11,19 @@
 
 }
 
-h1 {
-  font-weight: 300;
-  font-size: 2em;
-  font-family: $fancy-font-family;
-  color: white;
-}
 
 #hamburger-menu {
   position: fixed;
   top: 28px;
   right: 28px;
 }
+
+#reset-data {
+  position: fixed;
+  top: 28px;
+  right: 100px;
+}
+
 
 #hamburger-menu mat-icon {
   transform: scale(1.6);

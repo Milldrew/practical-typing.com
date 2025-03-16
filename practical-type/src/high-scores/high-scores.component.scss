@@ -1,0 +1,25 @@
+mat-list {
+  height: 100%;
+  width: 100%;
+}
+
+
+
+
+li {
+  margin-top: 10px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+#high-scores-list {
+  position: absolute;
+  top: 19%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+span.dash-spacer {
+  text-align: center;
+}
