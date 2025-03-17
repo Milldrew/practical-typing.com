@@ -1,3 +1,6 @@
+@if(isCelebrationShowing) {
+<practical-celebratory-animation></practical-celebratory-animation>
+}
 @if(!timerService.timerHasStarted || timerService.timerHasFinished) {
 <header>
   <a routerLink="/">
@@ -5,14 +8,17 @@
       <img src="keyboard-cartoon.png">Practical Typing
     </h1>
   </a>
+  @if(isResetDataShowing) {
   <button mat-icon-button id="reset-data" (click)="resetData()">
     <mat-icon color="primary">restart_alt</mat-icon>
   </button>
-  <button mat-icon-button id="emoji_events-icon" routerLink="/compete-mode">
-    <mat-icon color="primary">emoji_events</mat-icon>
+
+  }
+  <button mat-icon-button (click)="isResetDataShowing = false" id="emoji_events-icon" routerLink="/compete-mode/">
+    <mat-icon color="primary">sports_kabaddi</mat-icon>
   </button>
-  <button mat-icon-button id="leaderboard-icon" routerLink="/highscores">
-    <mat-icon color="primary">leaderboard</mat-icon>
+  <button (click)="isResetDataShowing = false" mat-icon-button id="leaderboard-icon" routerLink="/highscores">
+    <mat-icon color="primary">emoji_events</mat-icon>
   </button>
   <button mat-icon-button [matMenuTriggerFor]="menu" id="hamburger-menu">
     <mat-icon color="primary">menu</mat-icon>
@@ -45,13 +51,13 @@
     </a>
     <a routerLink="/compete-mode/">
       <button mat-menu-item>
-        <mat-icon>emoji_events</mat-icon>
+        <mat-icon>sports_kabaddi</mat-icon>
         <span>Compete</span>
       </button>
     </a>
     <a routerLink="/highscores/">
       <button mat-menu-item>
-        <mat-icon>leaderboard</mat-icon>
+        <mat-icon>emoji_events</mat-icon>
         <span>High Scores</span>
       </button>
     </a>

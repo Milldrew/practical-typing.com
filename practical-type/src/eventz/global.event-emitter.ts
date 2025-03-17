@@ -1,3 +1,4 @@
+export const SHOW_CELEBRATORY_ANIMATION = 'show-celebratory-animation'
 export const REMOVE_KEY_LISTENER = 'remove-key-listener'
 export const ADD_KEY_LISTENER = 'add-key-listener'
 export const RESTART_RUN = 'restart-run'
@@ -17,7 +18,8 @@ const GLOBAL_EVENTS_LIST = [
   SEND_COMPETE_MODE_RUN_DATA,
   ADD_KEY_LISTENER,
   SHOW_SNACKBAR,
-  REMOVE_KEY_LISTENER
+  REMOVE_KEY_LISTENER,
+  SHOW_CELEBRATORY_ANIMATION
 
 ]
 export type GlobalEvents = typeof GLOBAL_EVENTS_LIST[number]

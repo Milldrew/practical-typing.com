@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {GlobalEventEmitter, SEND_COMPETE_MODE_RUN_DATA, SHOW_SNACKBAR} from '../eventz/global.event-emitter';
+import {GlobalEventEmitter, SEND_COMPETE_MODE_RUN_DATA, SHOW_CELEBRATORY_ANIMATION, SHOW_SNACKBAR} from '../eventz/global.event-emitter';
 import {io, Socket} from 'socket.io-client';
 
 @Injectable({
@@ -36,7 +36,24 @@ export class HighScoresService {
   }[] = [
     ];
   sortScores() {
+    this.filterOutUsersLowScores()
     this.highScores.sort((a, b) => b.score - a.score);
+  }
+  filterOutUsersLowScores() {
+    const usersHighestScore = this.highScores.reduce<{
+      [name: string]: number;
+    }>((acc, score) => {
+      if (acc[score.name] === undefined) {
+        acc[score.name] = score.score;
+      } else if (acc[score.name] < score.score) {
+        acc[score.name] = score.score;
+        GlobalEventEmitter.emit(SHOW_CELEBRATORY_ANIMATION)
+      }
+      return acc;
+    }, {});
+    this.highScores = Object.entries(usersHighestScore).map(([name, score]) => ({name, score}));
+
+
   }
   addScore(name: string, score: number) {
     this.highScores.push({name, score});
