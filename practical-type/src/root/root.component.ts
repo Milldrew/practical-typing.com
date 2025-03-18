@@ -33,6 +33,8 @@ export class RootComponent {
       });
     });
     GlobalEventEmitter.on(SHOW_CELEBRATORY_ANIMATION, () => {
+      console.trace();
+      debugger;
       this.showCelebrationNow();
     })
   }
@@ -53,6 +55,7 @@ export class RootComponent {
   }
 
   isCelebrationShowing = false;
+
   showCelebrationNow() {
     this.isCelebrationShowing = true;
     setTimeout(() => {

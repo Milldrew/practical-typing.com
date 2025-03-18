@@ -117,6 +117,9 @@ export class TextControlsService {
       if (this.isCompeteMode()) {
         GlobalEventEmitter.emit(SEND_COMPETE_MODE_RUN_DATA, this.currentRunWordsPerMinute);
 
+        setTimeout(() => {
+          GlobalEventEmitter.emit(RESTART_RUN);
+        }, 2000)
       } else {
         GlobalEventEmitter.emit(SEND_RUN_DATA, this.currentRunType, this.currentRunWordsPerMinute);
       }

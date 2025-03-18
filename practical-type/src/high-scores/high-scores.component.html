@@ -5,7 +5,7 @@
   <hr>
 
   @for( score of highScoresService.highScores; track $index ){
-  <li>
+  <li [class.users-score]="score.name === highScoresService.username">
     <span>{{$index + 1}}.</span>
     <span>{{score.name}}</span> <span class="dash-spacer"></span> <span>{{score.score.toFixed(2)}}</span>
   </li>

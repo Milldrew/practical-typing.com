@@ -1,11 +1,12 @@
 import {Component} from '@angular/core';
 import {MatListModule} from '@angular/material/list';
 import {HighScoresService} from './high-scores.service';
+import {JsonPipe} from '@angular/common';
 
 @Component({
   selector: 'practical-high-scores',
   standalone: true,
-  imports: [],
+  imports: [JsonPipe],
   templateUrl: './high-scores.component.html',
   styleUrl: './high-scores.component.scss'
 })

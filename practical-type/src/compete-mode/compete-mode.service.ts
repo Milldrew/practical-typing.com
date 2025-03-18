@@ -37,6 +37,7 @@ export class CompeteModeService {
 
   setUsername(username: string) {
     this.username = username
+    this.highScoreService.username = username
     saveUsernameInLocalStorage(username)
   }
   getUsername() {
@@ -44,10 +45,12 @@ export class CompeteModeService {
   }
   initalizeUsernameFromLocalStorage() {
     this.username = getUsernameFromLocalStorage() || ''
+    this.highScoreService.username = this.username
   }
 
   removeUsername() {
     this.username = ''
+    this.highScoreService.username = ''
     localStorage.removeItem('username')
     GlobalEventEmitter.emit(REMOVE_KEY_LISTENER);
   }
@@ -57,6 +60,6 @@ function saveUsernameInLocalStorage(username: string) {
   localStorage.setItem('username', username)
 }
 
-function getUsernameFromLocalStorage() {
+export function getUsernameFromLocalStorage() {
   return localStorage.getItem('username')
 }

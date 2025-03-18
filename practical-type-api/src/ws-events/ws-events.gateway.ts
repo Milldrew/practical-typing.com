@@ -10,7 +10,7 @@ import {
 import {from, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Server} from 'socket.io';
-import {createScoresJson, writeScoresJson} from './scores.functions';
+import {createOrGetScores, writeScoresJson} from './scores.functions';
 
 @WebSocketGateway({
   cors: {
@@ -25,7 +25,7 @@ export class WsEventsGateway {
   }[] = [];
   constructor() {
     this.scoresList =
-      createScoresJson()
+      createOrGetScores()
   }
   @WebSocketServer()
   server: Server;
@@ -48,7 +48,7 @@ export class WsEventsGateway {
     }> {
     console.log(data, 'scores')
     const ip = client.handshake.address;
-    this.scoresList = createScoresJson();
+    this.scoresList = createOrGetScores();
     if (data.action === 'add') {
       this.scoresList.push({name: data.name, score: data.score, ip});
       writeScoresJson(this.scoresList);
