@@ -6,6 +6,7 @@ import {TimerComponent} from '../timer/timer.component';
 import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {GlobalEventEmitter, REMOVE_KEY_LISTENER} from '../eventz/global.event-emitter';
+import {TimerService} from '../timer/timer.service';
 
 @Component({
   selector: 'practical-compete-mode',
@@ -20,7 +21,7 @@ import {GlobalEventEmitter, REMOVE_KEY_LISTENER} from '../eventz/global.event-em
 })
 export class CompeteModeComponent {
   constructor(
-    public competeModeService: CompeteModeService
+    public competeModeService: CompeteModeService,
   ) {}
   ngOnInit() {
     if (!this.competeModeService.getUsername()) {

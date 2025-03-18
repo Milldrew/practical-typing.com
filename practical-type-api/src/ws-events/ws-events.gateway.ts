@@ -32,7 +32,6 @@ export class WsEventsGateway {
 
   @SubscribeMessage('events')
   findAll(@MessageBody() data: any): Observable<WsResponse<number>> {
-    console.log('hi')
     return from([1, 2, 3]).pipe(map(item => ({event: 'events', data: item})));
   }
 
@@ -46,7 +45,7 @@ export class WsEventsGateway {
       data: {name: string, score: number}[]
       action: 'sync'
     }> {
-    console.log(data, 'scores')
+    Logger.log('scores', JSON.stringify(data));
     const ip = client.handshake.address;
     this.scoresList = createOrGetScores();
     if (data.action === 'add') {
@@ -69,7 +68,6 @@ export class WsEventsGateway {
       Object.assign(returnObj,
         {newScore: {name: data.name, score: data.score}})
     }
-    console.table(returnObj)
     this.server.emit('scores', returnObj);
     return returnObj;
 

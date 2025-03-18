@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {PRACTICAL_LETTERS, PRACTICAL_NUMBERS, PRACTICAL_SPECIAL_CHARACTERS} from '../text-controls/text-controls.constants';
-import {GlobalEventEmitter, REMOVE_KEY_LISTENER, SEND_COMPETE_MODE_RUN_DATA} from '../eventz/global.event-emitter';
+import {GlobalEventEmitter, REMOVE_KEY_LISTENER, RESTART_RUN, SEND_COMPETE_MODE_RUN_DATA} from '../eventz/global.event-emitter';
 import {HighScoresService} from '../high-scores/high-scores.service';
+import {TimerService} from '../timer/timer.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ import {HighScoresService} from '../high-scores/high-scores.service';
 export class CompeteModeService {
 
   constructor(
-    private highScoreService: HighScoresService
+    private highScoreService: HighScoresService,
+    private timerService: TimerService,
 
   ) {
     this.initalizeUsernameFromLocalStorage()
@@ -53,6 +55,8 @@ export class CompeteModeService {
     this.highScoreService.username = ''
     localStorage.removeItem('username')
     GlobalEventEmitter.emit(REMOVE_KEY_LISTENER);
+    this.timerService.stopTimer();
+    GlobalEventEmitter.emit(RESTART_RUN)
   }
 }
 

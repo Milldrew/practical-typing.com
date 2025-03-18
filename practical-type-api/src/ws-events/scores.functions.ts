@@ -14,7 +14,6 @@ export function createOrGetScores() {
     scores = fse.readJsonSync(scoresPath);
 
   } catch (e) {
-    console.log('creating new scores file')
     fse.writeJsonSync(scoresPath, []);
     scores = [];
 
