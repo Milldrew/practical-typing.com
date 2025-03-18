@@ -15,7 +15,7 @@ export class HighScoresService {
     if (username) {
       this.username = username;
     }
-    this.socket = io('http://localhost:3000');
+    this.socket = io();
     this.socket.emit('scores', {action: 'sync'});
     this.socket.on('connect', () => {
       console.log('Connected to server');
