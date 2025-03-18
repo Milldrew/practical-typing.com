@@ -9,7 +9,16 @@ export function createOrGetScores() {
   if (!doesScoresFileExist) {
     fse.writeJsonSync(scoresPath, []);
   }
-  let scores = fse.readJsonSync(scoresPath);
+  let scores;
+  try {
+    scores = fse.readJsonSync(scoresPath);
+
+  } catch (e) {
+    console.log('creating new scores file')
+    fse.writeJsonSync(scoresPath, []);
+    scores = [];
+
+  }
   scores = getOnlyUsersHighestScores(scores);
   return scores;
 }
