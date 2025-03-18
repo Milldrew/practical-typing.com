@@ -18,10 +18,8 @@ export type Scores = {
 export class ScoresService {
 
   constructor() {
-
     this.recieveScore()
     this.getScoresFromLocalStorage()
-
   }
   scores: {
     [key: string]: WordsPerMinute[]

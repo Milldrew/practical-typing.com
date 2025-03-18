@@ -8,6 +8,8 @@ import {GlobalEventEmitter, RESTART_RUN} from '../eventz/global.event-emitter';
 import {TextControlsService} from '../text-controls/text-controls.service';
 import {KeyboardDataService} from '../keyboard-page/keyboard-data.service';
 import {SpeedTypingTextService} from './speed-typing-text.service';
+import {Router} from '@angular/router';
+import {CompeteModeService} from '../compete-mode/compete-mode.service';
 
 @Directive({
   standalone: true,
@@ -24,7 +26,9 @@ export class SpeedTypingTextDirective {
     public timer: TimerService,
     public textService: TextControlsService,
     public keyboardDataService: KeyboardDataService,
-    private speedTypingService: SpeedTypingTextService
+    private speedTypingService: SpeedTypingTextService,
+    private competeModeService: CompeteModeService,
+    private router: Router
 
   ) {
   }
@@ -35,6 +39,7 @@ export class SpeedTypingTextDirective {
   ngOnChanges() {
     console.log('on changes', this.text)
     this.setUpInnerHTML()
+    this.changeAllSpansToNonTypedColor();
 
   }
 
@@ -52,10 +57,22 @@ export class SpeedTypingTextDirective {
   }
   changeAllSpansToNonTypedColor = changeAllSpansToNonTypedColor.bind(this);
 
+  isCompeteMode() {
+    const path = this.router.url;
+    return path.includes('compete-mode');
+
+  }
   ngOnInit() {
     GlobalEventEmitter.on(RESTART_RUN, () => {
-      this.currentIndex = 0,
+      console.log('restart run event')
+      this.currentIndex = 0;
+      if (this.isCompeteMode()) {
+        this.characterList = this.competeModeService.competitionLetters.split('')
+
+      } else {
         this.characterList = this.textService.currentText.split('')
+
+      }
       this.changeAllSpansToNonTypedColor();
     })
   }

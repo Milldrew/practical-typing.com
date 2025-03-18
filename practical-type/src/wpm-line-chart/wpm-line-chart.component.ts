@@ -48,6 +48,8 @@ export class WpmLineChartComponent {
   @Input() title: string = 'Words Per Minute'
   @Input() data: WordsPerMinute[] = MOCK_DATA
   ngOnChanges() {
+    console.log('data changed', this.data)
+
     this.removeChart()
     this.createChart()
   }

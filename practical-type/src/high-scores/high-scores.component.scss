@@ -1,0 +1,41 @@
+* {
+  text-align: center;
+}
+
+mat-list {
+  height: 100%;
+  width: 100%;
+}
+
+
+
+
+li {
+  margin-top: 10px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+#high-scores-list {
+  position: relative;
+  max-height: 50vh;
+  overflow: scroll;
+  bottom: 30%;
+}
+
+span.dash-spacer {
+  text-align: center;
+}
+
+h2 {
+  top: 0;
+}
+
+#highest-score {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #aaffaa;
+}

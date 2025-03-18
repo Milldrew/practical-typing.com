@@ -6,7 +6,9 @@
 <!-- keyboardDataService.timeToPresses | json -->
 <!-- }} -->
 @if(!timerService.timerHasStarted) {
+@if(!keyboardDataService.toggleKeyboard) {
 <practical-keyboard [timeToPresses]="keyboardDataService.timeToPressesAverage"></practical-keyboard>
+}
 }
 <section id="text-controls">
 
@@ -32,7 +34,11 @@
 
 
   @if(!timerService.timerHasStarted) {
-  <practical-wpm-line-chart [data]="chartData" [title]="createTitleOfChart()">
+
+  @if(!keyboardDataService.toggleKeyboard) {
+
+  <practical-wpm-line-chart [data]="getChartData()" [title]="createTitleOfChart()">
   </practical-wpm-line-chart>
+  }
   }
 </main>

@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import {SpeedTypingTextDirective} from './speed-typing-text.directive';
 import {NON_LETTERS, NON_LETTER_CHAR_TO_NAME, NUMBER_TO_NUMBER_NAME} from './speed-typing.constants';
+import {ADD_KEY_LISTENER, GlobalEventEmitter, REMOVE_KEY_LISTENER} from '../eventz/global.event-emitter';
 
 
 export const NON_TYPED_LETTER_COLOR =
@@ -60,6 +61,17 @@ export function setupTypingListener(this: SpeedTypingTextDirective) {
   keyPressEventListenerReference = keypressEventListener.bind(this)
   window.addEventListener('keypress', keyPressEventListenerReference);
 }
+GlobalEventEmitter.on(REMOVE_KEY_LISTENER, () => {
+  if (keyPressEventListenerReference) {
+    window.removeEventListener('keypress', keyPressEventListenerReference);
+  }
+})
+GlobalEventEmitter.on(ADD_KEY_LISTENER, () => {
+  if (keyPressEventListenerReference) {
+    window.removeEventListener('keypress', keyPressEventListenerReference);
+    window.addEventListener('keypress', keyPressEventListenerReference);
+  }
+})
 
 
 function keypressEventListener(this: SpeedTypingTextDirective, event: KeyboardEvent) {

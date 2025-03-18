@@ -7,7 +7,7 @@ import {SpeedTypingTextDirective} from '../speed-typing-text/speed-typing-text.d
 import {ScoresService} from '../scores/scores.service';
 import {JsonPipe} from '@angular/common';
 import {WpmLineChartComponent} from '../wpm-line-chart/wpm-line-chart.component';
-import {GlobalEventEmitter, SEND_RUN_DATA} from '../eventz/global.event-emitter';
+import {GlobalEventEmitter, RESTART_RUN, SEND_RUN_DATA} from '../eventz/global.event-emitter';
 import {KeyboardDataService} from '../keyboard-page/keyboard-data.service';
 import {KeyboardComponent} from '../../projects/keyboard/src/app/keyboard/keyboard.component';
 
@@ -33,6 +33,9 @@ export class HomeComponent {
       setTimeout(() => {
         this.getChartData()
       }, 10)
+      setTimeout(() => {
+        GlobalEventEmitter.emit(RESTART_RUN)
+      }, 1000)
     })
   }
   ngOnInit() {
@@ -40,12 +43,14 @@ export class HomeComponent {
 
     this.getChartData()
   }
-  chartData: WpmLineChartComponent['data']
+  chartData: WpmLineChartComponent['data'] = []
 
   getChartData() {
     const chartType = this.textControlsService.currentRunType
     const wpmList = this.scoreService.scores[chartType]
+    if (!wpmList || !Array.isArray(wpmList)) return []
     this.chartData = [...wpmList]
+    return this.chartData || []
   }
 
   createTitleOfChart() {

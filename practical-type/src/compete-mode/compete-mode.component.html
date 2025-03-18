@@ -1,0 +1,19 @@
+<h2>Compete Mode!</h2>
+
+@if(competeModeService.getUsername()) {
+<p id="lets-go">Let's Go! {{competeModeService.getUsername()}} <button mat-button color="primary"
+    (click)="competeModeService.removeUsername()">Change Username</button></p>
+<div id="speed-typing-container">
+  <div id="speed-typing-text" [currentHighSchore]="100" practicalSpeedTypingText
+    [text]="competeModeService.competitionLetters">
+  </div>
+</div>
+
+<practical-timer></practical-timer>
+} @else {
+<div id="compete-mode-username-container">
+  <input type="text" id="compete-mode-username" placeholder="Enter your username" [(ngModel)]="tempUsername">
+  <button (click)="startCompeteMode()" id="compete-mode-username-submit">Start</button>
+</div>
+
+}

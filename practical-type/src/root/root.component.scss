@@ -11,18 +11,32 @@
 
 }
 
-h1 {
-  font-weight: 300;
-  font-size: 2em;
-  font-family: $fancy-font-family;
-  color: white;
-}
 
 #hamburger-menu {
   position: fixed;
   top: 28px;
   right: 28px;
 }
+
+#leaderboard-icon {
+  position: fixed;
+  top: 28px;
+  right: 100px;
+}
+
+#emoji_events-icon {
+  position: fixed;
+  top: 28px;
+  right: 70px;
+
+}
+
+#reset-data {
+  position: fixed;
+  top: 28px;
+  right: 130px;
+}
+
 
 #hamburger-menu mat-icon {
   transform: scale(1.6);
