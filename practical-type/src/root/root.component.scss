@@ -44,7 +44,7 @@
 
 
 header {
-  z-index: 999999999;
+  z-index: 77;
   // height: 100px;
   width: 100%;
   max-height: 25vh;
@@ -117,4 +117,8 @@ footer {
   margin-top: 20px;
   color: $untyped-char-color;
   text-align: center;
+}
+
+met-menu {
+  z-index: 999999999;
 }
