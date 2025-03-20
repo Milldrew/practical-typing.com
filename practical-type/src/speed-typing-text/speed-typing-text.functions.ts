@@ -3,6 +3,9 @@ import {SpeedTypingTextDirective} from './speed-typing-text.directive';
 import {NON_LETTERS, NON_LETTER_CHAR_TO_NAME, NUMBER_TO_NUMBER_NAME} from './speed-typing.constants';
 import {ADD_KEY_LISTENER, GlobalEventEmitter, REMOVE_KEY_LISTENER} from '../eventz/global.event-emitter';
 
+const CURRENT_LETTER_COLOR = '#000';
+const CURRENT_LETTER_BACKGROUND_COLOR = '#fff';
+
 
 export const NON_TYPED_LETTER_COLOR =
   'rgb(100, 102, 105)'
@@ -37,9 +40,11 @@ export function handleCharacterTyped(this: SpeedTypingTextDirective, char: strin
   if (span) {
     //@ts-ignore
     span.style.color = '#fff';
+    span.style.backgroundColor = 'inherit';
     this.characterList.shift();
     this.keyboardDataService.stopAndResetSendKeyData(char);
     this.currentIndex += 1;
+    this.highlightCurrentLetter();
     if (
       this.characterList.length === 0
     ) {
@@ -47,6 +52,16 @@ export function handleCharacterTyped(this: SpeedTypingTextDirective, char: strin
       this.keyboardDataService.endAndClearTimer();
     }
   }
+}
+
+export function highlightCurrentLetter(this: SpeedTypingTextDirective) {
+  const currentLetterSelector = `#${createId(this.currentIndex)}`;
+  const currentLetter = this.el.nativeElement.querySelector(currentLetterSelector);
+  if (currentLetter) {
+    currentLetter.style.color = CURRENT_LETTER_COLOR;
+    currentLetter.style.backgroundColor = CURRENT_LETTER_BACKGROUND_COLOR;
+  }
+
 }
 
 let keyPressEventListenerReference: any;

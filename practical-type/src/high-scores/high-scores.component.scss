@@ -1,3 +1,12 @@
+:host {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: start;
+}
+
 * {
   text-align: center;
 }
@@ -21,7 +30,6 @@ li {
   position: relative;
   max-height: 50vh;
   overflow: scroll;
-  bottom: 30%;
 }
 
 span.dash-spacer {
@@ -33,10 +41,8 @@ h2 {
 }
 
 #highest-score {
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  // top: 5%;
   color: #aaffaa;
 }
 

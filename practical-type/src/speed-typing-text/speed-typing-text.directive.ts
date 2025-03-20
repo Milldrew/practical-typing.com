@@ -3,7 +3,7 @@ import {Directive, Input} from '@angular/core';
 import {ElementRef} from '@angular/core';
 import {NON_LETTERS, NON_LETTER_CHAR_TO_NAME} from './speed-typing.constants';
 import {TimerService} from '../timer/timer.service';
-import {changeAllSpansToNonTypedColor, createId, createSpanForCharacter, isWhiteSpace, setupTypingListener} from './speed-typing-text.functions';
+import {changeAllSpansToNonTypedColor, createId, createSpanForCharacter, highlightCurrentLetter, isWhiteSpace, setupTypingListener} from './speed-typing-text.functions';
 import {GlobalEventEmitter, RESTART_RUN} from '../eventz/global.event-emitter';
 import {TextControlsService} from '../text-controls/text-controls.service';
 import {KeyboardDataService} from '../keyboard-page/keyboard-data.service';
@@ -40,6 +40,7 @@ export class SpeedTypingTextDirective {
     console.log('on changes', this.text)
     this.setUpInnerHTML()
     this.changeAllSpansToNonTypedColor();
+    this.highlightCurrentLetter();
 
   }
 
@@ -57,10 +58,10 @@ export class SpeedTypingTextDirective {
   }
   changeAllSpansToNonTypedColor = changeAllSpansToNonTypedColor.bind(this);
 
+  highlightCurrentLetter = highlightCurrentLetter.bind(this);
   isCompeteMode() {
     const path = this.router.url;
     return path.includes('compete-mode');
-
   }
   ngOnInit() {
     GlobalEventEmitter.on(RESTART_RUN, () => {
@@ -74,6 +75,9 @@ export class SpeedTypingTextDirective {
 
       }
       this.changeAllSpansToNonTypedColor();
+      setTimeout(() => {
+        this.highlightCurrentLetter();
+      }, 500)
     })
   }
 

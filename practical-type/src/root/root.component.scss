@@ -122,3 +122,27 @@ footer {
 met-menu {
   z-index: 999999999;
 }
+
+div.mobile-message {
+
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+
+  /* CSS rules for mobile devices */
+  main,
+  header {
+    display: none;
+  }
+
+  /* CSS rules for mobile devices */
+  div.mobile-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+  }
+}

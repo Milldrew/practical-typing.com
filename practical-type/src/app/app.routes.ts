@@ -9,11 +9,11 @@ import {HighScoresComponent} from '../high-scores/high-scores.component';
 export const routes: Routes = [
   {path: '', component: HomeComponent, },
   {path: 'home', component: HomeComponent, },
-  {path: 'pedagodgy', component: PedagodgyComponent},
-  {path: 'scores', component: ScoresComponent},
-  {path: 'keyboard', component: KeyboardPageComponent, },
-  {path: 'compete-mode', component: CompeteModeComponent},
-  {path: 'highscores', component: HighScoresComponent},
+  {path: 'pedagodgy', component: PedagodgyComponent, title: 'Pedagodgy'},
+  {path: 'scores', component: ScoresComponent, title: 'WPM Scores'},
+  {path: 'keyboard', component: KeyboardPageComponent, title: 'Key Data'},
+  {path: 'compete-mode', component: CompeteModeComponent, title: 'Compete Mode'},
+  {path: 'highscores', component: HighScoresComponent, title: 'High Scores'},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];

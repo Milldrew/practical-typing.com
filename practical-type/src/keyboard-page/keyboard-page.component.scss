@@ -14,11 +14,13 @@ practical-keyboard {
 }
 
 button {
-  position: sticky;
-  top: 0;
-  right: 0;
+  margin-top: 20px;
 }
 
 h2 {
-  top: 0px;
+  position: relative;
+  text-align: center;
+  left: unset;
+  transform: unset;
+
 }

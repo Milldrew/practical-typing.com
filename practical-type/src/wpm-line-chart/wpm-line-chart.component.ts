@@ -37,7 +37,10 @@ export class WpmLineChartComponent {
     if (!this.sendRunEventRegistered) {
       GlobalEventEmitter.on(SEND_RUN_DATA, (data) => {
         setTimeout(() => {
-          this.createChart()
+          if (Array.isArray(this.data) && this.data.length > 0) {
+
+            this.createChart()
+          }
         }, 1000)
       })
       this.sendRunEventRegistered = true
@@ -51,7 +54,10 @@ export class WpmLineChartComponent {
     console.log('data changed', this.data)
 
     this.removeChart()
-    this.createChart()
+    if (Array.isArray(this.data) && this.data.length > 0) {
+      this.createChart()
+    }
+
   }
   removeChart() {
     if (this.chartContainer && this.chartContainer.nativeElement) {
@@ -61,7 +67,9 @@ export class WpmLineChartComponent {
   }
 
   ngAfterViewChecked() {
-    this.createChart()
+    if (Array.isArray(this.data) && this.data.length > 0) {
+      this.createChart()
+    }
   }
   createChart() {
     this.removeChart()
