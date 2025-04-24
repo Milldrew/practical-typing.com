@@ -1,5 +1,9 @@
 import * as d3 from 'd3';
 
+export function fingerSpacing(handHeight: number) {
+  return handHeight / 10;
+}
+
 export function insertLeftHand(leftHandGroup: d3.Selection<SVGGElement, unknown, null, undefined>) {
 
   let handHeight = +leftHandGroup.attr('height');
@@ -11,14 +15,16 @@ export function insertLeftHand(leftHandGroup: d3.Selection<SVGGElement, unknown,
   const leftHand = leftHandGroup
     .append('g')
     .attr('id', 'left-hand')
-    .attr('transform', `translate(0, 0)`);
+  // .attr('transform', `translate(${0}, ${handHeight})`)
 
 
-  const FINGER_SPACING = handWidth / 10;
+  console.log('handHeight', handHeight);
+  console.log('handWidth', handWidth);
+
   const thumbLength = handHeight / 8;
   const thumbWidth = handHeight / 20;
-  const thumbX = handWidth - thumbLength / 3;
-  const thumbY = handHeight / 2;
+  const thumbX = fingerX(fingerSpacing(handHeight) * 4);
+  const thumbY = fingerY(handHeight, thumbLength);
   const thumbAngle = 45;
   addFinger(
     thumbAngle,
@@ -31,8 +37,8 @@ export function insertLeftHand(leftHandGroup: d3.Selection<SVGGElement, unknown,
   );
   const pointerLength = handHeight / 4;
   const pointerWidth = handHeight / 20;
-  const pointerX = handWidth - pointerLength / 3 - FINGER_SPACING;
-  const pointerY = handHeight / 2 - FINGER_SPACING * 2;
+  const pointerX = fingerX(fingerSpacing(handHeight) * 3);
+  const pointerY = fingerY(handHeight, pointerLength, fingerSpacing(handHeight) / 2);
   const pointerAngle = 4;
   addFinger(
     pointerAngle,
@@ -43,10 +49,10 @@ export function insertLeftHand(leftHandGroup: d3.Selection<SVGGElement, unknown,
     pointerY,
     leftHand
   );
-  const middleLength = handHeight / 4 + FINGER_SPACING / 2;
+  const middleLength = handHeight / 4 + fingerSpacing(handHeight) / 2;
   const middleWidth = handHeight / 20;
-  const middleX = handWidth - middleLength / 3 - FINGER_SPACING * 2;
-  const middleY = handHeight / 2 - FINGER_SPACING * 2.5;
+  const middleX = fingerX(fingerSpacing(handHeight) * 2);
+  const middleY = fingerY(handHeight, middleLength, fingerSpacing(handHeight) / 2);
   const middleAngle = 0;
   addFinger(
     middleAngle,
@@ -57,10 +63,10 @@ export function insertLeftHand(leftHandGroup: d3.Selection<SVGGElement, unknown,
     middleY,
     leftHand
   );
-  const ringLength = handHeight / 4 + FINGER_SPACING / 2;
+  const ringLength = handHeight / 4 + fingerSpacing(handHeight) / 2;
   const ringWidth = handHeight / 20;
-  const ringX = handWidth - ringLength / 3 - FINGER_SPACING * 3;
-  const ringY = handHeight / 2 - FINGER_SPACING * 2.2;
+  const ringX = fingerX(fingerSpacing(handHeight))
+  const ringY = fingerY(handHeight, ringLength, fingerSpacing(handHeight) / 3);
   const ringAngle = -4;
   addFinger(
     ringAngle,
@@ -73,8 +79,8 @@ export function insertLeftHand(leftHandGroup: d3.Selection<SVGGElement, unknown,
   );
   const pinkyLength = handHeight / 4;
   const pinkyWidth = handHeight / 20;
-  const pinkyX = handWidth - pinkyLength / 3 - FINGER_SPACING * 4;
-  const pinkyY = handHeight / 2 - FINGER_SPACING * 1.2;
+  const pinkyX = fingerX()
+  const pinkyY = fingerY(handHeight, pinkyLength);
   const pinkyAngle = -8;
   addFinger(
     pinkyAngle,
@@ -86,8 +92,15 @@ export function insertLeftHand(leftHandGroup: d3.Selection<SVGGElement, unknown,
     leftHand
   );
 }
+function fingerX(fingerSpacing = 0) {
+  return fingerSpacing;
+}
 
-function addFinger(
+export function fingerY(handHeight: number, fingerLength: number, handArcHeight = 0) {
+  return handHeight - fingerLength - handArcHeight;
+}
+
+export function addFinger(
   fingerAngle: number = 0,
   fingerLength: number = 20,
   fingerName: string,
@@ -103,8 +116,8 @@ function addFinger(
     .attr('transform', `translate(${fingerX}, ${fingerY}) rotate(${fingerAngle})`);
 
 
-  const FINGER_ROUNDING_X = 24;
-  const FINGER_ROUNDING_Y = 20;
+  const FINGER_ROUNDING_X = fingerWidth / 2;
+  const FINGER_ROUNDING_Y = fingerWidth / 2.2;
   finger
     .append('rect')
     .attr('width', fingerWidth)
@@ -113,7 +126,8 @@ function addFinger(
     .attr('rx', FINGER_ROUNDING_X)
     .attr('ry', FINGER_ROUNDING_Y)
 
+
   return finger;
 
-
 }
+
