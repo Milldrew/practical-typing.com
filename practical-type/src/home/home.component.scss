@@ -21,6 +21,14 @@
   justify-content: center;
 }
 
+div.timer-started {
+
+  position: fixed;
+  top: 20px;
+
+
+}
+
 #speed-typing-text {
   color: $untyped-char-color;
 }
@@ -67,4 +75,15 @@ main.playing {
 
 h4 {
   font-size: 1.7em;
+}
+
+app-fingers-svg {
+  max-width: 70vw;
+  max-height: 70vh;
+  width: 800px;
+  height: 800px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }

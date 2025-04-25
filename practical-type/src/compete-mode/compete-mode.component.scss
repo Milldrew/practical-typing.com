@@ -29,3 +29,20 @@
 button {
   cursor: pointer;
 }
+
+app-fingers-svg {
+  max-width: 70vw;
+  max-height: 70vh;
+  width: 800px;
+  height: 800px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+practical-timer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}

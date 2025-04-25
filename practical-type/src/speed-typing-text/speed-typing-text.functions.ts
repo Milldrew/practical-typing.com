@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import {SpeedTypingTextDirective} from './speed-typing-text.directive';
 import {NON_LETTERS, NON_LETTER_CHAR_TO_NAME, NUMBER_TO_NUMBER_NAME} from './speed-typing.constants';
-import {ADD_KEY_LISTENER, GlobalEventEmitter, REMOVE_KEY_LISTENER} from '../eventz/global.event-emitter';
+import {ADD_KEY_LISTENER, GlobalEventEmitter, REMOVE_KEY_LISTENER, SEND_CURRENT_KEY_TO_FINGERS_COMPONENT} from '../eventz/global.event-emitter';
 
 const CURRENT_LETTER_COLOR = '#000';
 const CURRENT_LETTER_BACKGROUND_COLOR = '#fff';
@@ -58,6 +58,8 @@ export function highlightCurrentLetter(this: SpeedTypingTextDirective) {
   const currentLetterSelector = `#${createId(this.currentIndex)}`;
   const currentLetter = this.el.nativeElement.querySelector(currentLetterSelector);
   if (currentLetter) {
+    const currentText = currentLetter.innerText;
+    GlobalEventEmitter.emit(SEND_CURRENT_KEY_TO_FINGERS_COMPONENT, currentText);
     currentLetter.style.color = CURRENT_LETTER_COLOR;
     currentLetter.style.backgroundColor = CURRENT_LETTER_BACKGROUND_COLOR;
   }
@@ -69,6 +71,7 @@ const ENTER_KEY = 'Enter';
 const SPACE_KEY = 'Space';
 const IGNORED_KEYS = [ENTER_KEY, SPACE_KEY];
 export function setupTypingListener(this: SpeedTypingTextDirective) {
+  const highlightCurrentLetterRef = this.highlightCurrentLetter.bind(this);
 
   if (keyPressEventListenerReference) {
     window.removeEventListener('keypress', keyPressEventListenerReference);
@@ -82,6 +85,7 @@ GlobalEventEmitter.on(REMOVE_KEY_LISTENER, () => {
   }
 })
 GlobalEventEmitter.on(ADD_KEY_LISTENER, () => {
+
   if (keyPressEventListenerReference) {
     window.removeEventListener('keypress', keyPressEventListenerReference);
     window.addEventListener('keypress', keyPressEventListenerReference);
@@ -103,6 +107,9 @@ function keypressEventListener(this: SpeedTypingTextDirective, event: KeyboardEv
   if (!this.timer.timerHasStarted && !this.timer.timerHasFinished) {
     this.timer.start();
     this.keyboardDataService.startTimer()
+    setTimeout(() => {
+      GlobalEventEmitter.emit(SEND_CURRENT_KEY_TO_FINGERS_COMPONENT, this.characterList[0]);
+    });
   }
 
   const char = String.fromCharCode(event.charCode);

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/celebratory-animation/celebratory-animation.component.scss"],
+  "sourcesContent": [":host {\n  position: fixed;\n  height: 100%;\n  width: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\nimg {\n  height: 70%;\n  width: 70%;\n}\n"],
+  "mappings": ";AAAA;AACE,YAAA;AACA,UAAA;AACA,SAAA;AACA,WAAA;AACA,eAAA;AACA,mBAAA;;AAGF;AACE,UAAA;AACA,SAAA;;",
+  "names": []
+}

@@ -11,8 +11,6 @@ export function handleKeyHover(this: KeyboardComponent, keyName: string, keyGrou
       displayTimeToPress.call(this, keyName)
     text = payload.text
     background = payload.background
-    console.log('keyName', keyName);
-    console.log('mouseover');
   })
 
   keyGroup.on('mouseout', () => {

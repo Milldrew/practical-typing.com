@@ -26,12 +26,17 @@
   } @else if(timerService.timerHasFinished) {
   <h4>Press Enter To Restart Timer</h4>
   }
-  <div id="speed-typing-container">
+  <div
+  [class.timer-started]="timerService.timerHasStarted"
+  id="speed-typing-container">
     <div id="speed-typing-text" [currentHighSchore]="currentHighestWpm()" practicalSpeedTypingText
       [text]="textControlsService.currentText">
     </div>
   </div>
 
+@if(timerService.timerHasStarted) {
+   <app-fingers-svg> </app-fingers-svg>
+}
 
   @if(!timerService.timerHasStarted) {
 
