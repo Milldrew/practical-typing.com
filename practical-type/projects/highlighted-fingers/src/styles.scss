@@ -7,3 +7,10 @@ body {
   width: 100%;
   contain: content;
 }
+
+html,
+body,
+app-root {
+  background-color: black;
+  color: white;
+}

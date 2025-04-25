@@ -8,10 +8,15 @@
 </div>
 
 <practical-timer></practical-timer>
+@if(timerService.timerHasStarted) {
+   <app-fingers-svg> </app-fingers-svg>
+}
 } @else {
 <div id="compete-mode-username-container">
   <input type="text" id="compete-mode-username" placeholder="Enter your username" [(ngModel)]="tempUsername">
   <button (click)="startCompeteMode()" id="compete-mode-username-submit">Start</button>
 </div>
+
+
 
 }

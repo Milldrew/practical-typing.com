@@ -11,8 +11,8 @@ export function insertSVG(hostElement: HTMLElement) {
   const {svgWidth, svgHeight} = resizeSVGtoHost(hostElement, svg);
 
   svg
-    .style('border', '1px solid black')
-    .style('background-color', SVG_BACKGROUND_COLOR);
+    // .style('border', '1px solid black')
+    .style('background-color', 'none')
   return svg
 }
 

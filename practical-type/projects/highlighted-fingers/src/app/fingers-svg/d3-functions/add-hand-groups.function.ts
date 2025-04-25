@@ -12,7 +12,6 @@ export function addHandGroups(svg: d3.Selection<SVGSVGElement, unknown, null, un
     .attr('width', svgWidth / 2)
     .attr('height', svgHeight)
 
-  leftHandGroup.append('rect').attr('width', svgWidth / 2).attr('height', svgHeight).attr('fill', 'green').attr('stroke', 'black').attr('stroke-width', 1);
 
 
 
@@ -23,7 +22,6 @@ export function addHandGroups(svg: d3.Selection<SVGSVGElement, unknown, null, un
     .attr('width', svgWidth / 2)
     .attr('height', svgHeight)
 
-  rightHandGroup.append('rect').attr('width', svgWidth / 2).attr('height', svgHeight).attr('fill', 'blue').attr('stroke', 'black').attr('stroke-width', 1);
 
   return {
     leftHandGroup,

@@ -45,7 +45,6 @@ export class KeyboardComponent {
     window.addEventListener('resize', () => {
       this.element.nativeElement.innerHTML = '';
       const payload = this.element.nativeElement.getBoundingClientRect();
-      console.log('payload', payload)
 
       this.createKeyboard(payload.width, payload.height);
     })

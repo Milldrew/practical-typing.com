@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/pedagodgy/pedagodgy.component.scss"],
+  "sourcesContent": [":host {\n  height: 100%;\n}\n\np {\n  white-space: pre-wrap;\n  line-height: 1.5;\n  max-width: 1200px;\n}\n"],
+  "mappings": ";AAAA;AACE,UAAA;;AAGF;AACE,eAAA;AACA,eAAA;AACA,aAAA;;",
+  "names": []
+}

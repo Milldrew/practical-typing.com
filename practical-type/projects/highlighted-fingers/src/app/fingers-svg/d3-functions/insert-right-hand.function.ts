@@ -1,7 +1,8 @@
 import * as d3 from 'd3';
 import {fingerSpacing, addFinger, fingerY} from './insert-left-hand.function';
+import {FingerName} from './entrypoint.function';
 
-export function insertRightHand(rightHandGroup: d3.Selection<SVGGElement, unknown, null, undefined>) {
+export function insertRightHand(rightHandGroup: d3.Selection<SVGGElement, unknown, null, undefined>, highlightedFinger: FingerName | null = null) {
   let handHeight = +rightHandGroup.attr('height');
   let handWidth = +rightHandGroup.attr('width');
 
@@ -12,6 +13,14 @@ export function insertRightHand(rightHandGroup: d3.Selection<SVGGElement, unknow
     .append('g')
     .attr('id', 'right-hand')
   // .attr('transform', `translate(${0}, ${handHeight})`)
+  function getFingerColor(fingerName: string) {
+    if (!highlightedFinger) return 'none';
+    if (fingerName.includes(highlightedFinger)) {
+      return '#ffeb3b';
+    } else {
+      return 'none';
+    }
+  }
 
   const pinkyX = fingerX(handWidth, fingerSpacing(handHeight))
   const pinkyY = fingerY(handHeight, handHeight / 4);
@@ -25,7 +34,8 @@ export function insertRightHand(rightHandGroup: d3.Selection<SVGGElement, unknow
     pinkyWidth,
     pinkyX,
     pinkyY,
-    rightHand
+    rightHand,
+    getFingerColor('pinky'),
   );
 
   const ringFingerX = fingerX(handWidth, fingerSpacing(handHeight) * 2);
@@ -41,7 +51,9 @@ export function insertRightHand(rightHandGroup: d3.Selection<SVGGElement, unknow
     ringFingerWidth,
     ringFingerX,
     ringFingerY,
-    rightHand
+    rightHand,
+    getFingerColor('ring'),
+
   );
 
   const middleLength = handHeight / 4 + fingerSpacing(handHeight) / 2;
@@ -56,7 +68,8 @@ export function insertRightHand(rightHandGroup: d3.Selection<SVGGElement, unknow
     middleWidth,
     middleX,
     middleY,
-    rightHand
+    rightHand,
+    getFingerColor('middle'),
   );
 
   const pointerLength = handHeight / 4;
@@ -71,7 +84,8 @@ export function insertRightHand(rightHandGroup: d3.Selection<SVGGElement, unknow
     pointerWidth,
     pointerFingerX,
     pointerFingerY,
-    rightHand
+    rightHand,
+    getFingerColor('pointer'),
   );
 
   const thumbLength = handHeight / 8;
@@ -86,7 +100,8 @@ export function insertRightHand(rightHandGroup: d3.Selection<SVGGElement, unknow
     thumbWidth,
     thumbX,
     thumbY,
-    rightHand
+    rightHand,
+    getFingerColor('thumb'),
   );
 
 

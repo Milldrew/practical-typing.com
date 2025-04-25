@@ -7,6 +7,7 @@ import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {GlobalEventEmitter, REMOVE_KEY_LISTENER} from '../eventz/global.event-emitter';
 import {TimerService} from '../timer/timer.service';
+import {FingersSvgComponent} from '../../projects/highlighted-fingers/src/app/fingers-svg/fingers-svg.component';
 
 @Component({
   selector: 'practical-compete-mode',
@@ -15,6 +16,7 @@ import {TimerService} from '../timer/timer.service';
     MatButtonModule,
     TimerComponent,
     FormsModule,
+    FingersSvgComponent
   ],
   templateUrl: './compete-mode.component.html',
   styleUrl: './compete-mode.component.scss'
@@ -22,6 +24,7 @@ import {TimerService} from '../timer/timer.service';
 export class CompeteModeComponent {
   constructor(
     public competeModeService: CompeteModeService,
+    public timerService: TimerService
   ) {}
   ngOnInit() {
     if (!this.competeModeService.getUsername()) {

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/keyboard/src/app/keyboard/keyboard.component.scss"],
+  "sourcesContent": [":host {\n  // height: 100%;\n  display: flex;\n  min-width: 300px;\n  max-height: 90vh;\n}\n"],
+  "mappings": ";AAAA;AAEE,WAAA;AACA,aAAA;AACA,cAAA;;",
+  "names": []
+}

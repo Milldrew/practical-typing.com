@@ -16,7 +16,6 @@ export class CompeteModeService {
   ) {
     this.initalizeUsernameFromLocalStorage()
     GlobalEventEmitter.on(SEND_COMPETE_MODE_RUN_DATA, (wpm: number) => {
-      console.log('SEND_COMPETE_MODE_RUN_DATA')
       const runData = {
         wpm,
         username: this.username
@@ -25,7 +24,6 @@ export class CompeteModeService {
     })
   }
   handleCompeteModeRunData(runData: {username: string, wpm: number}) {
-    console.table(runData)
     this.highScoreService.addScore(runData.username, runData.wpm)
     this.highScoreService.sortScores()
 

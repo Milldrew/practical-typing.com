@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/highlighted-fingers/src/app/fingers-svg/fingers-svg.component.scss"],
+  "sourcesContent": [":host {\n  display: flex;\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;;",
+  "names": []
+}

@@ -36,7 +36,6 @@ export class KeyboardDataService {
     })
 
     sortedKeys = sortedKeys.map(key => {
-      console.log(key, 'map start')
       key =
         handleValue(key)
       return key
@@ -60,7 +59,6 @@ export class KeyboardDataService {
     this.timeToPresses = getFromLocalStorage('timeToPresses') || this.timeToPresses
     this.convertRawTimeToPressesToAverage()
     GlobalEventEmitter.on(SENDING_TIME_TO_PRESS_KEY_DATA, (timeToPress: number, key: string) => {
-      console.log('timeToPress', timeToPress)
       // timeToPress = Number(timeToPress.toFixed(2))
 
       Object.keys(NON_LETTER_CHAR_TO_NAME).includes(key) ? key = NON_LETTER_CHAR_TO_NAME[key] : key = key;

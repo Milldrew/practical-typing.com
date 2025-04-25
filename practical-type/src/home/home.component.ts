@@ -10,13 +10,15 @@ import {WpmLineChartComponent} from '../wpm-line-chart/wpm-line-chart.component'
 import {GlobalEventEmitter, RESTART_RUN, SEND_RUN_DATA} from '../eventz/global.event-emitter';
 import {KeyboardDataService} from '../keyboard-page/keyboard-data.service';
 import {KeyboardComponent} from '../../projects/keyboard/src/app/keyboard/keyboard.component';
+import {FingersSvgComponent} from '../../projects/highlighted-fingers/src/app/fingers-svg/fingers-svg.component';
 
 
 @Component({
   standalone: true,
   selector: 'practical-home',
   imports: [TimerComponent, TextControlsComponent, SpeedTypingTextDirective, JsonPipe, WpmLineChartComponent,
-    KeyboardComponent
+    KeyboardComponent,
+    FingersSvgComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

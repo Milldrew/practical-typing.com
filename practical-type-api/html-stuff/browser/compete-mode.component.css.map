@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/compete-mode/compete-mode.component.scss"],
+  "sourcesContent": [":host {\n  display: flex;\n  width: 100%;\n  flex-direction: column;\n  align-items: center;\n}\n\n#speed-typing-container {\n  position: absolute;\n  width: 98%;\n  top: 15%;\n  left: 50%;\n  transform: translateX(-50%);\n}\n\n\n#compete-mode-username-container {\n  position: absolute;\n  top: 14%;\n}\n\n#lets-go {\n  position: absolute;\n  top: 0;\n  left: 10px;\n\n}\n\nbutton {\n  cursor: pointer;\n}\n\napp-fingers-svg {\n  max-width: 70vw;\n  max-height: 70vh;\n  width: 800px;\n  height: 800px;\n  position: fixed;\n  bottom: 0;\n  left: 50%;\n  transform: translateX(-50%);\n}\n\npractical-timer {\n  position: fixed;\n  bottom: 0;\n  right: 0;\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;AACA,SAAA;AACA,kBAAA;AACA,eAAA;;AAGF,CAAA;AACE,YAAA;AACA,SAAA;AACA,OAAA;AACA,QAAA;AACA,aAAA,WAAA;;AAIF,CAAA;AACE,YAAA;AACA,OAAA;;AAGF,CAAA;AACE,YAAA;AACA,OAAA;AACA,QAAA;;AAIF;AACE,UAAA;;AAGF;AACE,aAAA;AACA,cAAA;AACA,SAAA;AACA,UAAA;AACA,YAAA;AACA,UAAA;AACA,QAAA;AACA,aAAA,WAAA;;AAGF;AACE,YAAA;AACA,UAAA;AACA,SAAA;;",
+  "names": []
+}

@@ -18,15 +18,12 @@ export class HighScoresService {
     this.socket = io();
     this.socket.emit('scores', {action: 'sync'});
     this.socket.on('connect', () => {
-      console.log('Connected to server');
       this.socket.emit('scores', {action: 'sync'});
     });
     this.socket.on('disconnect', () => {
-      console.log('Disconnected from server');
     });
 
     this.socket.on('scores', (scores) => {
-      console.log('scores', scores)
       if (scores.action === 'sync') {
         this.highScores = scores.data
         this.sortScores();
