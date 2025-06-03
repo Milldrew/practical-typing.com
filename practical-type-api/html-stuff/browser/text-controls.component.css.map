@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/text-controls/text-controls.component.scss"],
-  "sourcesContent": [":host {\n  display: flex;\n  flex-direction: column;\n}\n\n@media (max-width: 600px) {\n  :host {\n    flex-direction: column;\n  }\n}\n\nmat-slider {\n  min-width: 200px;\n  max-width: 400px;\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;AACA,kBAAA;;AAGF,OAAA,CAAA,SAAA,EAAA;AACE;AACE,oBAAA;;;AAIJ;AACE,aAAA;AACA,aAAA;;",
-  "names": []
-}

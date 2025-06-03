@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/timer/timer.component.scss"],
-  "sourcesContent": [":host {\n  display: flex;\n  flex-direction: column;\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;AACA,kBAAA;;",
-  "names": []
-}

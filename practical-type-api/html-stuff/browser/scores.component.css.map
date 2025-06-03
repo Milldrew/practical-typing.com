@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/scores/scores.component.scss"],
-  "sourcesContent": [":host {\n  height: 100%;\n  width: 100%;\n}\n\narticle {\n  display: flex;\n}\n\nsection.chart {\n  margin-top: 23px;\n}\n\nsection.all-data-points {\n  overflow: scroll;\n  height: 80vh;\n}\n"],
-  "mappings": ";AAAA;AACE,UAAA;AACA,SAAA;;AAGF;AACE,WAAA;;AAGF,OAAA,CAAA;AACE,cAAA;;AAGF,OAAA,CAAA;AACE,YAAA;AACA,UAAA;;",
-  "names": []
-}

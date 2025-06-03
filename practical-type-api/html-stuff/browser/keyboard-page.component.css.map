@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/keyboard-page/keyboard-page.component.scss"],
-  "sourcesContent": [":host {\n  display: flex;\n  height: 100%;\n  width: 100%;\n  align-items: center;\n  flex-direction: column;\n}\n\npractical-keyboard {\n  margin-top: 30px;\n  height: 100%;\n  width: 100%;\n  max-width: 80vw;\n}\n\nbutton {\n  margin-top: 20px;\n}\n\nh2 {\n  position: relative;\n  text-align: center;\n  left: unset;\n  transform: unset;\n\n}\n"],
-  "mappings": ";AAAA;AACE,WAAA;AACA,UAAA;AACA,SAAA;AACA,eAAA;AACA,kBAAA;;AAGF;AACE,cAAA;AACA,UAAA;AACA,SAAA;AACA,aAAA;;AAGF;AACE,cAAA;;AAGF;AACE,YAAA;AACA,cAAA;AACA,QAAA;AACA,aAAA;;",
-  "names": []
-}
