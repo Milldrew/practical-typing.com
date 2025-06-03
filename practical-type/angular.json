@@ -316,7 +316,8 @@
             "styles": [
               "projects/highlighted-fingers/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "karmaConfig": "projects/highlighted-fingers/karma.conf.js"
           }
         }
       }

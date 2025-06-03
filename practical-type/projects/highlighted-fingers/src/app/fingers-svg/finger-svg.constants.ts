@@ -329,6 +329,7 @@ export const KEY_TO_FINGER_CONFIG_MAP: {
     },
     specialCharacterName: 'K'
   },
+  //ERROR
   L: {
     leftHand: SHIFT,
     rightHand: {
