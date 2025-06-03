@@ -2,4 +2,3 @@
 
 docker run --rm temp-test-container ./run_tests.sh
 
-docker rm image temp-test-container
