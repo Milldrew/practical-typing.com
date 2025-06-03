@@ -112,7 +112,7 @@ describe('FingersSvgComponent', () => {
   it('Z keystorke should use the left pinky finger and the right pinky', () => {
     const zFingerConfig = KEY_TO_FINGER_CONFIG_MAP['Z']
     if (zFingerConfig && zFingerConfig.leftHand && zFingerConfig.rightHand) {
-      expect(zFingerConfig.leftHand.finger).toBe('ring');
+      expect(zFingerConfig.leftHand.finger).toBe('pinky');
       expect(zFingerConfig.rightHand.finger).toBe('pinky');
 
     } else {

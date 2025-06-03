@@ -329,11 +329,10 @@ export const KEY_TO_FINGER_CONFIG_MAP: {
     },
     specialCharacterName: 'K'
   },
-  //ERROR
   L: {
     leftHand: SHIFT,
     rightHand: {
-      finger: 'pointer',
+      finger: 'ring',
       key: 'L'
     },
     specialCharacterName: 'L'
@@ -357,7 +356,7 @@ export const KEY_TO_FINGER_CONFIG_MAP: {
   O: {
     leftHand: SHIFT,
     rightHand: {
-      finger: 'pointer',
+      finger: 'ring',
       key: 'O'
     },
     specialCharacterName: 'O'
@@ -365,12 +364,11 @@ export const KEY_TO_FINGER_CONFIG_MAP: {
   P: {
     leftHand: SHIFT,
     rightHand: {
-      finger: 'pointer',
+      finger: 'pinky',
       key: 'P'
     },
     specialCharacterName: 'P'
   },
-
   Q: {
     leftHand: {
       finger: 'pinky',
@@ -384,7 +382,7 @@ export const KEY_TO_FINGER_CONFIG_MAP: {
   },
   R: {
     leftHand: {
-      finger: 'pinky',
+      finger: 'pointer',
       key: 'R'
     },
     rightHand: {
@@ -395,7 +393,7 @@ export const KEY_TO_FINGER_CONFIG_MAP: {
   },
   S: {
     leftHand: {
-      finger: 'middle',
+      finger: 'ring',
       key: 'S'
     },
     rightHand: {
@@ -405,35 +403,47 @@ export const KEY_TO_FINGER_CONFIG_MAP: {
     specialCharacterName: 'S'
   },
   T: {
-    leftHand: null,
-    rightHand: {
+    leftHand: {
       finger: 'pointer',
       key: 'T'
+    },
+    rightHand: {
+      finger: 'pinky',
+      key: 'shift'
     },
     specialCharacterName: 'T'
   },
   U: {
-    leftHand: null,
+    leftHand: {
+      finger: 'pinky',
+      key: 'shift'
+    },
     rightHand: {
-      finger: 'middle',
+      finger: 'pointer',
       key: 'U'
     },
     specialCharacterName: 'U'
   },
   V: {
     leftHand: {
-      finger: 'middle',
+      finger: 'pointer',
       key: 'V'
     },
-    rightHand: null,
+    rightHand: {
+      finger: 'pinky',
+      key: 'shift'
+    },
     specialCharacterName: 'V'
   },
   W: {
     leftHand: {
-      finger: 'pinky',
+      finger: 'ring',
       key: 'W'
     },
-    rightHand: null,
+    rightHand: {
+      finger: 'pinky',
+      key: 'shift'
+    },
     specialCharacterName: 'W'
   },
   X: {
