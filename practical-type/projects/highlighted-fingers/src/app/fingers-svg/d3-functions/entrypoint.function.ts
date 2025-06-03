@@ -62,14 +62,20 @@ const MOCK_EXCLAMATION: FingersConfig = {
 
 let currentConfig: FingersConfig;
 
+let isListening: boolean = false
 export function fingersEntrypoint(hostElement: HTMLElement,
   fingersConfig: FingersConfig) {
   currentConfig = fingersConfig;
 
-  window.addEventListener('resize', _.debounce(() => {
-    //@ts-ignore
-    fingersEntrypoint(hostElement, currentConfig);
-  }, 100));
+
+  if (!isListening) {
+    window.addEventListener('resize', _.debounce(() => {
+      console.log('resize')
+      //@ts-ignore
+      fingersEntrypoint(hostElement, currentConfig);
+    }, 100));
+    isListening = true
+  }
 
 
 
