@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "git pull --no-rebase && ./build-gh-pages.sh",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "NG_CLI_ANALYTICS=false ng test --project='highlighted-fingers'"
   },
   "private": true,
   "dependencies": {
