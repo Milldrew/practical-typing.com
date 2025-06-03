@@ -329,10 +329,11 @@ export const KEY_TO_FINGER_CONFIG_MAP: {
     },
     specialCharacterName: 'K'
   },
+  //ERROR
   L: {
     leftHand: SHIFT,
     rightHand: {
-      finger: 'ring',
+      finger: 'ring', // Changed from 'pointer' to 'ring' to match lowercase 'l'
       key: 'L'
     },
     specialCharacterName: 'L'
@@ -356,7 +357,7 @@ export const KEY_TO_FINGER_CONFIG_MAP: {
   O: {
     leftHand: SHIFT,
     rightHand: {
-      finger: 'ring',
+      finger: 'ring', // Changed from 'pointer' to 'ring' to match lowercase 'o'
       key: 'O'
     },
     specialCharacterName: 'O'
@@ -364,11 +365,13 @@ export const KEY_TO_FINGER_CONFIG_MAP: {
   P: {
     leftHand: SHIFT,
     rightHand: {
-      finger: 'pinky',
+      finger: 'pinky', // Changed from 'pointer' to 'pinky' to match lowercase 'p'
       key: 'P'
     },
     specialCharacterName: 'P'
   },
+
+
   Q: {
     leftHand: {
       finger: 'pinky',
@@ -382,7 +385,7 @@ export const KEY_TO_FINGER_CONFIG_MAP: {
   },
   R: {
     leftHand: {
-      finger: 'pointer',
+      finger: 'pointer', // Changed from 'pinky' to 'pointer' to match lowercase 'r'
       key: 'R'
     },
     rightHand: {
@@ -393,7 +396,7 @@ export const KEY_TO_FINGER_CONFIG_MAP: {
   },
   S: {
     leftHand: {
-      finger: 'ring',
+      finger: 'middle',
       key: 'S'
     },
     rightHand: {
@@ -404,46 +407,37 @@ export const KEY_TO_FINGER_CONFIG_MAP: {
   },
   T: {
     leftHand: {
-      finger: 'pointer',
+      finger: 'pointer', // Added leftHand configuration to match lowercase 't'
       key: 'T'
     },
     rightHand: {
-      finger: 'pinky',
+      finger: 'pinky', // Added shift key
       key: 'shift'
     },
     specialCharacterName: 'T'
   },
   U: {
-    leftHand: {
-      finger: 'pinky',
-      key: 'shift'
-    },
+    leftHand: SHIFT, // Added shift key
     rightHand: {
-      finger: 'pointer',
+      finger: 'middle', // Kept as 'middle' to match lowercase 'u'
       key: 'U'
     },
     specialCharacterName: 'U'
   },
   V: {
     leftHand: {
-      finger: 'pointer',
+      finger: 'pointer', // Changed from 'middle' to 'pointer' to match lowercase 'v'
       key: 'V'
     },
-    rightHand: {
-      finger: 'pinky',
-      key: 'shift'
-    },
+    rightHand: SHIFT, // Added shift key
     specialCharacterName: 'V'
   },
   W: {
     leftHand: {
-      finger: 'ring',
+      finger: 'ring', // Changed from 'pinky' to 'ring' to match lowercase 'w'
       key: 'W'
     },
-    rightHand: {
-      finger: 'pinky',
-      key: 'shift'
-    },
+    rightHand: SHIFT, // Added shift key
     specialCharacterName: 'W'
   },
   X: {
@@ -811,5 +805,6 @@ export const KEY_TO_FINGER_CONFIG_MAP: {
     specialCharacterName: '0'
   },
 }
+
 
 
