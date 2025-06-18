@@ -1,5 +1,4 @@
-@use '../variables.scss' as *;
-
+@use "../variables.scss" as *;
 :host {
   display: flex;
   flex-direction: column;
@@ -8,9 +7,7 @@
   // justify-content: space-between;
   background-color: $core-background-color;
   font-family: $core-font-family;
-
 }
-
 
 #hamburger-menu {
   position: fixed;
@@ -28,7 +25,6 @@
   position: fixed;
   top: 28px;
   right: 70px;
-
 }
 
 #reset-data {
@@ -37,11 +33,9 @@
   right: 130px;
 }
 
-
 #hamburger-menu mat-icon {
   transform: scale(1.6);
 }
-
 
 header {
   z-index: 77;
@@ -65,9 +59,7 @@ main {
   contain: content;
 }
 
-
 #speed-typing-container {
-
   height: 100%;
   width: 100%;
   display: flex;
@@ -81,21 +73,18 @@ main {
 }
 
 #speed-typing-text * {
-
   contain: content;
   color: $untyped-char-color;
   width: 100%;
   max-width: 80vw;
   overflow-wrap: anywhere;
   font-size: 32px;
-
 }
 
 header,
 main,
 footer {
   width: 100%;
-
 }
 
 img {
@@ -124,12 +113,10 @@ met-menu {
 }
 
 div.mobile-message {
-
   display: none;
 }
 
 @media only screen and (max-width: 768px) {
-
   /* CSS rules for mobile devices */
   main,
   header {

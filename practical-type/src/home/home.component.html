@@ -1,49 +1,45 @@
-<!-- {{ -->
-<!-- this.scoreService.scores | json -->
-<!-- }} -->
-<!-- }} -->
-<!-- {{ -->
-<!-- keyboardDataService.timeToPresses | json -->
-<!-- }} -->
-@if(!timerService.timerHasStarted) {
-@if(!keyboardDataService.toggleKeyboard) {
-<practical-keyboard [timeToPresses]="keyboardDataService.timeToPressesAverage"></practical-keyboard>
-}
+@if (!timerService.timerHasStarted) {
+  @if (!keyboardDataService.toggleKeyboard) {
+    <practical-keyboard
+      [timeToPresses]="keyboardDataService.timeToPressesAverage"
+    ></practical-keyboard>
+  }
 }
 <section id="text-controls">
+  <practical-text-controls> </practical-text-controls>
 
-  <practical-text-controls>
-  </practical-text-controls>
-
-  <practical-timer>
-  </practical-timer>
+  <practical-timer> </practical-timer>
 </section>
 
 <main [class.playing]="timerService.timerHasStarted">
-  @if(!timerService.timerHasStarted && !timerService.timerHasFinished) {
-
-  <h4>Start Typing To Start</h4>
-  } @else if(timerService.timerHasFinished) {
-  <h4>Press Enter To Restart Timer</h4>
+  @if (!timerService.timerHasStarted && !timerService.timerHasFinished) {
+    <h4>Start Typing To Start</h4>
+  } @else if (timerService.timerHasFinished) {
+    <h4>Press Enter To Restart Timer</h4>
   }
   <div
-  [class.timer-started]="timerService.timerHasStarted"
-  id="speed-typing-container">
-    <div id="speed-typing-text" [currentHighSchore]="currentHighestWpm()" practicalSpeedTypingText
-      [text]="textControlsService.currentText">
-    </div>
+    [class.timer-started]="timerService.timerHasStarted"
+    id="speed-typing-container"
+  >
+    <div
+      id="speed-typing-text"
+      [currentHighSchore]="currentHighestWpm()"
+      practicalSpeedTypingText
+      [text]="textControlsService.currentText"
+    ></div>
   </div>
 
-@if(timerService.timerHasStarted) {
-   <app-fingers-svg> </app-fingers-svg>
-}
-
-  @if(!timerService.timerHasStarted) {
-
-  @if(!keyboardDataService.toggleKeyboard) {
-
-  <practical-wpm-line-chart [data]="getChartData()" [title]="createTitleOfChart()">
-  </practical-wpm-line-chart>
+  @if (timerService.timerHasStarted) {
+    <app-fingers-svg> </app-fingers-svg>
   }
+
+  @if (!timerService.timerHasStarted) {
+    @if (!keyboardDataService.toggleKeyboard) {
+      <practical-wpm-line-chart
+        [data]="getChartData()"
+        [title]="createTitleOfChart()"
+      >
+      </practical-wpm-line-chart>
+    }
   }
 </main>

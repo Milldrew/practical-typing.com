@@ -1,809 +1,802 @@
-import {FingersConfig} from "./d3-functions/entrypoint.function";
+import { FingersConfig } from './d3-functions/entrypoint.function';
 
 export const SVG_BACKGROUND_COLOR = 'lightgray';
 
-const SHIFT:
-  FingersConfig['leftHand'] | FingersConfig['rightHand']
-  = {
+const SHIFT: FingersConfig['leftHand'] | FingersConfig['rightHand'] = {
   finger: 'pinky',
-  key: 'shift'
-}
+  key: 'shift',
+};
 
 export const KEY_TO_FINGER_CONFIG_MAP: {
-  [key: string]: FingersConfig
+  [key: string]: FingersConfig;
 } = {
   a: {
     leftHand: {
       finger: 'pinky',
-      key: 'a'
+      key: 'a',
     },
     rightHand: null,
-    specialCharacterName: 'a'
+    specialCharacterName: 'a',
   },
   b: {
     leftHand: {
       finger: 'pointer',
-      key: 'b'
+      key: 'b',
     },
     rightHand: null,
-    specialCharacterName: 'b'
+    specialCharacterName: 'b',
   },
   c: {
     leftHand: {
       finger: 'middle',
-      key: 'c'
+      key: 'c',
     },
     rightHand: null,
-    specialCharacterName: 'c'
+    specialCharacterName: 'c',
   },
   d: {
     leftHand: {
       finger: 'middle',
-      key: 'd'
+      key: 'd',
     },
     rightHand: null,
-    specialCharacterName: 'd'
+    specialCharacterName: 'd',
   },
   e: {
     leftHand: {
       finger: 'middle',
-      key: 'e'
+      key: 'e',
     },
     rightHand: null,
-    specialCharacterName: 'e'
+    specialCharacterName: 'e',
   },
   f: {
     leftHand: {
       finger: 'pointer',
-      key: 'f'
+      key: 'f',
     },
     rightHand: null,
-    specialCharacterName: 'f'
+    specialCharacterName: 'f',
   },
   g: {
     leftHand: {
       finger: 'pointer',
-      key: 'g'
+      key: 'g',
     },
     rightHand: null,
-    specialCharacterName: 'g'
+    specialCharacterName: 'g',
   },
   h: {
     leftHand: null,
     rightHand: {
       finger: 'pointer',
-      key: 'h'
+      key: 'h',
     },
-    specialCharacterName: 'h'
+    specialCharacterName: 'h',
   },
   i: {
     leftHand: null,
     rightHand: {
       finger: 'middle',
-      key: 'i'
+      key: 'i',
     },
-    specialCharacterName: 'i'
+    specialCharacterName: 'i',
   },
   j: {
     leftHand: null,
     rightHand: {
       finger: 'pointer',
-      key: 'j'
+      key: 'j',
     },
-    specialCharacterName: 'j'
+    specialCharacterName: 'j',
   },
   k: {
     leftHand: null,
     rightHand: {
       finger: 'middle',
-      key: 'k'
+      key: 'k',
     },
-    specialCharacterName: 'k'
+    specialCharacterName: 'k',
   },
   l: {
     leftHand: null,
     rightHand: {
       finger: 'ring',
-      key: 'l'
+      key: 'l',
     },
-    specialCharacterName: 'l'
+    specialCharacterName: 'l',
   },
   m: {
     leftHand: null,
     rightHand: {
       finger: 'pointer',
-      key: 'm'
+      key: 'm',
     },
-    specialCharacterName: 'm'
+    specialCharacterName: 'm',
   },
   n: {
     leftHand: null,
     rightHand: {
       finger: 'pointer',
-      key: 'n'
+      key: 'n',
     },
-    specialCharacterName: 'n'
+    specialCharacterName: 'n',
   },
   o: {
     leftHand: null,
     rightHand: {
       finger: 'ring',
-      key: 'o'
+      key: 'o',
     },
-    specialCharacterName: 'o'
+    specialCharacterName: 'o',
   },
   p: {
     leftHand: null,
     rightHand: {
       finger: 'pinky',
-      key: 'p'
+      key: 'p',
     },
-    specialCharacterName: 'p'
+    specialCharacterName: 'p',
   },
   q: {
     leftHand: {
       finger: 'pinky',
-      key: 'q'
+      key: 'q',
     },
     rightHand: null,
-    specialCharacterName: 'q'
+    specialCharacterName: 'q',
   },
   r: {
     leftHand: {
       finger: 'pointer',
-      key: 'r'
+      key: 'r',
     },
     rightHand: null,
-    specialCharacterName: 'r'
+    specialCharacterName: 'r',
   },
   s: {
     leftHand: {
       finger: 'ring',
-      key: 's'
+      key: 's',
     },
     rightHand: null,
-    specialCharacterName: 's'
+    specialCharacterName: 's',
   },
   t: {
     rightHand: null,
     leftHand: {
       finger: 'pointer',
-      key: 't'
+      key: 't',
     },
-    specialCharacterName: 't'
+    specialCharacterName: 't',
   },
   u: {
     leftHand: null,
     rightHand: {
       finger: 'pointer',
-      key: 'u'
+      key: 'u',
     },
-    specialCharacterName: 'u'
+    specialCharacterName: 'u',
   },
   v: {
     leftHand: {
       finger: 'pointer',
-      key: 'v'
+      key: 'v',
     },
     rightHand: null,
-    specialCharacterName: 'v'
+    specialCharacterName: 'v',
   },
   w: {
     leftHand: {
       finger: 'ring',
-      key: 'w'
+      key: 'w',
     },
     rightHand: null,
-    specialCharacterName: 'w'
+    specialCharacterName: 'w',
   },
   x: {
     leftHand: {
       finger: 'ring',
-      key: 'x'
+      key: 'x',
     },
     rightHand: null,
-    specialCharacterName: 'x'
+    specialCharacterName: 'x',
   },
   y: {
     leftHand: null,
     rightHand: {
       finger: 'pointer',
-      key: 'y'
+      key: 'y',
     },
-    specialCharacterName: 'y'
+    specialCharacterName: 'y',
   },
   z: {
     leftHand: {
       finger: 'pinky',
-      key: 'z'
+      key: 'z',
     },
     rightHand: null,
-    specialCharacterName: 'z'
+    specialCharacterName: 'z',
   },
   A: {
     leftHand: {
       finger: 'pinky',
-      key: 'A'
+      key: 'A',
     },
     rightHand: {
       finger: 'pinky',
-      key: 'shift'
+      key: 'shift',
     },
-    specialCharacterName: 'A'
+    specialCharacterName: 'A',
   },
   B: {
     leftHand: {
       finger: 'pointer',
-      key: 'B'
+      key: 'B',
     },
     rightHand: {
       finger: 'pinky',
-      key: 'shift'
+      key: 'shift',
     },
-    specialCharacterName: 'B'
+    specialCharacterName: 'B',
   },
   C: {
     leftHand: {
       finger: 'middle',
-      key: 'C'
+      key: 'C',
     },
     rightHand: {
       finger: 'pinky',
-      key: 'shift'
+      key: 'shift',
     },
-    specialCharacterName: 'C'
+    specialCharacterName: 'C',
   },
   D: {
     leftHand: {
       finger: 'middle',
-      key: 'D'
+      key: 'D',
     },
     rightHand: {
       finger: 'pinky',
-      key: 'shift'
+      key: 'shift',
     },
-    specialCharacterName: 'D'
+    specialCharacterName: 'D',
   },
   E: {
     leftHand: {
       finger: 'middle',
-      key: 'E'
+      key: 'E',
     },
     rightHand: {
       finger: 'pinky',
-      key: 'shift'
+      key: 'shift',
     },
-    specialCharacterName: 'E'
+    specialCharacterName: 'E',
   },
   F: {
     leftHand: {
       finger: 'pointer',
-      key: 'F'
+      key: 'F',
     },
     rightHand: {
       finger: 'pinky',
-      key: 'shift'
+      key: 'shift',
     },
-    specialCharacterName: 'F'
+    specialCharacterName: 'F',
   },
   G: {
     leftHand: {
       finger: 'pointer',
-      key: 'G'
+      key: 'G',
     },
     rightHand: {
       finger: 'pinky',
-      key: 'shift'
+      key: 'shift',
     },
-    specialCharacterName: 'G'
+    specialCharacterName: 'G',
   },
   H: {
     leftHand: SHIFT,
     rightHand: {
       finger: 'pointer',
-      key: 'H'
+      key: 'H',
     },
-    specialCharacterName: 'H'
+    specialCharacterName: 'H',
   },
   I: {
     leftHand: SHIFT,
     rightHand: {
       finger: 'middle',
-      key: 'I'
+      key: 'I',
     },
-    specialCharacterName: 'I'
+    specialCharacterName: 'I',
   },
   J: {
     leftHand: SHIFT,
     rightHand: {
       finger: 'pointer',
-      key: 'J'
+      key: 'J',
     },
-    specialCharacterName: 'J'
+    specialCharacterName: 'J',
   },
   K: {
     leftHand: SHIFT,
     rightHand: {
       finger: 'middle',
-      key: 'K'
+      key: 'K',
     },
-    specialCharacterName: 'K'
+    specialCharacterName: 'K',
   },
   L: {
     leftHand: SHIFT,
     rightHand: {
       finger: 'ring',
-      key: 'L'
+      key: 'L',
     },
-    specialCharacterName: 'L'
+    specialCharacterName: 'L',
   },
   M: {
     leftHand: SHIFT,
     rightHand: {
       finger: 'pointer',
-      key: 'M'
+      key: 'M',
     },
-    specialCharacterName: 'M'
+    specialCharacterName: 'M',
   },
   N: {
     leftHand: SHIFT,
     rightHand: {
       finger: 'pointer',
-      key: 'N'
+      key: 'N',
     },
-    specialCharacterName: 'N'
+    specialCharacterName: 'N',
   },
   O: {
     leftHand: SHIFT,
     rightHand: {
       finger: 'ring',
-      key: 'O'
+      key: 'O',
     },
-    specialCharacterName: 'O'
+    specialCharacterName: 'O',
   },
   P: {
     leftHand: SHIFT,
     rightHand: {
       finger: 'pinky',
-      key: 'P'
+      key: 'P',
     },
-    specialCharacterName: 'P'
+    specialCharacterName: 'P',
   },
-
 
   Q: {
     leftHand: {
       finger: 'pinky',
-      key: 'Q'
+      key: 'Q',
     },
     rightHand: {
       finger: 'pinky',
-      key: 'shift'
+      key: 'shift',
     },
-    specialCharacterName: 'Q'
+    specialCharacterName: 'Q',
   },
   R: {
     leftHand: {
       finger: 'pointer',
-      key: 'R'
+      key: 'R',
     },
     rightHand: {
       finger: 'pinky',
-      key: 'shift'
+      key: 'shift',
     },
-    specialCharacterName: 'R'
+    specialCharacterName: 'R',
   },
   S: {
     leftHand: {
       finger: 'ring',
-      key: 'S'
+      key: 'S',
     },
     rightHand: {
       finger: 'pinky',
-      key: 'shift'
+      key: 'shift',
     },
-    specialCharacterName: 'S'
+    specialCharacterName: 'S',
   },
   T: {
     leftHand: {
       finger: 'pointer',
-      key: 'T'
+      key: 'T',
     },
     rightHand: {
       finger: 'pinky',
-      key: 'shift'
+      key: 'shift',
     },
-    specialCharacterName: 'T'
+    specialCharacterName: 'T',
   },
   U: {
     leftHand: SHIFT,
     rightHand: {
       finger: 'pointer',
-      key: 'U'
+      key: 'U',
     },
-    specialCharacterName: 'U'
+    specialCharacterName: 'U',
   },
   V: {
     leftHand: {
       finger: 'pointer',
-      key: 'V'
+      key: 'V',
     },
     rightHand: SHIFT,
-    specialCharacterName: 'V'
+    specialCharacterName: 'V',
   },
   W: {
     leftHand: {
       finger: 'ring',
-      key: 'W'
+      key: 'W',
     },
     rightHand: SHIFT,
-    specialCharacterName: 'W'
+    specialCharacterName: 'W',
   },
   X: {
     leftHand: {
       finger: 'ring',
-      key: 'X'
+      key: 'X',
     },
     rightHand: SHIFT,
-    specialCharacterName: 'X'
+    specialCharacterName: 'X',
   },
   Y: {
     leftHand: SHIFT,
     rightHand: {
       finger: 'pointer',
-      key: 'Y'
+      key: 'Y',
     },
-    specialCharacterName: 'Y'
+    specialCharacterName: 'Y',
   },
   Z: {
     leftHand: {
       finger: 'pinky',
-      key: 'Z'
+      key: 'Z',
     },
     rightHand: {
       finger: 'pinky',
-      key: 'shift'
+      key: 'shift',
     },
-    specialCharacterName: 'Z'
+    specialCharacterName: 'Z',
   },
   '&': {
     leftHand: SHIFT,
     rightHand: {
       finger: 'pointer',
-      key: '&'
+      key: '&',
     },
-    specialCharacterName: 'ampersand'
+    specialCharacterName: 'ampersand',
   },
   '*': {
     leftHand: SHIFT,
     rightHand: {
       finger: 'middle',
-      key: '*'
+      key: '*',
     },
-    specialCharacterName: 'asterisk'
+    specialCharacterName: 'asterisk',
   },
   '@': {
     leftHand: {
       finger: 'ring',
-      key: '@'
+      key: '@',
     },
     rightHand: SHIFT,
-    specialCharacterName: 'at'
+    specialCharacterName: 'at',
   },
-  "\\": {
+  '\\': {
     rightHand: {
       finger: 'pinky',
-      key: '\\'
+      key: '\\',
     },
     leftHand: null,
-    specialCharacterName: 'backslash'
+    specialCharacterName: 'backslash',
   },
   '`': {
     leftHand: {
       finger: 'pinky',
-      key: '`'
+      key: '`',
     },
     rightHand: null,
-    specialCharacterName: 'backtick'
+    specialCharacterName: 'backtick',
   },
   '^': {
     leftHand: {
       finger: 'pointer',
-      key: '^'
+      key: '^',
     },
     rightHand: SHIFT,
-    specialCharacterName: 'caret'
+    specialCharacterName: 'caret',
   },
-  ":": {
+  ':': {
     rightHand: {
       finger: 'pinky',
-      key: ':'
+      key: ':',
     },
     leftHand: SHIFT,
-    specialCharacterName: 'colon'
+    specialCharacterName: 'colon',
   },
   ',': {
     rightHand: {
       finger: 'middle',
-      key: ','
+      key: ',',
     },
     leftHand: null,
-    specialCharacterName: 'comma'
+    specialCharacterName: 'comma',
   },
-  '$': {
+  $: {
     leftHand: {
       finger: 'pointer',
-      key: '$'
+      key: '$',
     },
     rightHand: SHIFT,
-    specialCharacterName: 'dollar'
+    specialCharacterName: 'dollar',
   },
   '"': {
     leftHand: {
       finger: 'pinky',
-      key: '"'
+      key: '"',
     },
     rightHand: SHIFT,
-    specialCharacterName: 'double quote'
+    specialCharacterName: 'double quote',
   },
   '=': {
     leftHand: null,
     rightHand: {
       finger: 'pinky',
-      key: '='
+      key: '=',
     },
-    specialCharacterName: 'equals'
+    specialCharacterName: 'equals',
   },
   '!': {
     leftHand: {
       finger: 'pinky',
-      key: '!'
+      key: '!',
     },
     rightHand: SHIFT,
-    specialCharacterName: 'exclamation'
+    specialCharacterName: 'exclamation',
   },
   '/': {
     rightHand: {
       finger: 'pinky',
-      key: '/'
+      key: '/',
     },
     leftHand: null,
-    specialCharacterName: 'forward slash'
+    specialCharacterName: 'forward slash',
   },
   '>': {
     leftHand: SHIFT,
     rightHand: {
       finger: 'ring',
-      key: '>'
+      key: '>',
     },
-    specialCharacterName: 'greater than'
+    specialCharacterName: 'greater than',
   },
   '#': {
     leftHand: {
       finger: 'middle',
-      key: '#'
+      key: '#',
     },
     rightHand: SHIFT,
-    specialCharacterName: 'hash'
+    specialCharacterName: 'hash',
   },
   '{': {
     leftHand: SHIFT,
     rightHand: {
       finger: 'pinky',
-      key: '{'
+      key: '{',
     },
-    specialCharacterName: 'left curly bracket'
+    specialCharacterName: 'left curly bracket',
   },
   '[': {
     leftHand: null,
     rightHand: {
       finger: 'pinky',
-      key: '['
+      key: '[',
     },
-    specialCharacterName: 'left bracket'
+    specialCharacterName: 'left bracket',
   },
   '(': {
     leftHand: SHIFT,
     rightHand: {
       finger: 'ring',
-      key: '('
+      key: '(',
     },
-    specialCharacterName: 'left parenthesis'
+    specialCharacterName: 'left parenthesis',
   },
   '<': {
     rightHand: {
       finger: 'middle',
-      key: '<'
+      key: '<',
     },
     leftHand: SHIFT,
-    specialCharacterName: 'less than'
+    specialCharacterName: 'less than',
   },
   '-': {
     rightHand: {
       finger: 'ring',
-      key: '-'
+      key: '-',
     },
     leftHand: null,
-    specialCharacterName: 'minus'
+    specialCharacterName: 'minus',
   },
   '%': {
     leftHand: {
       finger: 'pointer',
-      key: '%'
+      key: '%',
     },
     rightHand: SHIFT,
-    specialCharacterName: 'percent'
+    specialCharacterName: 'percent',
   },
   '.': {
     rightHand: {
       finger: 'ring',
-      key: '.'
+      key: '.',
     },
     leftHand: null,
-    specialCharacterName: 'period'
+    specialCharacterName: 'period',
   },
   '+': {
     rightHand: {
       finger: 'pinky',
-      key: '+'
+      key: '+',
     },
     leftHand: SHIFT,
-    specialCharacterName: 'plus'
+    specialCharacterName: 'plus',
   },
   '?': {
     leftHand: SHIFT,
     rightHand: {
       finger: 'pinky',
-      key: '?'
+      key: '?',
     },
-    specialCharacterName: 'question mark'
+    specialCharacterName: 'question mark',
   },
   '}': {
     rightHand: {
       finger: 'pinky',
-      key: '}'
+      key: '}',
     },
     leftHand: SHIFT,
-    specialCharacterName: 'right curly bracket'
+    specialCharacterName: 'right curly bracket',
   },
   ']': {
     rightHand: {
       finger: 'pinky',
-      key: ']'
+      key: ']',
     },
     leftHand: null,
-    specialCharacterName: 'right bracket'
+    specialCharacterName: 'right bracket',
   },
   ')': {
     rightHand: {
       finger: 'pinky',
-      key: ')'
+      key: ')',
     },
     leftHand: SHIFT,
-    specialCharacterName: 'right parenthesis'
+    specialCharacterName: 'right parenthesis',
   },
   ';': {
     rightHand: {
-      finger: 'ring',
-      key: ';'
+      finger: 'pinky',
+      key: ';',
     },
     leftHand: null,
-    specialCharacterName: 'semicolon'
+    specialCharacterName: 'semicolon',
   },
   "'": {
     leftHand: null,
     rightHand: {
       finger: 'pinky',
-      key: "'"
+      key: "'",
     },
-    specialCharacterName: 'single quote'
+    specialCharacterName: 'single quote',
   },
   '~': {
     leftHand: {
       finger: 'pinky',
-      key: '~'
+      key: '~',
     },
     rightHand: SHIFT,
-    specialCharacterName: 'tilde'
+    specialCharacterName: 'tilde',
   },
-  '_': {
+  _: {
     rightHand: {
       finger: 'ring',
-      key: '_'
+      key: '_',
     },
     leftHand: SHIFT,
-    specialCharacterName: 'underscore'
+    specialCharacterName: 'underscore',
   },
   '|': {
     leftHand: SHIFT,
     rightHand: {
       finger: 'pinky',
-      key: '|'
+      key: '|',
     },
-    specialCharacterName: 'vertical bar'
+    specialCharacterName: 'vertical bar',
   },
   '1': {
     leftHand: {
       finger: 'pinky',
-      key: '1'
+      key: '1',
     },
     rightHand: null,
-    specialCharacterName: '1'
+    specialCharacterName: '1',
   },
   '2': {
     leftHand: {
       finger: 'ring',
-      key: '2'
+      key: '2',
     },
     rightHand: null,
-    specialCharacterName: '2'
+    specialCharacterName: '2',
   },
   '3': {
     leftHand: {
       finger: 'middle',
-      key: '3'
+      key: '3',
     },
     rightHand: null,
-    specialCharacterName: '3'
+    specialCharacterName: '3',
   },
   '4': {
     leftHand: {
       finger: 'pointer',
-      key: '4'
+      key: '4',
     },
     rightHand: null,
-    specialCharacterName: '4'
+    specialCharacterName: '4',
   },
   '5': {
     leftHand: {
       finger: 'pointer',
-      key: '5'
+      key: '5',
     },
     rightHand: null,
-    specialCharacterName: '5'
+    specialCharacterName: '5',
   },
   '6': {
     leftHand: {
       finger: 'pointer',
-      key: '6'
+      key: '6',
     },
     rightHand: null,
-    specialCharacterName: '6'
+    specialCharacterName: '6',
   },
   7: {
     rightHand: {
       finger: 'pointer',
-      key: '7'
+      key: '7',
     },
     leftHand: null,
-    specialCharacterName: '7'
-  }
-  ,
+    specialCharacterName: '7',
+  },
   '8': {
     rightHand: {
       finger: 'middle',
-      key: '8'
+      key: '8',
     },
     leftHand: null,
-    specialCharacterName: '8'
+    specialCharacterName: '8',
   },
   '9': {
     rightHand: {
       finger: 'ring',
-      key: '9'
+      key: '9',
     },
     leftHand: null,
-    specialCharacterName: '9'
+    specialCharacterName: '9',
   },
   '0': {
     rightHand: {
       finger: 'pinky',
-      key: '0'
+      key: '0',
     },
     leftHand: null,
-    specialCharacterName: '0'
+    specialCharacterName: '0',
   },
-}
-
-
-
+};
