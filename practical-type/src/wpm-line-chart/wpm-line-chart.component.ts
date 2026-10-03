@@ -66,10 +66,18 @@ export class WpmLineChartComponent {
     }
   }
 
+  /**
+   * Redraw only when the data actually changed. This used to rebuild the
+   * whole d3 chart on every change-detection pass - many times per second
+   * while typing.
+   */
+  private drawnKey = '';
   ngAfterViewChecked() {
-    if (Array.isArray(this.data) && this.data.length > 0) {
-      this.createChart()
-    }
+    if (!Array.isArray(this.data) || this.data.length === 0) return;
+    const key = JSON.stringify([this.data, (this as any).title]);
+    if (key === this.drawnKey) return;
+    this.drawnKey = key;
+    this.createChart()
   }
   createChart() {
     this.removeChart()
@@ -90,8 +98,12 @@ export class WpmLineChartComponent {
     const svg = svgContainer.append('svg')
     const mainGroup =
       svg
-        .attr('width', 500)
-        .attr('height', 500)
+        // Scales with its container (max 500px) instead of a fixed 500x500.
+        .attr('viewBox', '0 0 500 500')
+        .attr('width', '100%')
+        .style('max-width', '500px')
+        .style('display', 'block')
+        .style('margin', '0 auto')
         .append('g')
 
     // svg.style('border', '1px solid white')

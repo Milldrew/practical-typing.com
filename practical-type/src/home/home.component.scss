@@ -8,6 +8,7 @@
 #text-controls {
   display: flex;
   flex-direction: column;
+  padding: 0 24px;
 }
 
 #speed-typing-container {
@@ -48,12 +49,14 @@ main {
   height: 100%;
 }
 
+/* The key-timing heat map. It used to be pinned at right:0 / top:50vh, which
+   on any window shorter or narrower than a big monitor landed it on top of
+   the footer, clipped. In the flow, centred, it fits every size. */
 practical-keyboard {
-  max-width: 300px;
-  position: absolute;
-  height: 100%;
-  right: 0;
-  top: 50vh;
+  display: block;
+  width: min(560px, 92vw);
+  margin: 8px auto 24px;
+  order: 10;
 }
 
 main.playing {
@@ -67,6 +70,8 @@ main.playing {
 
 h4 {
   font-size: 1.7em;
+  text-align: center;
+  padding: 0 16px;
 }
 
 app-fingers-svg {

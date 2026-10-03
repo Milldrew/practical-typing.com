@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import {Component, inject, HostBinding} from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -30,6 +30,8 @@ import { CelebratoryAnimationComponent } from '../celebratory-animation/celebrat
   styleUrl: './root.component.scss',
 })
 export class RootComponent {
+  /** Touch-first device with a keyboard attached: let them in. */
+  @HostBinding('class.show-anyway') showAnyway = false;
   constructor(
     private snackBar: MatSnackBar,
     public timerService: TimerService,
